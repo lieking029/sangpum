@@ -21,6 +21,14 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
+                // If the user is an admin, redirect to the admin dashboard.
+                if (Auth::guard($guard)->user()->hasRole('seller')) {
+                    return redirect('/seller-home'); // Specify the admin dashboard route here.
+                }
+
+                // If the user has any other role, you can handle other redirections here.
+
+                // Default redirect if authenticated.
                 return redirect(RouteServiceProvider::HOME);
             }
         }
