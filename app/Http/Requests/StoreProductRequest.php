@@ -32,6 +32,11 @@ class StoreProductRequest extends FormRequest
             'variation. * .variation_name' => ['required', 'string', 'max:255'],
             'variation. * .price' => ['required', 'string', 'max:255'],
             'variation. * .stock' => ['required', 'integer'],
+            'weight' => ['required', 'string'],
+            'height' => ['required', 'string'],
+            'width' => ['required', 'string'],
+            'length' => ['required', 'string'],
+            'shipping_fee' => ['required', 'string'],
         ];
     }
 }

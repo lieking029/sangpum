@@ -2,17 +2,22 @@
 
 @section('content')
 
+@if($errors->any())
+    {!! implode('', $errors->all('<div>:message</div>')) !!}
+@endif
+
 <div class="container-fluid card">
     <div class="card-header row">
         <div class="col">
             <h4>Product</h4>
         </div>
         <div class="col text-end">
-            <i class="fas fa-bars" style="font-size: 23px"></i>
+            <i class="fas fa-bars" style="font-size: 24px"></i>
         </div>
     </div>
     <div class="card-body">
-        <form action="">
+        <form action="{{ route('products.store') }}" method="POST">
+            @csrf
             <div class="row">
                 <div class="col">
                     <h4><strong>Add Product</strong></h4>
@@ -84,20 +89,20 @@
                         <div class="" style="margin-left: 2%">
                             <div class="d-flex">
                                 <label for="weight" style="margin-right: 10px">Weight:</label>
-                                <input type="text" name="weight" style="height: 27px; width: 10rem; border: 2px solid #cacaca;"> kg
+                                <input type="number" name="weight" style="height: 27px; width: 10rem; border: 2px solid #cacaca;"> kg
                             </div>
 
                             <div class="d-flex mt-3">
                                 <label for="weight" style="margin-right: 10px">Parcel Size:</label>
-                                <input type="text" name="height" style="height: 27px; width: 10rem; border: 2px solid #cacaca;"> <span style="margin-left: 10px; margin-right: 10px">X</span>
-                                <input type="text" name="width" style="height: 27px; width: 10rem; border: 2px solid #cacaca;"> <span style="margin-left: 10px; margin-right: 10px">X</span>
-                                <input type="text" name="length" style="height: 27px; width: 10rem; border: 2px solid #cacaca;">
+                                <input type="number" name="height" style="height: 27px; width: 10rem; border: 2px solid #cacaca;"> <span style="margin-left: 10px; margin-right: 10px">X</span>
+                                <input type="number" name="width" style="height: 27px; width: 10rem; border: 2px solid #cacaca;"> <span style="margin-left: 10px; margin-right: 10px">X</span>
+                                <input type="number" name="length" style="height: 27px; width: 10rem; border: 2px solid #cacaca;">
                             </div>
 
                             <div class="form-group mt-3">
                                 <label for="shipping_fee" style="margin-right: 10px">Shipping fee:</label>
                                 <select name="shipping_fee" id="" class="form-select">
-                                    <option value="" selected disabled>Select Shipping fee Type</option>
+                                    <option value="standard local" selected>Standard Local</option>
                                 </select>
                             </div>
                         </div>
@@ -118,10 +123,10 @@
                     <input type="text" name="variation[${variationLength}][variation_name]" style="height: 27px; width: 10rem; border: 2px solid #cacaca;">
                 </div>
                 <div class="col">
-                    <input type="text" name="variation[${variationLength}][price]" style="height: 27px; width: 10rem; border: 2px solid #cacaca;">
+                    <input type="number" name="variation[${variationLength}][price]" style="height: 27px; width: 10rem; border: 2px solid #cacaca;">
                 </div>
                 <div class="col">
-                    <input type="text" name="variation[${variationLength}][stock]" style="height: 27px; width: 10rem; border: 2px solid #cacaca;">
+                    <input type="number" name="variation[${variationLength}][stock]" style="height: 27px; width: 10rem; border: 2px solid #cacaca;">
                 </div>
             </div>
             `

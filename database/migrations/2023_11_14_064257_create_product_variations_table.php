@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignIdFor(Product::class)->constrained()->cascadeOnDelete();
             $table->string('variation_name');
             $table->double('price');
-            $table->int('stock');
+            $table->integer('stock');
             $table->timestamps();
         });
     }
