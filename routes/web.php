@@ -28,7 +28,6 @@ Route::middleware('auth')->group(function () {
     Route::middleware('role:seller')->group(function () {
         Route::get('seller-home', [HomeController::class, 'sellerIndex'])->name('seller.home');
 
-
         // Resources
         Route::resource('products', ProductController::class);
     });

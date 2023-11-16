@@ -17,7 +17,8 @@ return new class extends Migration
             $table->string('product_name');
             $table->string('category');
             $table->string('product_description');
-            $table->string('pre_order');
+            $table->string('pre_order')->nullable();
+            $table->integer('published')->nullable();
             $table->timestamps();
         });
     }
