@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ShipmentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,21 +22,23 @@ Route::get('/', function () {
 
 Auth::routes();
 
-
 Route::middleware('auth')->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
     Route::middleware('role:seller')->group(function () {
-        Route::get('seller-home', [HomeController::class, 'sellerIndex'])->name('seller.home');
-
         // Resources
         Route::resource('products', ProductController::class);
+
+
+        Route::get('seller-home', [HomeController::class, 'sellerIndex'])->name('seller.home');
+        Route::get('to-shipment', ShipmentController::class)->name('toShipment');
+        Route::get('to-shipping', ShipmentController::class)->name('toShipping');
+        Route::get('to-receive', ShipmentController::class)->name('toReceive');
+        Route::get('complete', ShipmentController::class)->name('complete');
     });
 
     Route::view('about', 'about')->name('about');
-
     Route::get('users', [\App\Http\Controllers\UserController::class, 'index'])->name('users.index');
-
     Route::get('profile', [\App\Http\Controllers\ProfileController::class, 'show'])->name('profile.show');
     Route::put('profile', [\App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
 });

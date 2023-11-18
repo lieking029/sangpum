@@ -77,4 +77,9 @@ class User extends Authenticatable
         return $this->hasOne(Shop::class);
     }
 
+    public function shipment() : HasOne
+    {
+        return $this->hasOne(Shipment::class);
+    }
+
 }

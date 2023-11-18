@@ -29,4 +29,9 @@ class Product extends Model
         return $this->hasOne(Shipping::class);
     }
 
+    public function shipment() : HasOne
+    {
+        return $this->hasOne(Shipment::class);
+    }
+
 }
