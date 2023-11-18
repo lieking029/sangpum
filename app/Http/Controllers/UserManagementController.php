@@ -19,4 +19,6 @@ class UserManagementController extends Controller
         return view('admin.users.showBuyer', compact('user'));
     }
 
+
+
 }
