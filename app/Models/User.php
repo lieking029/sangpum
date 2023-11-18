@@ -82,4 +82,9 @@ class User extends Authenticatable
         return $this->hasOne(Shipment::class);
     }
 
+    public function wallet() : HasOne
+    {
+        return $this->hasOne(Wallet::class);
+    }
+
 }

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\UserTypeEnum;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -29,6 +31,14 @@ class HomeController extends Controller
     public function sellerIndex()
     {
         return view('sellerHome');
+    }
+
+    public function adminIndex()
+    {
+        $sellers = User::role(UserTypeEnum::Seller)->count();
+        $users = User::role(UserTypeEnum::Buyer)->count();
+
+        return view('adminHome', compact('sellers', 'users'));
     }
 
 }

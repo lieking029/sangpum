@@ -31,10 +31,10 @@ Route::middleware('auth')->group(function () {
 
 
         Route::get('seller-home', [HomeController::class, 'sellerIndex'])->name('seller.home');
-        Route::get('to-shipment', ShipmentController::class)->name('toShipment');
-        Route::get('to-shipping', ShipmentController::class)->name('toShipping');
-        Route::get('to-receive', ShipmentController::class)->name('toReceive');
-        Route::get('complete', ShipmentController::class)->name('complete');
+        Route::get('to-shipment/{shipment}', [ShipmentController::class, 'toShipment'])->name('toShipment');
+        Route::get('to-shipping/{shipment}', [ShipmentController::class, 'toShipping'])->name('toShipping');
+        Route::get('to-receive/{shipment}', [ShipmentController::class, 'toReceive'])->name('toReceive');
+        Route::get('complete/{shipment}', [ShipmentController::class, 'complete'])->name('complete');
     });
 
     Route::view('about', 'about')->name('about');
