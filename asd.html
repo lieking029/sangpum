@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stepper Example</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        .step-button {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            background-color: #ccc;
+            transition: .4s;
+        }
+        .step-button[aria-expanded="true"], .step-button.done {
+            width: 60px;
+            height: 60px;
+            background-color: #007bff;
+            color: #fff;
+        }
+        .step-item {
+            z-index: 10;
+            text-align: center;
+        }
+        #progress {
+            -webkit-appearance: none;
+            position: absolute;
+            width: 95%;
+            z-index: 5;
+            height: 10px;
+            margin-left: 18px;
+            margin-bottom: 18px;
+        }
+        #progress::-webkit-progress-value {
+            background-color: #007bff;
+            transition: .5s ease;
+        }
+        #progress::-webkit-progress-bar {
+            background-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="accordion" id="accordionExample">
+            <div class="steps">
+                <progress id="progress" value=0 max=100 ></progress>
+                <div class="container">
+                    <div class="accordion" id="accordionExample">
+                    <div class="steps">
+                        <progress id="progress" value=0 max=100 ></progress>
+                        <div class="step-item">
+                            <button class="step-button text-center" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                1
+                            </button>
+                            <div class="step-title">
+                                First Step
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <button class="step-button text-center collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                2
+                            </button>
+                            <div class="step-title">
+                                Second Step
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <button class="step-button text-center collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                3
+                            </button>
+                            <div class="step-title">
+                                Third Step
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div  id="headingOne">
+                        </div>
+
+                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                            data-bs-parent="#accordionExample">
+                            <div class="card-body">
+                               your content goes here...
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div  id="headingTwo">
+
+                        </div>
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                            <div class="card-body">
+                                your content goes here...
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div  id="headingThree">
+
+                        </div>
+                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                            data-bs-parent="#accordionExample">
+                            <div class="card-body">
+                                your content goes here...
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const stepButtons = document.querySelectorAll('.step-button');
+        const progress = document.querySelector('#progress');
+
+        Array.from(stepButtons).forEach((button, index) => {
+            button.addEventListener('click', () => {
+                progress.setAttribute('value', index * 100 / (stepButtons.length - 1));
+
+                stepButtons.forEach((item, secIndex) => {
+                    if(index > secIndex){
+                        item.classList.add('done');
+                    }
+                    if(index < secIndex){
+                        item.classList.remove('done');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

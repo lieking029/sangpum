@@ -155,11 +155,11 @@
                 @if (Route::has('login'))
                     <div class="button-group navbar-nav d-flex">
                         @auth
-                            <a href="{{ url('/home') }}" class="btn btn-success rounded-5">Home</a>
+                            <a href="{{ route('/home') }}" class="btn btn-success rounded-5">Home</a>
                         @else
-                            <a href="{{ route('login') }}" class="btn btn-primary rounded-5">Log in</a>
+                            <a href="{{ route('auth.login') }}" class="btn btn-primary rounded-5">Log in</a>
                             @if (Route::has('register'))
-                                <a href="{{ route('register') }}" class="btn btn-primary rounded-5">Register</a>
+                                <a href="{{ route('auth.register') }}" class="btn btn-primary rounded-5">Register</a>
                             @endif
                         @endauth
                     </div>

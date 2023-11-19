@@ -64,7 +64,7 @@
                         </div>
 
                         <div class="input-group mt-4 d-flex justify-content-center">
-                            <p>Don't Have an Account? <a href="{{ route('register') }}">Sign Up</a></p>
+                            <p>Don't Have an Account? <a href="{{ route('register.buyer') }}">Sign Up</a></p>
                         </div>
                     </form>
                 </div>
