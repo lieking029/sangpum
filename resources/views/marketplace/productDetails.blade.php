@@ -16,7 +16,8 @@
             <div class="col-4">
                 <h5 style="font-weight: 400">TEUCART</h5>
                 <h3>{{ $product->product_name }}</h3>
-                <h5 style="font-weight: 400">P {{ $product->productVariations[0]->price }}</h5>
+                {{-- <h5 style="font-weight: 400">P {{ $product->productVariations[0]->price }}</h5> --}}
+                <input type="text" id="price" value="{{ $product->productVariations[0]->price }}" readonly class="form-control border-0">
 
                 <div class="row">
                     <strong>Variation</strong>
@@ -29,7 +30,7 @@
                 <div class="row">
                     <div class="col">
                         <span>Quantity</span> <br>
-                        <input type="text" name="quantity" id="quantity" class="form-control" placeholder="0">
+                        <input type="number" min="0" name="quantity" id="quantity" class="form-control" placeholder="0">
                     </div>
                     <div class="col">
                         <span>Total</span> <br>
@@ -43,8 +44,12 @@
     <script>
         $(() => {
             $('#quantity').on('input', function() {
-                console.log('changed');
-            })
+            const price = parseFloat($('#price').val());
+            const quantity = parseInt($('#quantity').val(), 10);
+
+            const total = price * quantity;
+                $('#total').text(total.toFixed(2)); // toFixed(2) to format it as a currency with two decimal places
+            });
         })
     </script>
 </div>
