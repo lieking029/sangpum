@@ -48,4 +48,9 @@ class OrderController extends Controller
         return redirect()->route('order.index');
     }
 
+    public function marketplace()
+    {
+        return view('marketplace.index');
+    }
+
 }

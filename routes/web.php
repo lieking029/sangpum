@@ -1,8 +1,11 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ShipmentController;
+use App\Http\Controllers\TopUpController;
+use App\Http\Controllers\UserManagementController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,9 +28,17 @@ Auth::routes();
 Route::middleware('auth')->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+    Route::middleware('role:admin')->group(function () {
+        Route::get('user-sellers', [UserManagementController::class, 'showSeller'])->name('showSeller');
+        Route::get('user-buyers', [UserManagementController::class, 'showBuyer'])->name('showBuyer');
+    });
+
+
     Route::middleware('role:seller')->group(function () {
         // Resources
         Route::resource('products', ProductController::class);
+        Route::post('product-published', [ProductController::class,'published'])->name('product.published');
+        Route::post('product-bulkDelete', [ProductController::class,'bulkDelete'])->name('product.bulkDelete');
 
 
         Route::get('seller-home', [HomeController::class, 'sellerIndex'])->name('seller.home');
@@ -36,6 +47,13 @@ Route::middleware('auth')->group(function () {
         Route::get('to-receive/{shipment}', [ShipmentController::class, 'toReceive'])->name('toReceive');
         Route::get('complete/{shipment}', [ShipmentController::class, 'complete'])->name('complete');
     });
+
+    Route::resource('top-up', TopUpController::class)
+        ->only('index', 'store');
+
+    Route::resource('order', OrderController::class);
+    Route::post('order-quantity/{order}', [OrderController::class,'changeQuantity'])->name('order.changeQuantity');
+    Route::get('marketplace', [OrderController::class,'marketplace'])->name('marketplace');
 
     Route::view('about', 'about')->name('about');
     Route::get('users', [\App\Http\Controllers\UserController::class, 'index'])->name('users.index');
