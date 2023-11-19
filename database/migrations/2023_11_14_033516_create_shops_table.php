@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('dti_permit')->nullable();
             $table->string('barangay_clearance')->nullable();
             $table->string('business_permit')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }

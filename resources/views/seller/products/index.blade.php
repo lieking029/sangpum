@@ -21,6 +21,15 @@
             </div>
         </div>
     </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            {{ $dataTable->table() }}
+        </div>
+    </div>
 </div>
 
 @endsection
+
+@push('scripts')
+{{ $dataTable->scripts(attributes: ['type' => 'module']) }}
+@endpush
