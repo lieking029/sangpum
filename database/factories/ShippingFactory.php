@@ -2,7 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\Product;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Shipping>
@@ -17,7 +19,11 @@ class ShippingFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'weight' => fake()->randomNumber(3, true),
+            'length' => fake()->randomNumber(3, true),
+            'width' => fake()->randomNumber(3, true),
+            'height' => fake()->randomNumber(3, true),
+            'shipping_fee' => Str::random(4),
         ];
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Product;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,10 @@ class ProductVariationFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            // 'product_id' => Product::inRandomOrder()->value('id'),
+            'variation_name' => fake()->name(),
+            'price' => fake()->randomNumber(5, true),
+            'stock' => fake()->randomNumber(3, true),
         ];
     }
 }

@@ -62,13 +62,12 @@
                             </a>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                    onclick="event.preventDefault(); this.closest('form').submit();">
+                                <button class="dropdown-item" type="submit">
                                     <svg class="icon me-2">
                                         <use xlink:href="{{ asset('icons/coreui.svg#cil-account-logout') }}"></use>
                                     </svg>
                                     {{ __('Logout') }}
-                                </a>
+                                </button>
                             </form>
                         </div>
                     </li>

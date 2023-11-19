@@ -50,7 +50,16 @@ class OrderController extends Controller
 
     public function marketplace()
     {
-        return view('marketplace.index');
+        $products = Product::with('productVariations', 'shipping')->paginate(10);
+
+        return view('marketplace.index', compact('products'));
+    }
+
+    public function productDetails(Product $product) {
+
+        $product->load('shipping', 'productVariations');
+
+        return view('marketplace.productDetails', compact('product'));
     }
 
 }

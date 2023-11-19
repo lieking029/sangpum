@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
@@ -18,6 +19,8 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Auth::routes();
 
 Route::get('/', function () {
     return view('welcome');
@@ -47,7 +50,7 @@ Route::get('/register-seller', function() {
     return view('auth.register.seller');
 })->name('register.seller');
 
-Auth::routes();
+Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::middleware('auth')->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -64,7 +67,6 @@ Route::middleware('auth')->group(function () {
         Route::post('product-published', [ProductController::class,'published'])->name('product.published');
         Route::post('product-bulkDelete', [ProductController::class,'bulkDelete'])->name('product.bulkDelete');
 
-
         Route::get('seller-home', [HomeController::class, 'sellerIndex'])->name('seller.home');
         Route::get('to-shipment/{shipment}', [ShipmentController::class, 'toShipment'])->name('toShipment');
         Route::get('to-shipping/{shipment}', [ShipmentController::class, 'toShipping'])->name('toShipping');
@@ -78,6 +80,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('order', OrderController::class);
     Route::post('order-quantity/{order}', [OrderController::class,'changeQuantity'])->name('order.changeQuantity');
     Route::get('marketplace', [OrderController::class,'marketplace'])->name('marketplace');
+    Route::get('product-detail/{product}', [OrderController::class,'productDetails'])->name('productDetails');
 
     Route::view('about', 'about')->name('about');
     Route::get('users', [\App\Http\Controllers\UserController::class, 'index'])->name('users.index');
