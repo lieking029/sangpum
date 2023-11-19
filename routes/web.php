@@ -19,6 +19,30 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/select-login', function() {
+    return view('auth.select-way.login');
+})->name('auth.login');
+
+Route::get('/select-register', function() {
+    return view('auth.select-way.register');
+})->name('auth.register');
+
+Route::get('/login-seller', function() {
+    return view('auth.login.seller');
+})->name('login.seller');
+
+Route::get('/login-buyer', function() {
+    return view('auth.login.buyer');
+})->name('login.buyer');
+
+Route::get('/register-buyer', function() {
+    return view('auth.register.buyer');
+})->name('register.buyer');
+
+Route::get('/register-seller', function() {
+    return view('auth.register.seller');
+})->name('register.seller');
+
 Auth::routes();
 
 
