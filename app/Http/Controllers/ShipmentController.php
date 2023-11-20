@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class ShipmentController extends Controller
 {
+    public function index() {
+        $shipment = Shipment::all();
+
+        return view('seller.products.shipment');
+    }
     public function toShipment(Shipment $shipment)
     {
         $shipment->update(['status' => 2]);
