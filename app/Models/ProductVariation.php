@@ -16,6 +16,7 @@ class ProductVariation extends Model
         'variation_name',
         'price',
         'stock',
+        'sale',
     ];
 
     public function product() : BelongsTo

@@ -13,10 +13,14 @@
                         <i class="fas fa-bars" style="font-size: 23px"></i>
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item btn rounded-5 mb-3" href="#" style="background: #55AAAD; color:white;">Action</a></li>
-                        <li><a class="dropdown-item btn rounded-5 mb-3" href="#" style="background: #55AAAD; color:white;">Action</a></li>
-                        <li><a class="dropdown-item btn rounded-5 mb-3" href="#" style="background: #55AAAD; color:white;">Action</a></li>
-                        <li><a class="dropdown-item btn rounded-5" href="#" style="background: #55AAAD; color:white;">Action</a></li>
+                        <li><a class="dropdown-item btn rounded-5 mb-3" href="#"
+                                style="background: #55AAAD; color:white;">Action</a></li>
+                        <li><a class="dropdown-item btn rounded-5 mb-3" href="#"
+                                style="background: #55AAAD; color:white;">Action</a></li>
+                        <li><a class="dropdown-item btn rounded-5 mb-3" href="#"
+                                style="background: #55AAAD; color:white;">Action</a></li>
+                        <li><a class="dropdown-item btn rounded-5" href="#"
+                                style="background: #55AAAD; color:white;">Action</a></li>
                     </ul>
                 </div>
             </div>
@@ -60,7 +64,11 @@
                     @endforeach
                 </div>
             </div>
-
+            <div class="row">
+                <div class="col-12">
+                    {{ $products->links() }}
+                </div>
+            </div>
         </div>
     </div>
 @endsection

@@ -31,7 +31,7 @@ class HomeController extends Controller
 
     public function sellerIndex()
     {
-        $products = Product::all();
+        $products = Product::with('productVariations', 'shipping')->paginate(10);
 
         return view('sellerHome',[
             'products' => $products

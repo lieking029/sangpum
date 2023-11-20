@@ -22,6 +22,7 @@ class ProductVariationFactory extends Factory
             'variation_name' => fake()->name(),
             'price' => fake()->randomNumber(5, true),
             'stock' => fake()->randomNumber(3, true),
+            'sales' => fake()->randomNumber(3, true),
         ];
     }
 }
