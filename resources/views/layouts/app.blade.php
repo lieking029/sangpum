@@ -25,7 +25,7 @@
             </svg>
         </div>
         @include('layouts.navigation')
-        <button class="sidebar-toggler" type="button" data-coreui-toggle="unfoldable"></button>
+        <button class="sidebar-toggler" type="button" data-coreui-toggle="sidebar-folded"></button>
     </div>
     <div class="wrapper d-flex flex-column min-vh-100 bg-light">
         <header class="header header-sticky mb-4">
@@ -42,7 +42,7 @@
                     </svg>
                 </a>
                 <ul class="header-nav d-none d-md-flex">
-                    <li class="nav-item"><a class="nav-link" href="{{ route('home') }}">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="">Dashboard</a></li>
                 </ul>
                 <ul class="header-nav ms-auto">
 

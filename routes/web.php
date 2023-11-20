@@ -55,8 +55,6 @@ Route::get('/register-seller', function() {
 Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
     Route::middleware('role:admin')->group(function () {
         Route::get('user-sellers', [UserManagementController::class, 'showSeller'])->name('showSeller');
         Route::get('user-buyers', [UserManagementController::class, 'showBuyer'])->name('showBuyer');
