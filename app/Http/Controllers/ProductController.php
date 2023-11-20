@@ -12,10 +12,13 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function index(ProductDataTable $dataTable)
+    public function index()
     {
+        $products = Product::with('productVariations', 'shipping')->paginate(3);
 
-        return $dataTable->render("seller.products.index");
+        return view("seller.products.index", [
+            'products' => $products
+        ]);
     }
 
     public function create()

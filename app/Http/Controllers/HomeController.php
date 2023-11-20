@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Enums\UserTypeEnum;
+use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -30,7 +31,11 @@ class HomeController extends Controller
 
     public function sellerIndex()
     {
-        return view('sellerHome');
+        $products = Product::with('productVariations', 'shipping')->paginate(10);
+
+        return view('sellerHome',[
+            'products' => $products
+        ]);
     }
 
     public function adminIndex()
