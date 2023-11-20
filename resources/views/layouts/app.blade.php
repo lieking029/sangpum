@@ -15,43 +15,22 @@
 </head>
 
 <body>
-    <div class="sidebar sidebar-dark sidebar-fixed" id="sidebar">
-        <div class="sidebar-brand d-none d-md-flex">
-            <svg class="sidebar-brand-full" width="118" height="46" alt="CoreUI Logo">
-                <use xlink:href="{{ asset('icons/brand.svg#full') }}"></use>
-            </svg>
-            <svg class="sidebar-brand-narrow" width="46" height="46" alt="CoreUI Logo">
-                <use xlink:href="{{ asset('icons/brand.svg#signet') }}"></use>
-            </svg>
-        </div>
-        @include('layouts.navigation')
-        <button class="sidebar-toggler" type="button" data-coreui-toggle="sidebar-folded"></button>
-    </div>
     <div class="wrapper d-flex flex-column min-vh-100 bg-light">
-        <header class="header header-sticky mb-4">
+        <header class="header header-sticky mb-4" style="background: linear-gradient(to right, #5DE0E6, #004AAD); ">
             <div class="container-fluid">
-                <button class="header-toggler px-md-0 me-md-3" type="button"
-                    onclick="coreui.Sidebar.getInstance(document.querySelector('#sidebar')).toggle()">
-                    <svg class="icon icon-lg">
-                        <use xlink:href="{{ asset('icons/coreui.svg#cil-menu') }}"></use>
-                    </svg>
-                </button>
-                <a class="header-brand d-md-none" href="#">
-                    <svg width="118" height="46" alt="CoreUI Logo">
-                        <use xlink:href="{{ asset('icons/brand.svg#full') }}"></use>
-                    </svg>
-                </a>
                 <ul class="header-nav d-none d-md-flex">
-                    <li class="nav-item"><a class="nav-link" href="">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href=""><i class="fas fa-shopping-cart" style="color: white"></i></a>
+                    </li>
                 </ul>
-                <ul class="header-nav ms-auto">
-
+                <ul class="header-nav d-none d-md-flex">
+                    <img src="{{ asset('icons/logoSangpum.png') }}" alt="" width="150">
                 </ul>
                 <ul class="header-nav ms-3">
+                    <a href=""><i class="fas fa-comment me-3" style="color:white"></i></a>
                     <li class="nav-item dropdown">
                         <a class="nav-link py-0" data-coreui-toggle="dropdown" href="#" role="button"
                             aria-haspopup="true" aria-expanded="false">
-                            {{ Auth::user()->first_name }}
+                            <i class="fas fa-user" style="color: white"></i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end pt-0">
                             <a class="dropdown-item" href="{{ route('profile.show') }}">

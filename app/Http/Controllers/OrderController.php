@@ -14,8 +14,8 @@ class OrderController extends Controller
     public function show($id)
     {
         $orders = Order::with('product', 'productVariation')
-                       ->where('user_id', $id)
-                       ->paginate(10);
+            ->where('user_id', $id)
+            ->paginate(10);
 
         return view('buyer.order.index', compact('orders'));
     }
@@ -33,7 +33,7 @@ class OrderController extends Controller
     public function changeQuantity(Request $request, $id)
     {
         $order = Order::with('productVariation')->find($id);
-        if($request->input('quantity') != '0') {
+        if ($request->input('quantity') != '0') {
             $order->update(['quantity' => $request->input('quantity')]);
             $total = $order->productVariation->price * $order->quantity;
             $order->update(['total' => $total]);
@@ -58,8 +58,15 @@ class OrderController extends Controller
         return view('marketplace.index', compact('products'));
     }
 
-    public function productDetails(Product $product) {
+    public function allItems()
+    {
+        $products = Product::with('productVariations', 'shipping')->paginate(12);
 
+        return view('marketplace.all-items', compact('products'));
+    }
+
+    public function productDetails(Product $product)
+    {
         $product->load('shipping', 'productVariations');
 
         return view('marketplace.productDetails', compact('product'));
@@ -67,7 +74,6 @@ class OrderController extends Controller
 
     public function addToCart(AddToCartRequest $request, Product $product)
     {
-
         $variation = ProductVariation::find($request->product_variation_id);
         $total = $variation->price * $request->quantity;
 

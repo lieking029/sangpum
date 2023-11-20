@@ -81,6 +81,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('order', OrderController::class);
     Route::post('order-quantity/{order}', [OrderController::class,'changeQuantity'])->name('order.changeQuantity');
     Route::get('marketplace', [OrderController::class,'marketplace'])->name('marketplace');
+    Route::get('all-items', [OrderController::class, 'allItems'])->name('allItems');
     Route::get('product-detail/{product}', [OrderController::class,'productDetails'])->name('productDetails');
     Route::post('addToCart/{product}', [OrderController::class,'addToCart'])->name('addToCart');
 
