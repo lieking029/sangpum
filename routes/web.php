@@ -5,8 +5,10 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ShipmentController;
+use App\Http\Controllers\ShippingController;
 use App\Http\Controllers\TopUpController;
 use App\Http\Controllers\UserManagementController;
+use App\Models\ProductVariation;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -81,6 +83,14 @@ Route::middleware('auth')->group(function () {
     Route::post('order-quantity/{order}', [OrderController::class,'changeQuantity'])->name('order.changeQuantity');
     Route::get('marketplace', [OrderController::class,'marketplace'])->name('marketplace');
     Route::get('product-detail/{product}', [OrderController::class,'productDetails'])->name('productDetails');
+    Route::post('addToCart/{product}', [OrderController::class,'addToCart'])->name('addToCart');
+
+    Route::get('checkout/{id}', [ShippingController::class,'index'])->name('shipping.index');
+
+    Route::get('variation-get/{id}', function($id) {
+        $variation = ProductVariation::find($id);
+        return response()->json($variation);
+    });
 
     Route::view('about', 'about')->name('about');
     Route::get('users', [\App\Http\Controllers\UserController::class, 'index'])->name('users.index');
