@@ -29,7 +29,7 @@
                 <div class="col-4">
                     <h5 style="font-weight: 400">TEUCART</h5>
                     <h3>{{ $product->product_name }}</h3>
-                    <input type="text" id="price" value="{{ $product->productVariations[0]->price }}" readonly class="form-control border-0">
+                    <input type="text" id="price" value="{{      }}" readonly class="form-control border-0">
 
                     <div class="row">
                         <strong>Variation</strong>

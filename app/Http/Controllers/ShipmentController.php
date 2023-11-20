@@ -7,10 +7,12 @@ use Illuminate\Http\Request;
 
 class ShipmentController extends Controller
 {
-    public function index() {
-        $shipment = Shipment::all();
+    public function shipmentStatus(Shipment $id) {
+        $shipment = Shipment::where($id)->get();
 
-        return view('seller.products.shipment');
+        return view('seller.products.shipment',[
+            'shipment' => $shipment
+        ]);
     }
     public function toShipment(Shipment $shipment)
     {
