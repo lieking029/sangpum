@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AddToCartRequest;
 use App\Http\Requests\StoreOrderRequest;
 use App\Models\Order;
 use App\Models\Product;
@@ -10,11 +11,13 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-    public function index($id)
+    public function show($id)
     {
-        $order = Order::where('user_id', $id)->get();
+        $orders = Order::with('product', 'productVariation')
+                       ->where('user_id', $id)
+                       ->paginate(10);
 
-        return view('buyer.order.index');
+        return view('buyer.order.index', compact('orders'));
     }
 
     public function store(StoreOrderRequest $request)
@@ -24,28 +27,28 @@ class OrderController extends Controller
         $total = $productPrice->price * $request->quantity;
         $order->update(['total' => $total]);
 
-        return redirect()->route('order.index');
+        return redirect()->route('order.show', auth()->id());
     }
 
     public function changeQuantity(Request $request, $id)
     {
-        $order = Order::find($id);
-        if($request->input('quantity') != 0) {
+        $order = Order::with('productVariation')->find($id);
+        if($request->input('quantity') != '0') {
             $order->update(['quantity' => $request->input('quantity')]);
-            $total = $order->price * $order->quantity;
-            $order->update(['total'=> $total]);
+            $total = $order->productVariation->price * $order->quantity;
+            $order->update(['total' => $total]);
         } else {
             $order->delete();
         }
 
-        return redirect()->route('order.index');
+        return redirect()->route('order.show', auth()->id());
     }
 
     public function destroy(Order $order)
     {
         $order->delete();
 
-        return redirect()->route('order.index');
+        return redirect()->route('order.show');
     }
 
     public function marketplace()
@@ -62,4 +65,14 @@ class OrderController extends Controller
         return view('marketplace.productDetails', compact('product'));
     }
 
+    public function addToCart(AddToCartRequest $request, Product $product)
+    {
+
+        $variation = ProductVariation::find($request->product_variation_id);
+        $total = $variation->price * $request->quantity;
+
+        Order::create($request->validated() + ['user_id' => auth()->id(), 'total' => $total]);
+
+        return redirect()->route('order.show', auth()->id());
+    }
 }
