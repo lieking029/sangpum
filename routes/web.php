@@ -77,6 +77,8 @@ Route::middleware('auth')->group(function () {
         Route::get('complete/{shipment}', [ShipmentController::class, 'complete'])->name('complete');
     });
 
+    Route::get('my-purchase', [ShipmentController::class,'myPurchase'])->name('shipping.myPurchase');
+
     Route::resource('top-up', TopUpController::class)
         ->only('index', 'store');
 
@@ -87,6 +89,7 @@ Route::middleware('auth')->group(function () {
     Route::post('addToCart/{product}', [OrderController::class,'addToCart'])->name('addToCart');
 
     Route::get('checkout/{id}', [ShippingController::class,'index'])->name('shipping.index');
+    Route::post('checkout', [ShippingController::class,'store'])->name('shipping.store');
 
     Route::get('variation-get/{id}', function($id) {
         $variation = ProductVariation::find($id);

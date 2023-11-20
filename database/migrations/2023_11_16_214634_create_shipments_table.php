@@ -16,14 +16,14 @@ return new class extends Migration
     {
         Schema::create('shipments', function (Blueprint $table) {
             $table->id();
-            $table->string('order_id')->unique();
+            $table->string('order_id')->unique()->nullable();
             $table->foreignIdFor(Product::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(ProductVariation::class)->constrained()->cascadeOnDelete();
             $table->integer('quantity');
             $table->double('total');
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
-            $table->date('pickup_date');
-            $table->integer('status');
+            $table->date('pickup_date')->nullable();
+            $table->integer('status')->nullable();
             $table->timestamps();
         });
     }

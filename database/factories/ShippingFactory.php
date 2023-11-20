@@ -19,10 +19,10 @@ class ShippingFactory extends Factory
     public function definition(): array
     {
         return [
-            'weight' => fake()->randomNumber(3, true),
-            'length' => fake()->randomNumber(3, true),
-            'width' => fake()->randomNumber(3, true),
-            'height' => fake()->randomNumber(3, true),
+            'weight' => fake()->randomNumber(1, true),
+            'length' => fake()->randomNumber(2, true),
+            'width' => fake()->randomNumber(2, true),
+            'height' => fake()->randomNumber(2, true),
             'shipping_fee' => Str::random(4),
         ];
     }

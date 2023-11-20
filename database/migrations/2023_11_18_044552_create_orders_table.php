@@ -21,6 +21,7 @@ return new class extends Migration
             $table->foreignIdFor(ProductVariation::class)->constrained()->cascadeOnDelete();
             $table->integer('quantity');
             $table->double('total')->nullable();
+            $table->double('total')->nullable();
             $table->timestamps();
         });
     }
