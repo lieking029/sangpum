@@ -25,6 +25,9 @@ class RedirectIfAuthenticated
                 if (Auth::guard($guard)->user()->hasRole('seller')) {
                     return redirect('/seller-home'); // Specify the admin dashboard route here.
                 }
+                if (Auth::guard($guard)->user()->hasRole('buyer')) {
+                    return redirect('/marketplace'); // Specify the admin dashboard route here.
+                }
 
                 // If the user has any other role, you can handle other redirections here.
 
