@@ -15,12 +15,12 @@ return new class extends Migration
         Schema::create('shipping_fees', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Shipping::class)->constrained()->cascadeOnDelete();
-            $table->string('500g');
-            $table->string('1kg');
-            $table->string('3kg');
-            $table->string('4kg');
-            $table->string('5kg');
-            $table->string('6kg');
+            $table->string('five_hundred_grams');
+            $table->string('one_kilo');
+            $table->string('three_kilo');
+            $table->string('four_kilo');
+            $table->string('five_kilo');
+            $table->string('six_kilo');
             $table->timestamps();
         });
     }
