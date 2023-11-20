@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\ProductVariation;
 use App\Models\User;
 use App\Models\Product;
 use Illuminate\Support\Facades\Schema;
@@ -17,7 +18,9 @@ return new class extends Migration
             $table->id();
             $table->string('order_id')->unique();
             $table->foreignIdFor(Product::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(ProductVariation::class)->constrained()->cascadeOnDelete();
             $table->integer('quantity');
+            $table->double('total');
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
             $table->date('pickup_date');
             $table->integer('status');

@@ -28,4 +28,9 @@ class ProductVariation extends Model
         return $this->hasOne(Order::class);
     }
 
+    public function shipment() : BelongsTo
+    {
+        return $this->belongsTo(Shipment::class);
+    }
+
 }

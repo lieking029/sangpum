@@ -12,12 +12,12 @@ class ShippingFee extends Model
 
     protected $fillable = [
         'shipping_id',
-        '500g',
-        '1kg',
-        '3kg',
-        '4kg',
-        '5kg',
-        '6kg',
+        'five_hundred_grams',
+        'one_kilo',
+        'three_kilo',
+        'four_kilo',
+        'five_kilo',
+        'six_kilo',
     ];
 
     public function shipping() : BelongsTo

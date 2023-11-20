@@ -13,7 +13,9 @@ class Shipment extends Model
     protected $fillable = [
         'order_id',
         'product_id',
+        'product_variation_id',
         'quantity',
+        'total',
         'user_id',
         'pickup_date',
         'status',
@@ -27,6 +29,11 @@ class Shipment extends Model
     public function user() : BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function productVariation() : BelongsTo
+    {
+        return $this->belongsTo(ProductVariation::class);
     }
 
 }
