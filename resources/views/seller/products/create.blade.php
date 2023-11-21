@@ -43,7 +43,7 @@
             </div>
         </div>
         <div class="card-body">
-            <form action="{{ route('products.store') }}" method="POST">
+            <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                     <div class="col border-end">
@@ -54,7 +54,7 @@
                             <div class="upload-box" onclick="document.getElementById('formFileMultiple').click();">
                                 <p>Click to upload files</p>
                             </div>
-                            <input class="form-control d-none" type="file" id="formFileMultiple" multiple>
+                            <input class="form-control d-none" name="product_image[]" type="file" id="formFileMultiple" multiple>
                         </div>
                         @error('product_image')
                             <small class="text-danger">{{ $message }}</small>
