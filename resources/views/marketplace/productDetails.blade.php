@@ -58,7 +58,7 @@
                                 *release | 2023.07.28 18:00</label>
                         </div>
                         <div class="row mt-3">
-                            <strong>Variation</strong>
+                            <strong class="mb-4">Variation</strong>
                             @foreach ($product->productVariations as $variation)
                                 <div class="col-4 text-center">
                                     <button class="variationId" type="button" data-id="{{ $variation->id }}"
