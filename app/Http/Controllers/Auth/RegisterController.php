@@ -91,74 +91,61 @@ class RegisterController extends Controller
     {
         $role = Role::where('name', $data['role'])->firstOrFail();
 
-         // Check if there is a file in the data and it is valid
-        if (isset($data['govt_id']) && $data['govt_id']->isValid()) {
-            // Store the file and get the path
-            $filePath = $data['govt_id']->store('public/auth');
+        // Initialize an array to hold the file paths for the images
+        $filePaths = [
+            'govt_id' => null,
+            'dti_permit' => null,
+            'barangay_clearance' => null,
+            'business_permit' => null,
+        ];
 
-            // Store just the filename if you prefer
-            // $filename = $data['govt_id']->hashName();
-
-            // Replace the file in the array with the path or filename
-            $data['govt_id'] = $filePath;
-        } else {
-            // If there is no file or the file is not valid, set the govt_id to null
-            $data['govt_id'] = null;
+        // Loop through each file input and store the image if it's present
+        foreach ($filePaths as $key => $value) {
+            if (isset($data[$key]) && $data[$key]->isValid()) {
+                // Store the file and get the path
+                $filePaths[$key] = $data[$key]->store('public/auth');
+            }
         }
 
-        if($role == 'buyer')
-        {
-            $user = User::create([
-                'first_name' => $data['first_name'],
-                'middle_name' => $data['middle_name'],
-                'last_name' => $data['last_name'],
-                'birth_date' => $data['birth_date'],
-                'nickname' => $data['nickname'],
-                'astr_sign' => $data['astr_sign'],
-                'kpop_group' => $data['kpop_group'],
-                'bias' => $data['bias'],
-                'address' => $data['address'],
-                'barangay' => $data['barangay'],
-                'govt_type' => $data['govt_type'],
-                'govt_id' => $data['govt_id'],
-                'wallet' => 0.00,
-                'email' => $data['email'],
-                'password' => Hash::make($data['password']),
-            ]);
-        } else {
-            $user = User::create([
-                'first_name' => $data['first_name'],
-                'middle_name' => $data['middle_name'],
-                'last_name' => $data['last_name'],
-                'birth_date' => $data['birth_date'],
-                'nickname' => $data['nickname'],
-                'astr_sign' => $data['astr_sign'],
-                'kpop_group' => $data['kpop_group'],
-                'bias' => $data['bias'],
-                'address' => $data['address'],
-                'barangay' => $data['barangay'],
-                'govt_type' => $data['govt_type'],
-                'govt_id' => $data['govt_id'],
-                'wallet' => 0.00,
-                'email' => $data['email'],
-                'password' => Hash::make($data['password']),
-            ]);
+        // Now you have all the file paths, create the user and the shop accordingly
+        $userData = [
+            'first_name' => $data['first_name'],
+            'middle_name' => $data['middle_name'],
+            'last_name' => $data['last_name'],
+            'birth_date' => $data['birth_date'],
+            'nickname' => $data['nickname'],
+            'astr_sign' => $data['astr_sign'],
+            'kpop_group' => $data['kpop_group'],
+            'bias' => $data['bias'],
+            'address' => $data['address'],
+            'barangay' => $data['barangay'],
+            'govt_type' => $data['govt_type'],
+            'govt_id' => $filePaths['govt_id'],
+            'wallet' => 0.00,
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+        ];
 
-            Shop::create([
-                'user_id'=> $user->id,
+        $user = User::create($userData);
+        $user->assignRole($role);
+
+        // If the role is not 'buyer', create the shop
+        if($role->name !== 'buyer') {
+            $shopData = [
+                'user_id' => $user->id,
                 'shop_name' => $data['shop_name'],
                 'shop_address' => $data['shop_address'],
                 'shop_barangay' => $data['shop_barangay'],
                 'date_established' => $data['date_established'],
                 'contact_number' => $data['contact_number'],
                 'dti_number' => $data['dti_number'],
-                'dti_permit' => $data['dti_permit'],
-                'barangay_clearance' => $data['barangay_clearance'],
-                'business_permit' => $data['business_permit'],
-            ]);
-        }
+                'dti_permit' => $filePaths['dti_permit'],
+                'barangay_clearance' => $filePaths['barangay_clearance'],
+                'business_permit' => $filePaths['business_permit'],
+            ];
 
-        $user->assignRole($role);
+            Shop::create($shopData);
+        }
 
         return $user;
     }

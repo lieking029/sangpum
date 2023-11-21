@@ -93,6 +93,7 @@
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
                         <div class="container-fluid">
+                            <input type="hidden" name="role" value="seller">
                             <ul class="nav nav-pills mb-4 d-flex justify-content-evenly" id="pills-tab" role="tablist">
                                 <li class="nav-item text-center" role="presentation">
                                     <button class="nav-link active" id="step1-tab" data-bs-toggle="pill"
@@ -276,10 +277,10 @@
                                                         </div>
                                                         <div class="input-group mt-3">
                                                             <input type="number" inputmode="numeric" pattern="[0-9]*"
-                                                                class="form-control @error('zipcode') is-invalid @enderror"
-                                                                name="zipcode" placeholder="{{ __('ZIP code') }}">
+                                                                class="form-control @error('barangay') is-invalid @enderror"
+                                                                name="barangay" placeholder="{{ __('ZIP code') }}">
                                                             <div class="invalid-feedback" id="zipcodeError"></div>
-                                                            @error('zipcode')
+                                                            @error('barangay')
                                                                 <div class="invalid-feedback">
                                                                     {{ $message }}
                                                                 </div>
@@ -319,35 +320,35 @@
                                                         </div>
                                                         <div class="input-group mt-3">
                                                             <input type="text"
-                                                                class="form-control @error('astrological_sign') is-invalid @enderror"
-                                                                name="astrological_sign"
+                                                                class="form-control @error('astr_sign') is-invalid @enderror"
+                                                                name="astr_sign"
                                                                 placeholder="{{ __('What is your astrological sign?') }}"
                                                                 required autofocus>
                                                             <div class="invalid-feedback" id="astrologicalSignError">
                                                             </div>
-                                                            @error('astrological_sign')
+                                                            @error('astr_sign')
                                                                 <div class="invalid-feedback">{{ $message }}</div>
                                                             @enderror
                                                         </div>
                                                         <div class="input-group mt-3">
                                                             <input type="text"
-                                                                class="form-control @error('fav_kpop') is-invalid @enderror"
-                                                                name="fav_kpop"
+                                                                class="form-control @error('kpop_group') is-invalid @enderror"
+                                                                name="kpop_group"
                                                                 placeholder="{{ __('What is your favorite k-pop group?') }}"
                                                                 required autofocus>
                                                             <div class="invalid-feedback" id="favKpopError"></div>
-                                                            @error('fav_kpop')
+                                                            @error('kpop_group')
                                                                 <div class="invalid-feedback">{{ $message }}</div>
                                                             @enderror
                                                         </div>
                                                         <div class="input-group mt-3">
                                                             <input type="text"
-                                                                class="form-control @error('bias_kpop') is-invalid @enderror"
-                                                                name="bias_kpop"
+                                                                class="form-control @error('bias') is-invalid @enderror"
+                                                                name="bias"
                                                                 placeholder="{{ __('Who is your first k-pop bias?') }}"
                                                                 required autofocus>
                                                             <div class="invalid-feedback" id="biasKpopError"></div>
-                                                            @error('bias_kpop')
+                                                            @error('bias')
                                                                 <div class="invalid-feedback">{{ $message }}</div>
                                                             @enderror
                                                         </div>
@@ -802,7 +803,7 @@
                         if (currentStep.id === 'step3') {
                             const nickname = currentStep.querySelector('input[name="nickname"]');
                             const astrologicalSign = currentStep.querySelector(
-                                'input[name="astrological_sign"]');
+                                'input[name="astr_sign"]');
                             const favKpop = currentStep.querySelector('input[name="fav_kpop"]');
                             const biasKpop = currentStep.querySelector('input[name="bias_kpop"]');
                             const nicknameError = currentStep.querySelector('#nicknameError');
