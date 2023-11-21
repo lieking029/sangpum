@@ -57,21 +57,23 @@
                     <h5>{{ $products->count() }}Products</h5>
                 </div>
                 <div class="col text-end">
-                    <a href="#" class="btn text-white" style="background: #FF2500; font-size: 12px"><i class="fas fa-plus"></i>Add Product</a>
+                    <a href="{{ route('products.create') }}" class="btn text-white" style="background: #FF2500; font-size: 12px"><i class="fas fa-plus"></i>Add Product</a>
                 </div>
             </div>
         </div>
         <div class="card-body">
-            <form action="">
+            <form action="{{ route('product.published') }}" method="POST">
                 @csrf
                 <div class="container table-responsive">
                     @foreach ($products as $product)
                         <div class="row">
                             <div class="col">
                                 <div class="form-check d-flex">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"
+                                    <input class="form-check-input" type="checkbox" value="{{ $product->id }}" id="flexCheckDefault"
                                         style="margin-top: 45px; margin-right:20px;"
-                                        name="products[{{ $loop->index }}][id]">
+                                        name="published[{{ $loop->index }}][id]"
+                                        @if($product->published == 1) checked disabled @endif>
+
                                     <img src="" alt="" width="100" height="100" class="mb-3">
                                 </div>
                             </div>
@@ -122,17 +124,12 @@
                             </div>
                             <div class="col">
                                 <div class="d-flex flex-column justify-content-center">
-<<<<<<< HEAD
                                     <a href="#" class="btn m-2"
                                         style="font-size: 12px; background: #D4D6D8; padding-top: 2px; padding-bottom: 2px; padding-right: 15px; padding-left: 15px; border-radius: 0;  color: black">
                                         Edit</a>
                                     <a href="#" class="btn m-2"
                                         style="font-size: 12px; background: #D4D6D8; padding-top: 2px; padding-bottom: 2px; padding-right: 15px; padding-left: 15px; border-radius: 0; color: black">
                                         Delete</a>
-=======
-                                    <a href="" class="btn-action order-button">Edit</a>
-                                    <a href="" class="btn-action delete-button">Delete</a>
->>>>>>> 2188d5c702c0f9dd5628cbe25e1a75f6d8f6f1f6
                                 </div>
                             </div>
                             <hr>
@@ -155,9 +152,9 @@
                 <a href="#" class="btn m-2"
                     style="font-size: 9px; background: #FF2500; padding-top: 5px; padding-bottom: 5px; padding-right: 20px; padding-left: 20px; border-radius: 0; color: white">
                     Delete</a>
-                <a href="#" class="btn m-2"
+                <button type="submit" class="btn m-2"
                     style="font-size: 9px; background: #55AAAD; padding-top: 5px; padding-bottom: 5px; padding-right: 20px; padding-left: 20px; border-radius: 0; color: white">
-                    Publish</a>
+                    Publish</button>
             </div>
         </div>
         </form>

@@ -28,11 +28,11 @@ class ProductController extends Controller
 
     public function store(StoreProductRequest $request)
     {
+        // dd($request->validated()); // Debugging line, can be removed after testing
         $product = Product::create($request->validated());
         $productVariation = [];
 
-        foreach($request->variation as $variation)
-        {
+        foreach ($request->variation as $variation) {
             $productVariation[] = [
                 'variation_name' => $variation['variation_name'],
                 'price' => $variation['price'],
@@ -44,15 +44,17 @@ class ProductController extends Controller
         $product->productVariations()->insert($productVariation);
         $product->shipping()->create($request->validated());
 
-        // Handling multiple image uploads
-        if($request->hasFile('product_images')) {
-            foreach($request->file('product_images') as $image) {
+        // Handling multiple image uploads - make sure the field name matches the one in the HTML form and validation rules
+        if ($request->hasFile('product_image')) { // Changed from 'product_images' to 'product_image' to match the form and validation rules
+            foreach ($request->file('product_image') as $image) {
                 $path = $image->store('public/products'); // This will store images in 'storage/app/public/products' directory
-                // Save $path to the database or perform other actions like resizing images, etc.
+                // You will likely need to save the path to the database here
+                // Assuming you have an images relation or similar on your Product model:
+                $product->images()->create(['path' => $path]);
             }
         }
 
-        return redirect()->route('products.create');
+        return redirect()->route('products.create'); // You might want to redirect to a different route, like 'products.index'
     }
 
     public function edit(Product $product)
@@ -99,9 +101,10 @@ class ProductController extends Controller
 
     public function published(PublishedProductRequest $request)
     {
+
         foreach($request->published as $publishedProduct)
         {
-            $product = Product::find($publishedProduct->id);
+            $product = Product::find($publishedProduct['id']);
             $product->update(['published' => 1]);
         }
 

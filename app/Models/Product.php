@@ -19,6 +19,7 @@ class Product extends Model
         'category',
         'product_description',
         'pre_order',
+        'published'
     ];
 
     public function productVariations() : HasMany

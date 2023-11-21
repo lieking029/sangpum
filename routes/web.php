@@ -75,6 +75,9 @@ Route::middleware('auth')->group(function () {
         Route::get('to-shipping/{shipment}', [ShipmentController::class, 'toShipping'])->name('toShipping');
         Route::get('to-receive/{shipment}', [ShipmentController::class, 'toReceive'])->name('toReceive');
         Route::get('complete/{shipment}', [ShipmentController::class, 'complete'])->name('complete');
+
+        Route::get('checkout/{id}', [ShippingController::class,'index'])->name('shipping.index');
+        Route::post('checkout', [ShippingController::class,'store'])->name('shipping.store');
     });
 
 
@@ -89,9 +92,6 @@ Route::middleware('auth')->group(function () {
         Route::get('all-items', [OrderController::class, 'allItems'])->name('allItems');
         Route::get('product-detail/{product}', [OrderController::class,'productDetails'])->name('productDetails');
         Route::post('addToCart/{product}', [OrderController::class,'addToCart'])->name('addToCart');
-
-        Route::get('checkout/{id}', [ShippingController::class,'index'])->name('shipping.index');
-        Route::post('checkout', [ShippingController::class,'store'])->name('shipping.store');
 
         Route::get('variation-get/{id}', function($id) {
             $variation = ProductVariation::find($id);

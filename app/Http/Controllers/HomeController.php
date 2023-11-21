@@ -27,7 +27,7 @@ class HomeController extends Controller
 
     public function sellerIndex()
     {
-        $products = Product::with('productVariations', 'shipping')->paginate(12);
+        $products = Product::with('productVariations', 'shipping')->where('user_id', auth()->id())->where('published', 1)->paginate(12);
 
         return view('sellerHome',[
             'products' => $products
