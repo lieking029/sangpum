@@ -8,32 +8,31 @@
         }
 
         .upload-box {
-    border: 2px dashed #4C5370;
-    border-radius: 5px;
-    padding: 20px;
-    text-align: center;
-    cursor: pointer;
-    background-color: #f8f9fa;
-}
+            border: 2px dashed #4C5370;
+            border-radius: 5px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            background-color: #f8f9fa;
+        }
 
-.upload-box:hover {
-    background-color: #e2e6ea;
-}
+        .upload-box:hover {
+            background-color: #e2e6ea;
+        }
 
-.upload-box p {
-    margin: 0;
-    font-size: 16px;
-    color: #4C5370;
-}
-
+        .upload-box p {
+            margin: 0;
+            font-size: 16px;
+            color: #4C5370;
+        }
     </style>
     @if ($errors->any())
         {!! implode('', $errors->all('<div>:message</div>')) !!}
     @endif
 
-@if($errors->any())
-    {!! implode('', $errors->all('<div>:message</div>')) !!}
-@endif
+    @if ($errors->any())
+        {!! implode('', $errors->all('<div>:message</div>')) !!}
+    @endif
     <div class="container-fluid card">
         <div class="card-header row">
             <div class="col">
@@ -211,7 +210,6 @@
                     textBox.textContent = "Click to upload files";
                 }
             };
-
         </script>
     </div>
 @endsection
