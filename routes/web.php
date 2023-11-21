@@ -58,9 +58,11 @@ Route::middleware('auth')->group(function () {
     Route::middleware('role:admin')->group(function () {
         Route::get('user-sellers', [UserManagementController::class, 'showSeller'])->name('showSeller');
         Route::get('user-buyers', [UserManagementController::class, 'showBuyer'])->name('showBuyer');
+        Route::resource('top-up', TopUpController::class)
+        ->only('index', 'store');
     });
 
-
+    // Seller
     Route::middleware('role:seller')->group(function () {
         // Resources
         Route::resource('products', ProductController::class);
@@ -75,26 +77,28 @@ Route::middleware('auth')->group(function () {
         Route::get('complete/{shipment}', [ShipmentController::class, 'complete'])->name('complete');
     });
 
-    Route::get('my-purchase', [ShipmentController::class,'myPurchase'])->name('shipping.myPurchase');
-    Route::get('tracking/{shipment}', [ShipmentController::class,'tracking'])->name('shipping.tracking');
 
-    Route::resource('top-up', TopUpController::class)
-        ->only('index', 'store');
+    // Buyer
+    Route::middleware('role:buyer')->group(function () {
+        Route::get('my-purchase', [ShipmentController::class,'myPurchase'])->name('shipping.myPurchase');
+        Route::get('tracking/{shipment}', [ShipmentController::class,'tracking'])->name('shipping.tracking');
 
-    Route::resource('order', OrderController::class);
-    Route::post('order-quantity/{order}', [OrderController::class,'changeQuantity'])->name('order.changeQuantity');
-    Route::get('/', [OrderController::class,'marketplace'])->name('marketplace');
-    Route::get('all-items', [OrderController::class, 'allItems'])->name('allItems');
-    Route::get('product-detail/{product}', [OrderController::class,'productDetails'])->name('productDetails');
-    Route::post('addToCart/{product}', [OrderController::class,'addToCart'])->name('addToCart');
+        Route::resource('order', OrderController::class);
+        Route::post('order-quantity/{order}', [OrderController::class,'changeQuantity'])->name('order.changeQuantity');
+        Route::get('/', [OrderController::class,'marketplace'])->name('marketplace');
+        Route::get('all-items', [OrderController::class, 'allItems'])->name('allItems');
+        Route::get('product-detail/{product}', [OrderController::class,'productDetails'])->name('productDetails');
+        Route::post('addToCart/{product}', [OrderController::class,'addToCart'])->name('addToCart');
 
-    Route::get('checkout/{id}', [ShippingController::class,'index'])->name('shipping.index');
-    Route::post('checkout', [ShippingController::class,'store'])->name('shipping.store');
+        Route::get('checkout/{id}', [ShippingController::class,'index'])->name('shipping.index');
+        Route::post('checkout', [ShippingController::class,'store'])->name('shipping.store');
 
-    Route::get('variation-get/{id}', function($id) {
-        $variation = ProductVariation::find($id);
-        return response()->json($variation);
+        Route::get('variation-get/{id}', function($id) {
+            $variation = ProductVariation::find($id);
+            return response()->json($variation);
+        });
     });
+
 
     Route::view('about', 'about')->name('about');
     Route::get('users', [\App\Http\Controllers\UserController::class, 'index'])->name('users.index');
