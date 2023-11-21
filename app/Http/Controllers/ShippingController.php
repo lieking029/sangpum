@@ -51,7 +51,7 @@ class ShippingController extends Controller
         $order = Order::find($request->order_id);
         $order->delete();
 
-        return redirect()->route('order.show', auth()->id());
+        return redirect()->route('shipping.myPurchase');
     }
 
 }

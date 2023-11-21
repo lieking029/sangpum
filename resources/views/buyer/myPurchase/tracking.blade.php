@@ -35,25 +35,25 @@
              <div class="mt-5">
                 <div class="d-flex align-items-center" style="margin-left: 18%">
                     <div>
-                        <div class="rounded-circle px-2 py-1 mt-1" style="background: #4C5370; width: 35px;">
+                        <div class="rounded-circle px-2 py-1 mt-1" style="background: {{ $shipment->status >= 0 ? '#FFDE59' : '#4C5370' }}; width: 35px;">
                             <i class="fas fa-check text-white"></i>
                         </div>
                     </div>
                     <div style="width: 10rem; height: 100%; border: 5px solid #4C5370; margin: 0 10px;" class="rounded-5"></div>
                     <div class="text-center">
-                        <div class="rounded-circle px-2 py-1 mt-1" style="background: #4C5370; width: 35px;">
+                        <div class="rounded-circle px-2 py-1 mt-1" style="background: {{ $shipment->status >= 1 ? '#FFDE59' : '#4C5370' }};; width: 35px;">
                             <i class="fas fa-check text-white"></i>
                         </div>
                     </div>
                     <div style="width: 10rem; height: 100%; border: 5px solid #4C5370; margin: 0 10px;" class="rounded-5"></div>
                     <div class="text-center">
-                        <div class="rounded-circle px-2 py-1 mt-1" style="background: #4C5370; width: 35px;">
+                        <div class="rounded-circle px-2 py-1 mt-1" style="background: {{ $shipment->status >= 2 ? '#FFDE59' : '#4C5370' }};; width: 35px;">
                             <i class="fas fa-check text-white"></i>
                         </div>
                     </div>
                     <div style="width: 10rem; height: 100%; border: 5px solid #4C5370; margin: 0 10px;" class="rounded-5"></div>
                     <div class="text-center">
-                        <div class="rounded-circle px-2 py-1 mt-1" style="background: #4C5370; width: 35px;">
+                        <div class="rounded-circle px-2 py-1 mt-1" style="background: {{ $shipment->status >= 3 ? '#FFDE59' : '#4C5370' }};; width: 35px;">
                             <i class="fas fa-check text-white"></i>
                         </div>
                     </div>
@@ -94,6 +94,51 @@
                     <div class="col-8">
                         <div class="container">
                             <span class="btn text-white rounded-5" style="background: #55AAAD; width: 50%"><strong>Tracking History</strong></span> <br>
+                            <div class="row" style="margin-left: 2%">
+                                <div class="col-1 mt-4">
+                                    <div class="rounded-circle p-1 text-center text-white" style="background: #A6A6A6; width: 30px; font-size: 18px">
+                                        <i class="fas fa-paste"></i>
+                                    </div>
+                                </div>
+                                <div class="col-5 mt-4 text-start" style="font-size: 18px">
+                                    {{ \Carbon\Carbon::parse($shipment->tracking->order_placed)->format('n/j/Y g:i A') }}
+                                </div>
+                                <div class="col-6 mt-4" style="font-size: 18px">
+                                    <strong>Order Placed</strong> <br>
+                                    <span>Order is Placed</span>
+                                </div>
+                            </div>
+                            @if ($shipment->status >= 1)
+                            <div class="row" style="margin-left: 2%">
+                                <div class="col-1 mt-4">
+                                    <div class="rounded-circle p-1 text-center text-white" style="background: #83E0E4; width: 30px; font-size: 18px">
+                                        <i class="fas fa-store"></i>
+                                    </div>
+                                </div>
+                                <div class="col-5 mt-4 text-start" style="font-size: 18px">
+                                    {{ \Carbon\Carbon::parse($shipment->tracking->pre_ship)->format('n/j/Y g:i A') }}
+                                </div>
+                                <div class="col-6 mt-4" style="font-size: 18px">
+                                    <strong>Preparing to Ship</strong> <br>
+                                    <span>Seller is preparing to ship your parcel</span>
+                                </div>
+                            </div>
+                            @elseif ($shipment->status >= 2)
+                            <div class="row" style="margin-left: 2%">
+                                <div class="col-1 mt-4">
+                                    <div class="rounded-circle p-1 text-center text-white" style="background: #55AAAD; width: 30px; font-size: 18px">
+                                        <i class="fas fa-motorcycle"></i>
+                                    </div>
+                                </div>
+                                <div class="col-5 mt-4 text-start" style="font-size: 18px">
+                                    {{ \Carbon\Carbon::parse($shipment->tracking->delivery)->format('n/j/Y g:i A') }}
+                                </div>
+                                <div class="col-6 mt-4" style="font-size: 18px">
+                                    <strong>Out for Delivery</strong> <br>
+                                    <span>The rider will attemp to deliver your parcel</span>
+                                </div>
+                            </div>
+                            @endif
                             <div class="text-end mt-5">
                                 <a href="{{ route('shipping.myPurchase') }}" class="btn text-white rounded-5 px-4" style="background: #4C5571"><strong>Back</strong></a>
                             </div>

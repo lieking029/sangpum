@@ -22,7 +22,7 @@ class ShipmentController extends Controller
     }
 
     public function tracking(Shipment $shipment) {
-        $shipment->load('product.user', 'productVariation', 'user');
+        $shipment->load('product.user', 'productVariation', 'user', 'tracking');
 
         return view('buyer.myPurchase.tracking', compact('shipment'));
     }
