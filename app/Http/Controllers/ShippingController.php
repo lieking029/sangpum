@@ -6,6 +6,7 @@ use App\Http\Requests\StoreShipmentRequest;
 use App\Models\Order;
 use App\Models\Shipment;
 use App\Models\ShippingFee;
+use App\Models\Tracking;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -44,6 +45,8 @@ class ShippingController extends Controller
         $userWallet = auth()->user()->wallet;
         $balance = $userWallet - $request->total;
         auth()->user()->update(['wallet' => $balance]);
+
+        Tracking::create(['shipment_id' => $shipments->id, 'order_placed' => now()]);
 
         $order = Order::find($request->order_id);
         $order->delete();

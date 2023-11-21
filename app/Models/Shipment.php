@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Shipment extends Model
 {
@@ -34,6 +35,11 @@ class Shipment extends Model
     public function productVariation() : BelongsTo
     {
         return $this->belongsTo(ProductVariation::class);
+    }
+
+    public function tracking() : HasOne
+    {
+        return $this->hasOne(Tracking::class);
     }
 
 }

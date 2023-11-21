@@ -77,6 +77,30 @@
                     </div>
                 </div>
              </div>
+             <div class="mt-5">
+                <strong>Tracking No.</strong> <span>{{ $shipment->order_id }}</span>
+                <hr>
+                <div class="row">
+                    <div class="col-4" style="border-right: 2px solid #8A8A8A">
+                        <div class="text-center">
+                            <span class="btn text-white rounded-5" style="background: #4E6A80; width: 75%"><strong>Delivery Address</strong></span>
+                        </div>
+                        <div class="mt-3" style="margin-left: 12%; color: #737373">
+                            <strong>{{ $shipment->user->first_name }} {{ $shipment->user->middle_name }} {{ $shipment->user->last_name }}  </strong> <br>
+                            <span>{{ $shipment->user->address }}</span> <br>
+                            <span>{{ $shipment->user->email }}</span>
+                        </div>
+                    </div>
+                    <div class="col-8">
+                        <div class="container">
+                            <span class="btn text-white rounded-5" style="background: #55AAAD; width: 50%"><strong>Tracking History</strong></span> <br>
+                            <div class="text-end mt-5">
+                                <a href="{{ route('shipping.myPurchase') }}" class="btn text-white rounded-5 px-4" style="background: #4C5571"><strong>Back</strong></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+             </div>
         </div>
     </div>
 </div>

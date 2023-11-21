@@ -15,7 +15,7 @@
 </head>
 
 <body>
-    <div class="wrapper d-flex flex-column min-vh-100 bg-light">
+    <div class="wrapper d-flex flex-column min-vh-100" style="background: white">
         <header class="header header-sticky mb-1" style="background: linear-gradient(to right, #5DE0E6, #004AAD); ">
             <div class="container-fluid">
                 <ul class="header-nav d-none d-md-flex">
