@@ -22,6 +22,12 @@
             animation: none;
         }
     </style>
+
+    @if ($errors->any())
+    @foreach ($errors->all() as $error)
+        <div>{{$error}}</div>
+    @endforeach
+    @endif
     <div class="col-lg-5">
         <div class="card-group d-md-flex row ">
             <div class="card col-md-7 p-4 mb-0 rounded-5">
@@ -29,10 +35,11 @@
                     <img src="{{ asset('icons/sangpum-logo-removebg-preview.png') }}" alt="">
                 </div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col-12">
+                                <input type="hidden" name="role" value="buyer">
                                 <!-- Stepper indicators -->
                                 <ul class="nav nav-pills mb-4" id="pills-tab" role="tablist" hidden>
                                     <li class="nav-item" role="presentation">
@@ -212,12 +219,12 @@
                                             </div>
                                             <div class="input-group mt-3">
                                                 <input type="text"
-                                                    class="form-control @error('astrological_sign') is-invalid @enderror"
-                                                    name="astrological_sign"
+                                                    class="form-control @error('astr_sign') is-invalid @enderror"
+                                                    name="astr_sign"
                                                     placeholder="{{ __('What is your astrological sign?') }}" required
                                                     autofocus>
                                                 <div class="invalid-feedback" id="astrologicalSignError"></div>
-                                                @error('astrological_sign')
+                                                @error('astr_sign')
                                                     <div class="invalid-feedback">
                                                         {{ $message }}
                                                     </div>
@@ -225,12 +232,12 @@
                                             </div>
                                             <div class="input-group mt-3">
                                                 <input type="text"
-                                                    class="form-control @error('fav_kpop') is-invalid @enderror"
-                                                    name="fav_kpop"
+                                                    class="form-control @error('kpop_group') is-invalid @enderror"
+                                                    name="kpop_group"
                                                     placeholder="{{ __('What is your favorite k-pop group?') }}" required
                                                     autofocus>
                                                 <div class="invalid-feedback" id="favKpopError"></div>
-                                                @error('fav_kpop')
+                                                @error('kpop_group')
                                                     <div class="invalid-feedback">
                                                         {{ $message }}
                                                     </div>
@@ -238,12 +245,12 @@
                                             </div>
                                             <div class="input-group mt-3">
                                                 <input type="text"
-                                                    class="form-control @error('bias_kpop') is-invalid @enderror"
-                                                    name="bias_kpop"
+                                                    class="form-control @error('bias') is-invalid @enderror"
+                                                    name="bias"
                                                     placeholder="{{ __('Who is your first k-pop bias?') }}" required
                                                     autofocus>
                                                 <div class="invalid-feedback" id="biasKpopError"></div>
-                                                @error('bias_kpop')
+                                                @error('bias')
                                                     <div class="invalid-feedback">
                                                         {{ $message }}
                                                     </div>
@@ -273,10 +280,10 @@
                                             </div>
                                             <div class="input-group mt-3">
                                                 <input type="text" inputmode="numeric" pattern="[0-9]*"
-                                                    class="form-control @error('zipcode') is-invalid @enderror"
-                                                    name="zipcode" placeholder="{{ __('ZIP code') }}" autofocus>
+                                                    class="form-control @error('barangay') is-invalid @enderror"
+                                                    name="barangay" placeholder="{{ __('ZIP code') }}" autofocus>
                                                 <div class="invalid-feedback" id="zipcodeError"></div>
-                                                @error('address')
+                                                @error('barangay')
                                                     <div class="invalid-feedback">
                                                         {{ $message }}
                                                     </div>
@@ -315,10 +322,10 @@
                                             </div>
                                             <div class="mt-3 mb-2">Upload your Govt. ID</div>
                                             <div class="input-group">
-                                                <input type="file" class="form-control" required>
+                                                <input type="file" class="form-control" name="govt_id" required>
                                             </div>
                                             <div class="input-group mt-3">
-                                                <button class="btn rounded-5 w-100 next-btn" type="submit"
+                                                <button class="btn rounded-5 w-100" type="submit"
                                                     style="background:#55AAAD; color:white; font-weight: bold">{{ __('Submit') }}</button>
                                             </div>
                                         </div>
@@ -476,9 +483,9 @@
                         if (currentStep.id === 'step3') {
                             const nickname = currentStep.querySelector('input[name="nickname"]');
                             const astrologicalSign = currentStep.querySelector(
-                                'input[name="astrological_sign"]');
-                            const favKpop = currentStep.querySelector('input[name="fav_kpop"]');
-                            const biasKpop = currentStep.querySelector('input[name="bias_kpop"]');
+                                'input[name="astr_sign"]');
+                            const favKpop = currentStep.querySelector('input[name="kpop_group"]');
+                            const biasKpop = currentStep.querySelector('input[name="bias"]');
                             const nicknameError = currentStep.querySelector('#nicknameError');
                             const astrologicalSignError = currentStep.querySelector(
                                 '#astrologicalSignError');
@@ -533,7 +540,7 @@
                         }
                         if (currentStep.id === 'step4') {
                             const address = currentStep.querySelector('input[name="address"]');
-                            const zipcode = currentStep.querySelector('input[name="zipcode"]');
+                            const zipcode = currentStep.querySelector('input[name="barangay"]');
                             const bankAccount = currentStep.querySelector('input[name="bank_account"]');
                             const govtType = currentStep.querySelector('select[name="govt_type"]');
                             const addressError = currentStep.querySelector('#addressError');

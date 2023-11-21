@@ -65,19 +65,19 @@ class RegisterController extends Controller
             'address' => ['required', 'string', 'max:255'],
             'barangay' => ['required', 'string', 'max:255'],
             'govt_type' => ['required', 'string', 'max:255'],
-            'govt_id' => ['nullable', 'string', File::image()],
+            'govt_id' => ['nullable', File::image()],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             // SHOP
-            'shop_name'=> ['nullable', 'string', 'max:255'],
-            'shop_address'=> ['nullable', 'string', 'max:255'],
-            'shop_barangay'=> ['nullable', 'string', 'max:255'],
+            'shop_name'=> ['nullable', 'max:255'],
+            'shop_address'=> ['nullable', 'max:255'],
+            'shop_barangay'=> ['nullable', 'max:255'],
             'date_established'=> ['nullable', 'date'],
-            'contact_number'=> ['nullable', 'string', 'max:255'],
-            'dti_number'=> ['nullable', 'string', 'max:255'],
-            'dti_permit'=> ['nullable', 'string', File::image()],
-            'barangay_clearance'=> ['nullable', 'string', File::image()],
-            'business_permit'=> ['nullable', 'string', File::image()],
+            'contact_number'=> ['nullable', 'max:255'],
+            'dti_number'=> ['nullable', 'max:255'],
+            'dti_permit'=> ['nullable', File::image()],
+            'barangay_clearance'=> ['nullable', File::image()],
+            'business_permit'=> ['nullable', File::image()],
         ]);
     }
 
@@ -91,7 +91,20 @@ class RegisterController extends Controller
     {
         $role = Role::where('name', $data['role'])->firstOrFail();
 
-        // dd($data);
+         // Check if there is a file in the data and it is valid
+        if (isset($data['govt_id']) && $data['govt_id']->isValid()) {
+            // Store the file and get the path
+            $filePath = $data['govt_id']->store('public/auth');
+
+            // Store just the filename if you prefer
+            // $filename = $data['govt_id']->hashName();
+
+            // Replace the file in the array with the path or filename
+            $data['govt_id'] = $filePath;
+        } else {
+            // If there is no file or the file is not valid, set the govt_id to null
+            $data['govt_id'] = null;
+        }
 
         if($role == 'buyer')
         {

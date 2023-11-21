@@ -7,15 +7,11 @@ use Illuminate\Http\Request;
 
 class ShipmentController extends Controller
 {
-    public function shipmentStatus($id) {
-        $shipments = Shipment::with('product.user', 'productVariation', 'user')->get();
-
-        foreach($shipments as $shipment) {
-
-            $products = $shipment->product->where('user_id', auth()->id())->get();
-        }
-
-        dd($products);
+    public function shipmentStatus() {
+        $shipments = Shipment::with('product.user', 'productVariation', 'user')
+        ->whereHas('product', function ($query) {
+            $query->where('user_id', auth()->id());
+        })->get();
 
         return view('seller.products.shipment', compact('shipments'));
     }

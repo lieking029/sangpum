@@ -68,7 +68,7 @@ Route::middleware('auth')->group(function () {
         Route::post('product-bulkDelete', [ProductController::class,'bulkDelete'])->name('product.bulkDelete');
 
         Route::get('seller-home', [HomeController::class, 'sellerIndex'])->name('seller.home');
-        Route::get('shipment/{id}', [ShipmentController::class, 'shipmentStatus'])->name('seller.shipment');
+        Route::get('shipment', [ShipmentController::class, 'shipmentStatus'])->name('seller.shipment');
         Route::get('to-shipment/{shipment}', [ShipmentController::class, 'toShipment'])->name('toShipment');
         Route::get('to-shipping/{shipment}', [ShipmentController::class, 'toShipping'])->name('toShipping');
         Route::get('to-receive/{shipment}', [ShipmentController::class, 'toReceive'])->name('toReceive');
@@ -83,7 +83,7 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('order', OrderController::class);
     Route::post('order-quantity/{order}', [OrderController::class,'changeQuantity'])->name('order.changeQuantity');
-    Route::get('marketplace', [OrderController::class,'marketplace'])->name('marketplace');
+    Route::get('/', [OrderController::class,'marketplace'])->name('marketplace');
     Route::get('all-items', [OrderController::class, 'allItems'])->name('allItems');
     Route::get('product-detail/{product}', [OrderController::class,'productDetails'])->name('productDetails');
     Route::post('addToCart/{product}', [OrderController::class,'addToCart'])->name('addToCart');
