@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+    <style>
+        .table-responsive {
+            overflow-x: hidden;
+        }
+    </style>
     <div class="container-fluid card">
         <div class="card-header row">
             <div class="col mt-2">
@@ -26,26 +31,27 @@
             </div>
         </div>
         <div class="card-body">
-            <div class="container row">
-                <div class="col d-flex justify-content-evenly">
-                    <img src="" alt="" height="100" width="100" class="rounded-5">
-                    <div class="mt-1">
-                        <div class="d-flex">
-                            <span class="fw-bold">{{ auth()->user()->shop->shop_name ?? 'No Shop yet' }}</span>
-                            <div class="">
+            <div class="container">
+                <div class="row">
+                    <div class="col d-flex justify-content-center align-items-center">
+                        <img src="" alt="" height="100" width="100" class="rounded-5 me-3">
+                        <div>
+                            <div class="d-flex align-items-center">
+                                <span class="fw-bold">{{ auth()->user()->shop->shop_name ?? 'No Shop yet' }}</span>
                                 <i class="fas fa-check-circle mx-3"></i>
                                 <a href="#" class="btn"
-                                    style="font-size: 9px; background: rgb(163, 163, 163); padding-top: 2px; padding-bottom: 2px; padding-right: 15px; padding-left: 15px; border-radius: 0; margin-left: 20px; color: white">Edit
-                                    Shop</a> <br>
+                                    style="font-size: 9px; background: rgb(163, 163, 163); padding-top: 2px; padding-bottom: 2px; padding-right: 15px; padding-left: 15px; border-radius: 0; color: white">Edit
+                                    Shop</a>
                             </div>
+                            <span>{{ auth()->user()->shop->shop_address ?? 'No address yet' }}</span>
                         </div>
-                        <span>{{ auth()->user()->shop->shop_address ?? 'No address yet' }}</span>
+                    </div>
+                    <div class="col d-flex justify-content-center align-items-center">
+                        <img src="" alt="" height="100" width="600">
                     </div>
                 </div>
-                <div class="col">
-                    <img src="" alt="" height="100" width="600">
-                </div>
             </div>
+
 
             <div class="mt-4 table-responsive">
                 <div class="row">
@@ -64,8 +70,8 @@
                     @endforeach
                 </div>
             </div>
-            <div class="row">
-                <div class="col-12">
+            <div class="card-footer mt-3 ">
+                <div class="d-flex justify-content-end">
                     {{ $products->links() }}
                 </div>
             </div>

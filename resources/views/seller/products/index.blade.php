@@ -1,6 +1,47 @@
 @extends('layouts.app')
 
 @section('content')
+    <style>
+        .action-buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* Centers buttons horizontally */
+        }
+
+        .btn-action {
+            display: block;
+            background: #ddd;
+            border: 0;
+            padding: 6px 20px;
+            /* Even smaller padding */
+            text-align: center;
+            text-decoration: none;
+            color: black;
+            margin-top: 5px;
+            /* Smaller space at the top */
+            margin-bottom: 5px;
+            /* Smaller space at the bottom */
+            width: 100%;
+            /* Ensures full width */
+            box-sizing: border-box;
+            /* Ensures padding is included in width */
+            font-size: 0.85rem;
+            /* Slightly smaller font size */
+        }
+
+        /* Ensure the buttons have no space in between */
+        .order-button+.delete-button {
+            margin-top: 0;
+            /* Removes space between buttons */
+        }
+
+        /* Optional: Add hover effect for better UX */
+        .btn-action:hover {
+            background-color: #ccc;
+        }
+
+    </style>
     <div class="container-fluid card">
         <div class="card-header row">
             <div class="col">
@@ -81,12 +122,17 @@
                             </div>
                             <div class="col">
                                 <div class="d-flex flex-column justify-content-center">
+<<<<<<< HEAD
                                     <a href="#" class="btn m-2"
                                         style="font-size: 12px; background: #D4D6D8; padding-top: 2px; padding-bottom: 2px; padding-right: 15px; padding-left: 15px; border-radius: 0;  color: black">
                                         Edit</a>
                                     <a href="#" class="btn m-2"
                                         style="font-size: 12px; background: #D4D6D8; padding-top: 2px; padding-bottom: 2px; padding-right: 15px; padding-left: 15px; border-radius: 0; color: black">
                                         Delete</a>
+=======
+                                    <a href="" class="btn-action order-button">Edit</a>
+                                    <a href="" class="btn-action delete-button">Delete</a>
+>>>>>>> 2188d5c702c0f9dd5628cbe25e1a75f6d8f6f1f6
                                 </div>
                             </div>
                             <hr>
