@@ -53,8 +53,8 @@
                 </ul>
             </div>
         </header>
-        <div class="body flex-grow-1 px-3">
-            <div class="">
+        <div class="body flex-grow-1 px-3 " style="margin-top: ">
+            <div class="" >
                 @yield('content')
             </div>
         </div>

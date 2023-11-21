@@ -2,7 +2,16 @@
 
 @section('content')
 
-<div class="row" >
+<style>
+    .vertical-divider {
+    border-left: 1px solid #000; /* This creates the vertical line */
+    height: 100%; /* This sets the height */
+    margin: 0 10px; /* This adds some horizontal spacing */
+}
+
+</style>
+
+<div class="row " >
     <div class="col-2" style="background: rgb(153, 207, 208); min-height: 100vh">
         <div class="text-center">
             <img height="150" width="150" class="rounded-circle mt-4" src="https://scontent.fmnl9-2.fna.fbcdn.net/v/t39.30808-6/316541946_876752107083217_5841789909563890176_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeHp6OL09d2UfnUuFcRlp8baIdqJpC8rMSgh2omkLysxKCdoRpbmZRyInp5_zCnXNT8QmYMTBdoAECcciFLtEg89&_nc_ohc=49tITbGC5wIAX8RQUyY&_nc_ht=scontent.fmnl9-2.fna&oh=00_AfCfJzg_Fw9pT9clXdXopcsTMp8sM4bKC1enYKR27jVGxQ&oe=6560049B" alt="">
@@ -13,7 +22,7 @@
             </div>
         </div>
     </div>
-    <div class="col-10">
+    <div class="col-10 mt-3">
         <div class="container">
             <div class="row">
                 <div class="col" style="color: #8A8A8A">
@@ -23,6 +32,51 @@
                 <div class="col text-end"><strong>Order Id: </strong></i> {{ $shipment->order_id }} </div>
             </div>
              <hr>
+             <div class="mt-5">
+                <div class="d-flex align-items-center" style="margin-left: 18%">
+                    <div>
+                        <div class="rounded-circle px-2 py-1 mt-1" style="background: #4C5370; width: 35px;">
+                            <i class="fas fa-check text-white"></i>
+                        </div>
+                    </div>
+                    <div style="width: 10rem; height: 100%; border: 5px solid #4C5370; margin: 0 10px;" class="rounded-5"></div>
+                    <div class="text-center">
+                        <div class="rounded-circle px-2 py-1 mt-1" style="background: #4C5370; width: 35px;">
+                            <i class="fas fa-check text-white"></i>
+                        </div>
+                    </div>
+                    <div style="width: 10rem; height: 100%; border: 5px solid #4C5370; margin: 0 10px;" class="rounded-5"></div>
+                    <div class="text-center">
+                        <div class="rounded-circle px-2 py-1 mt-1" style="background: #4C5370; width: 35px;">
+                            <i class="fas fa-check text-white"></i>
+                        </div>
+                    </div>
+                    <div style="width: 10rem; height: 100%; border: 5px solid #4C5370; margin: 0 10px;" class="rounded-5"></div>
+                    <div class="text-center">
+                        <div class="rounded-circle px-2 py-1 mt-1" style="background: #4C5370; width: 35px;">
+                            <i class="fas fa-check text-white"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center" style="margin-left: 18%">
+                    <div>
+                        <strong>To Ship</strong>
+
+                    </div>
+                    <div style="width: 8rem; height: 100%; border: 5px solid white; margin: 0 10px;" class="rounded-5"></div>
+                    <div class="">
+                        <strong>Shipped</strong>
+                    </div>
+                    <div style="width: 7rem; height: 100%; border: 5px solid white; margin: 0 10px;" class="rounded-5"></div>
+                    <div>
+                        <strong>Out for Delivery</strong>
+                    </div>
+                    <div style="width: 6rem; height: 100%; border: 5px solid white; margin: 0 10px;" class="rounded-5"></div>
+                    <div>
+                        <strong>Delivered</strong>
+                    </div>
+                </div>
+             </div>
         </div>
     </div>
 </div>

@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 
 class ShipmentController extends Controller
 {
-    public function shipmentStatus(Shipment $id) {
-        $shipment = Shipment::where($id)->get();
+    public function shipmentStatus(Shipment $shipment) {
+        // $shipment = Shipment::where($id)->get();
 
         return view('seller.products.shipment',[
             'shipment' => $shipment
