@@ -7,12 +7,17 @@ use Illuminate\Http\Request;
 
 class ShipmentController extends Controller
 {
-    public function shipmentStatus(Shipment $shipment) {
-        // $shipment = Shipment::where($id)->get();
+    public function shipmentStatus($id) {
+        $shipments = Shipment::with('product.user', 'productVariation', 'user')->get();
 
-        return view('seller.products.shipment',[
-            'shipment' => $shipment
-        ]);
+        foreach($shipments as $shipment) {
+
+            $products = $shipment->product->where('user_id', auth()->id())->get();
+        }
+
+        dd($products);
+
+        return view('seller.products.shipment', compact('shipments'));
     }
 
     public function myPurchase() {

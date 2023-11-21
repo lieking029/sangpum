@@ -14,7 +14,7 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::with('productVariations', 'shipping')->paginate(3);
+        $products = Product::with('productVariations', 'shipping')->where('user_id', auth()->id())->paginate(5);
 
         return view("seller.products.index", [
             'products' => $products
@@ -43,6 +43,14 @@ class ProductController extends Controller
 
         $product->productVariations()->insert($productVariation);
         $product->shipping()->create($request->validated());
+
+        // Handling multiple image uploads
+        if($request->hasFile('product_images')) {
+            foreach($request->file('product_images') as $image) {
+                $path = $image->store('public/products'); // This will store images in 'storage/app/public/products' directory
+                // Save $path to the database or perform other actions like resizing images, etc.
+            }
+        }
 
         return redirect()->route('products.create');
     }

@@ -68,7 +68,7 @@ Route::middleware('auth')->group(function () {
         Route::post('product-bulkDelete', [ProductController::class,'bulkDelete'])->name('product.bulkDelete');
 
         Route::get('seller-home', [HomeController::class, 'sellerIndex'])->name('seller.home');
-        Route::get('shipment/{shipment}', [ShipmentController::class, 'shipmentStatus'])->name('seller.shipment');
+        Route::get('shipment/{id}', [ShipmentController::class, 'shipmentStatus'])->name('seller.shipment');
         Route::get('to-shipment/{shipment}', [ShipmentController::class, 'toShipment'])->name('toShipment');
         Route::get('to-shipping/{shipment}', [ShipmentController::class, 'toShipping'])->name('toShipping');
         Route::get('to-receive/{shipment}', [ShipmentController::class, 'toReceive'])->name('toReceive');

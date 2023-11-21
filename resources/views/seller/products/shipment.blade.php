@@ -26,20 +26,21 @@
             </div>
         </div>
         <div class="card-body">
-            <div class="card-header d-flex justify-content-evenly border rounded-3">
+            {{-- <div class="card-header d-flex justify-content-evenly border rounded-3">
                 <label for=""><u>orders</u></label>
                 <label for="">nigga</label>
                 <label for="">nigga</label>
                 <label for="">nigga</label>
                 <label for="">nigga</label>
-            </div>
-            <hr>
+            </div> --}}
+            {{-- <hr> --}}
             <div class="row">
                 <div class="d-flex justify-content-between">
+                    @foreach ($shipments as $shipment)
                     <div class="d-flex">
                         <img src="" alt="" class="border rounded-5 mx-3" width="40" height="40">
                         <div class="d-flex flex-column justify-content-center">
-                            <label for="">bunnyy</label>
+                            <label for="">{{ $shipment->user->name }}</label>
                         </div>
                         <div class="d-flex flex-column justify-content-center">
                             <a href="#" class="btn m-2"
@@ -53,27 +54,28 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <hr>
-            <div class="row d-flex">
-                <div class="col">
-                    <div class="form-check d-flex">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"
-                            style="margin-top: 45px; margin-right:20px;">
-                        <img src="" alt="" width="100" height="100" class="mb-3">
-                        <div class="d-flex justify-content-center" style="margin-top: 40px; margin-left:40px;">
-                            <label for="">NIGAAAAAAAAAAAAAAAAAAAAAAAAAAAA</label>
+                </div>
+                    <hr>
+                    <div class="row d-flex">
+                        <div class="col">
+                            <div class="form-check d-flex">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"
+                                    style="margin-top: 45px; margin-right:20px;">
+                                <img src="" alt="" width="100" height="100" class="mb-3">
+                                <div class="d-flex justify-content-center" style="margin-top: 40px; margin-left:40px;">
+                                    <label for="">NIGAAAAAAAAAAAAAAAAAAAAAAAAAAAA</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="d-flex flex-column align-items-end mx-4" style="margin-top: 40px;">
+                                <label for="">Arrange Shipmen</label>
+                                <label for="">nigga</label>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col">
-                    <div class="d-flex flex-column align-items-end mx-4" style="margin-top: 40px;">
-                        <label for="">Arrange Shipmen</label>
-                        <label for="">nigga</label>
-                    </div>
-                </div>
-            </div>
-            <hr>
+                    <hr>
+            @endforeach
             <div class="row mb-3">
                 <div class="d-flex justify-content-between">
                     <div class="d-flex">
