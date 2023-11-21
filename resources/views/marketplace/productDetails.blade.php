@@ -4,10 +4,8 @@
 
     <style>
         .highlighted {
-            background-color: #cecece;
-            /* or any highlight color you prefer */
-            color: white;
-            /* change text color if needed */
+            border: 2px solid #000000;
+            /* Dark border */
         }
     </style>
     @if ($errors->any())
@@ -50,24 +48,27 @@
                         <h2>{{ $product->product_name }}</h2>
                         <div>
                             <label for="">Price</label>
-                            <h4 id="price"></h4>
+                            <div class="d-flex">
+                                <h4>P :</h4>
+                                <h4 id="price"></h4>
+                            </div>
                         </div>
                         <div class="">
                             <label for="" style="color: red">*Pre order | 2023.07.04 ~ 2023.07.27 <br>
                                 *release | 2023.07.28 18:00</label>
                         </div>
-                        <div class="row">
+                        <div class="row mt-3">
                             <strong>Variation</strong>
                             @foreach ($product->productVariations as $variation)
-                            <div class="col-4 text-center">
-                                <button class="variationId" type="button" data-id="{{ $variation->id }}"
-                                        style="font-size: 9px; background: rgb(163, 163, 163); padding-top: 5px; padding-bottom: 5px; padding-right: 20px; padding-left: 20px; border-radius: 0; color: white; border: none;">{{ $variation->variation_name }}</button>
-                            </div>
+                                <div class="col-4 text-center">
+                                    <button class="variationId" type="button" data-id="{{ $variation->id }}"
+                                        style="font-size: 9px; background: rgb(163, 163, 163); padding-top: 5px; padding-bottom: 5px; padding-right: 20px; padding-left: 20px; border-radius: 0; color: white;">{{ $variation->variation_name }}</button>
+                                </div>
                             @endforeach
                             <input type="hidden" id="productVariation" name="product_variation_id">
                             <input type="hidden" name="product_id" value="{{ $product->id }}">
                         </div>
-                        <div class="row">
+                        <div class="row mt-3">
                             <div class="col">
                                 <span>Quantity</span> <br>
                                 <input type="number" min="0" name="quantity" id="quantity" class="form-control"
@@ -75,15 +76,17 @@
                             </div>
                             <div class="col">
                                 <span>Total</span> <br>
-                                P <strong id="total"></strong>
+                                <strong id="total"></strong>
                             </div>
                             <div class="col"></div>
                         </div>
-                        <div class="row mt-4">
-                            <button class="btn col rounded-5 text-white" style="background: #55AAAD;"
-                                type="submit"><strong>Add to Cart</strong></button>
-                            <button class="btn btn-secondary col rounded-5 text-white"><strong>Buy Now</strong></button>
-                            <div class="col"></div>
+                        <div class="row d-flex justify-content-center align-items-center mt-5">
+                            <button class="btn rounded-5 text-white" style="background: #55AAAD;" type="submit">
+                                <strong>Add to Cart</strong>
+                            </button>
+                            <button class="btn btn-secondary rounded-5 text-white mt-3">
+                                <strong>Buy Now</strong>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -93,25 +96,27 @@
             $(() => {
                 const baseUrl = '{{ url('') }}';
                 $('.variationId').click(function() {
-                    $('.variationId').removeClass('highlighted');
-                    // Highlight the clicked button
-                    $(this).addClass('highlighted');
+                    // Fetch variation details and update the price
                     fetch(baseUrl + '/variation-get/' + $(this).data('id'))
                         .then(response => response.json())
                         .then(variation => {
-                            $('#productVariation').val(variation.id)
-                            $('#price').text('P ' + variation.price)
+                            $('#productVariation').val(variation.id);
+                            $('#price').text(variation.price.toFixed(
+                                2)); // Assuming variation.price is a number
+                        });
+                });
 
-                        })
-                })
 
                 $('#quantity').on('input', function() {
-                    const price = parseFloat($('#price').val());
+                    const priceText = $('#price').text(); // Get the price as text
+                    const price = parseFloat(priceText); // Convert the text to a floating point number
                     const quantity = parseInt($('#quantity').val(), 10);
 
-                    const total = price * quantity;
-                    $('#total').text(total.toFixed(
-                        2)); // toFixed(2) to format it as a currency with two decimal places
+                    // Make sure both price and quantity are valid numbers before calculating
+                    if (!isNaN(price) && !isNaN(quantity)) {
+                        const total = price * quantity;
+                        $('#total').text('P ' + total.toFixed(2)); // Update the total text
+                    }
                 });
             })
         </script>
