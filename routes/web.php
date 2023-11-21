@@ -76,6 +76,7 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::get('my-purchase', [ShipmentController::class,'myPurchase'])->name('shipping.myPurchase');
+    Route::get('tracking/{shipment}', [ShipmentController::class,'tracking'])->name('shipping.tracking');
 
     Route::resource('top-up', TopUpController::class)
         ->only('index', 'store');

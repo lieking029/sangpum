@@ -30,4 +30,10 @@ class Shipment extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function productVariation() : BelongsTo
+    {
+        return $this->belongsTo(ProductVariation::class);
+    }
+
 }

@@ -21,6 +21,12 @@ class ShipmentController extends Controller
         return view('buyer.myPurchase.index', compact('shipments'));
     }
 
+    public function tracking(Shipment $shipment) {
+        $shipment->load('product.user', 'productVariation', 'user');
+
+        return view('buyer.myPurchase.tracking', compact('shipment'));
+    }
+
     public function toShipment(Shipment $shipment)
     {
         $shipment->update(['status' => 2]);
