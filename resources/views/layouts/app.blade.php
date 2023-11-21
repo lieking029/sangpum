@@ -16,7 +16,7 @@
 
 <body>
     <div class="wrapper d-flex flex-column min-vh-100 bg-light">
-        <header class="header header-sticky mb-4" style="background: linear-gradient(to right, #5DE0E6, #004AAD); ">
+        <header class="header header-sticky mb-1" style="background: linear-gradient(to right, #5DE0E6, #004AAD); ">
             <div class="container-fluid">
                 <ul class="header-nav d-none d-md-flex">
                     <li class="nav-item"><a class="nav-link" href=""><i class="fas fa-shopping-cart" style="color: white"></i></a>
@@ -58,14 +58,6 @@
                 @yield('content')
             </div>
         </div>
-        <footer class="footer">
-            <div><a href="https://coreui.io">CoreUI </a><a href="https://coreui.io">Bootstrap Admin Template</a> &copy;
-                2021
-                creativeLabs.
-            </div>
-            <div class="ms-auto">Powered by&nbsp;<a href="https://coreui.io/bootstrap/ui-components/">CoreUI UI
-                    Components</a></div>
-        </footer>
     </div>
     <script src="{{ asset('js/coreui.bundle.min.js') }}"></script>
 </body>
