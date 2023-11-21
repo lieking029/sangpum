@@ -11,7 +11,7 @@
         <div class="card-header row">
             <div class="col-2">
                 <i class="fas fa-bars"></i>
-                <span class="btn mx-2" style="background:#4E6A80; color:white; font-weight:500">Marketplace</span>
+                <a class="btn mx-2" style="background:#4E6A80; color:white; font-weight:500" href="">Marketplace</a>
             </div>
             <div class="col-8">
                 <!-- Input group -->
@@ -62,7 +62,7 @@
             <div class="mt-4 table-responsive">
                 <div class="row">
                     @foreach ($products as $product)
-                        <div class="col-3 text-center container">
+                        <div class="col-2 text-center container">
                             <a href="{{ route('productDetails', $product->id) }}" style="text-decoration: none">
                                 <img class="border border-5 rounded-5"
                                     src="https://scontent.fmnl9-4.fna.fbcdn.net/v/t39.30808-6/355459684_995658415192585_5242516178701158225_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeG7uCcEq9_G6hvBmwZDugTI5f3TgIY7Z6fl_dOAhjtnp027VQ4J47mjO2sx0b-GgdJbZWvTx-Nu9mBm7e85-cJW&_nc_ohc=cVbvfYYhG1gAX9P7-br&_nc_ht=scontent.fmnl9-4.fna&oh=00_AfB6MbqwxJxXHW_y2ycXBl3mkeAjW_mfXmL3OW3G9ewCXw&oe=655F6368"
@@ -75,8 +75,8 @@
                         </div>
                     @endforeach
                 </div>
-                <div class="card-footer">
-                    {{ $products->links() }}
+                <div class="card-footer d-flex justify-content-end">
+                    <a href="" class=""></a>
                 </div>
             </div>
         </div>
