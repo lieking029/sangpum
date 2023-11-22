@@ -94,6 +94,8 @@
                     <div class="col-8">
                         <div class="container">
                             <span class="btn text-white rounded-5" style="background: #55AAAD; width: 50%"><strong>Tracking History</strong></span> <br>
+
+                            @if ($shipment->status >= 0)
                             <div class="row" style="margin-left: 2%">
                                 <div class="col-1 mt-4">
                                     <div class="rounded-circle p-1 text-center text-white" style="background: #A6A6A6; width: 30px; font-size: 18px">
@@ -108,6 +110,8 @@
                                     <span>Order is Placed</span>
                                 </div>
                             </div>
+                            @endif
+
                             @if ($shipment->status >= 1)
                             <div class="row" style="margin-left: 2%">
                                 <div class="col-1 mt-4">
@@ -123,7 +127,9 @@
                                     <span>Seller is preparing to ship your parcel</span>
                                 </div>
                             </div>
-                            @elseif ($shipment->status >= 2)
+                            @endif
+
+                            @if ($shipment->status >= 2)
                             <div class="row" style="margin-left: 2%">
                                 <div class="col-1 mt-4">
                                     <div class="rounded-circle p-1 text-center text-white" style="background: #55AAAD; width: 30px; font-size: 18px">
@@ -135,15 +141,17 @@
                                 </div>
                                 <div class="col-6 mt-4" style="font-size: 18px">
                                     <strong>Out for Delivery</strong> <br>
-                                    <span>The rider will attemp to deliver your parcel</span>
+                                    <span>The rider will attempt to deliver your parcel</span>
                                 </div>
                             </div>
                             @endif
+
                             <div class="text-end mt-5">
                                 <a href="{{ route('shipping.myPurchase') }}" class="btn text-white rounded-5 px-4" style="background: #4C5571"><strong>Back</strong></a>
                             </div>
                         </div>
                     </div>
+
                 </div>
              </div>
         </div>

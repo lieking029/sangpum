@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Shipment;
+use App\Models\Tracking;
 use Illuminate\Http\Request;
 
 class ShipmentController extends Controller
@@ -17,7 +18,7 @@ class ShipmentController extends Controller
     }
 
     public function myPurchase() {
-        $shipments = Shipment::with('product.user', 'user', 'productVariation')->where('status', 0)->where('user_id', auth()->user()->id)->get();
+        $shipments = Shipment::with('product.user', 'product.productImages', 'user', 'productVariation')->where('status', 0)->where('user_id', auth()->user()->id)->get();
 
         return view('buyer.myPurchase.index', compact('shipments'));
     }
@@ -30,22 +31,34 @@ class ShipmentController extends Controller
 
     public function toShipment(Shipment $shipment)
     {
-        $shipment->update(['status' => 2]);
+        $shipment->update(['status' => 0]);
+        Tracking::create(['shipment_id' => $shipment->id, 'order_placed' => now()]);
+
+        return redirect()->route('seller.shipment');
     }
 
     public function toShipping(Shipment $shipment)
     {
-        $shipment->update(['status' => 2]);
+        $shipment->update(['status' => 1]);
+        Tracking::where('shipment_id', $shipment->id)->update(['pre_ship' => now()]);
+
+        return redirect()->route('seller.shipment');
     }
 
     public function toReceive(Shipment $shipment)
     {
-        $shipment->update(['status' => 3]);
+        $shipment->update(['status' => 2]);
+        Tracking::where('shipment_id', $shipment->id)->update(['delivery' => now()]);
+
+        return redirect()->route('seller.shipment');
     }
 
     public function complete(Shipment $shipment)
     {
-        $shipment->update(['status'=> 4]);
+        $shipment->update(['status'=> 3]);
+        Tracking::where('shipment_id', $shipment->id)->update(['complete' => now()]);
+
+        return redirect()->route('seller.shipment');
     }
 
 }

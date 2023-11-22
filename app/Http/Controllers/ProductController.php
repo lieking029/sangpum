@@ -7,6 +7,7 @@ use App\Http\Requests\PublishedProductRequest;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Models\Product;
+use App\Models\ProductImage;
 use App\Models\ProductVariation;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,7 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::with('productVariations', 'shipping')->where('user_id', auth()->id())->paginate(5);
+        $products = Product::with('productVariations', 'shipping', 'productImages')->where('user_id', auth()->id())->get();
 
         return view("seller.products.index", [
             'products' => $products
@@ -27,35 +28,42 @@ class ProductController extends Controller
     }
 
     public function store(StoreProductRequest $request)
-    {
-        // dd($request->validated()); // Debugging line, can be removed after testing
-        $product = Product::create($request->validated());
-        $productVariation = [];
+{
+    $productData = $request->validated();
+    unset($productData['product_image']); // Remove the image data from the array
+    $product = Product::create($productData + ['user_id' => auth()->id()]);
 
-        foreach ($request->variation as $variation) {
-            $productVariation[] = [
-                'variation_name' => $variation['variation_name'],
-                'price' => $variation['price'],
-                'stock' => $variation['stock'],
-                'product_id' => $product->id,
-            ];
-        }
+    $productVariation = [];
 
-        $product->productVariations()->insert($productVariation);
-        $product->shipping()->create($request->validated());
-
-        // Handling multiple image uploads - make sure the field name matches the one in the HTML form and validation rules
-        if ($request->hasFile('product_image')) { // Changed from 'product_images' to 'product_image' to match the form and validation rules
-            foreach ($request->file('product_image') as $image) {
-                $path = $image->store('public/products'); // This will store images in 'storage/app/public/products' directory
-                // You will likely need to save the path to the database here
-                // Assuming you have an images relation or similar on your Product model:
-                $product->images()->create(['path' => $path]);
-            }
-        }
-
-        return redirect()->route('products.create'); // You might want to redirect to a different route, like 'products.index'
+    foreach ($request->variation as $variation) {
+        $productVariation[] = [
+            'variation_name' => $variation['variation_name'],
+            'price' => $variation['price'],
+            'stock' => $variation['stock'],
+            'product_id' => $product->id,
+        ];
     }
+
+    $product->productVariations()->insert($productVariation);
+    $product->shipping()->create($request->validated());
+
+
+    if ($request->hasFile('product_image')) {
+        foreach ($request->file('product_image') as $image) {
+            // Store the image in the public disk (storage/app/public)
+            $path = $image->store('products', 'public');
+
+            // Insert each image path with the corresponding product_id into the product_images table
+            ProductImage::create([
+                'product_id' => $product->id,
+                // Change the path from 'public/products' to 'storage/products'
+                'image_path' => str_replace('public/', 'storage/', $path)
+            ]);
+        }
+    }
+
+    return redirect()->route('products.index');
+}
 
     public function edit(Product $product)
     {

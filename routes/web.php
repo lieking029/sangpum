@@ -77,13 +77,14 @@ Route::middleware('auth')->group(function () {
         Route::get('to-receive/{shipment}', [ShipmentController::class, 'toReceive'])->name('toReceive');
         Route::get('complete/{shipment}', [ShipmentController::class, 'complete'])->name('complete');
 
-        Route::get('checkout/{id}', [ShippingController::class,'index'])->name('shipping.index');
-        Route::post('checkout', [ShippingController::class,'store'])->name('shipping.store');
+
     });
 
 
     // Buyer
     Route::middleware('role:buyer')->group(function () {
+        Route::get('checkout/{id}', [ShippingController::class,'index'])->name('shipping.index');
+        Route::post('checkout', [ShippingController::class,'store'])->name('shipping.store');
         Route::get('my-purchase', [ShipmentController::class,'myPurchase'])->name('shipping.myPurchase');
         Route::get('tracking/{shipment}', [ShipmentController::class,'tracking'])->name('shipping.tracking');
 

@@ -74,7 +74,9 @@
                                         name="published[{{ $loop->index }}][id]"
                                         @if($product->published == 1) checked disabled @endif>
 
-                                    <img src="" alt="" width="100" height="100" class="mb-3">
+                                        @if($product->productImages()->exists())
+                                            <img src="{{ asset('storage/' . $product->productImages->first()->image_path) }}" alt="{{ $product->product_name }}" width="100" height="100" class="mb-3">
+                                        @endif
                                 </div>
                             </div>
                             <div class="col">
@@ -136,11 +138,11 @@
                         </div>
                     @endforeach
                 </div>
-                <div class="row">
+                {{-- <div class="row">
                     <div class="col-12 d-flex justify-content-end">
                         {{ $products->links() }}
                     </div>
-                </div>
+                </div> --}}
         </div>
         <div class="card-footer d-flex justify-content-between">
             <div class="">
