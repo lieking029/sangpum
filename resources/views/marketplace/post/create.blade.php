@@ -43,6 +43,25 @@
         .my-link:hover i {
             color: #007bff;
         }
+
+        .upload-box {
+            border: 2px dashed #4C5370;
+            border-radius: 5px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            background-color: #f8f9fa;
+        }
+
+        .upload-box:hover {
+            background-color: #e2e6ea;
+        }
+
+        .upload-box p {
+            margin: 0;
+            font-size: 16px;
+            color: #4C5370;
+        }
     </style>
     <div class="container-fluid card">
         <div class="card-header row">
@@ -71,7 +90,6 @@
                             <div class="">
                                 <label for=""><strong>name</strong></label>
                                 <label for="">@name</label>
-                                <label for="">24mins ago</label>
                             </div>
                             <div class="input-group mt-3">
                                 <input type="text" class="form-control" placeholder="{{ __('Title') }}">
@@ -79,8 +97,13 @@
                             <div class="input-group mt-3">
                                 <textarea type="text" class="form-control" placeholder="{{ __('Description') }}"></textarea>
                             </div>
-                            <div class="input-group">
-
+                            <div class="input-group mt-3 d-flex flex-column">
+                                <label for="formFileMultiple" class="form-label">Images</label>
+                                <div class="upload-box" onclick="document.getElementById('formFileMultiple').click();">
+                                    <p>Click to upload picture</p>
+                                </div>
+                                <input class="form-control d-none" name="product_image[]" type="file"
+                                    id="formFileMultiple" multiple>
                             </div>
                         </div>
                     </div>
@@ -102,4 +125,19 @@
             </div>
         </div>
     </div>
+    <script>
+        document.getElementById('formFileMultiple').onchange = function() {
+            // You can add code here to handle the files selected by the user
+            // For example, update the text of the upload box to show the number of files selected
+            const fileInput = document.getElementById('formFileMultiple');
+            const fileCount = fileInput.files.length;
+            const textBox = document.querySelector('.upload-box p');
+
+            if (fileCount > 0) {
+                textBox.textContent = fileCount + " files selected";
+            } else {
+                textBox.textContent = "Click to upload files";
+            }
+        };
+    </script>
 @endsection

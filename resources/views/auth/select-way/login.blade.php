@@ -15,7 +15,7 @@
                         </div>
 
                         <div class="input-group mt-4 d-flex justify-content-center">
-                            <p>Don't Have an Seller Account? <a href="{{ route('register') }}">Sign Up</a></p>
+                            <p>Don't Have an Seller Account? <a href="{{ route('register.seller') }}">Sign Up</a></p>
                         </div>
                     </div>
                 </div>
@@ -33,7 +33,7 @@
                                 style="background:#55AAAD; color:white; font-weight: bold">{{ __('Login as Buyer') }}</a>
                         </div>
                         <div class="input-group mt-4 d-flex justify-content-center">
-                            <p>Don't Have an Buyer Account? <a href="{{ route('register') }}">Sign Up</a></p>
+                            <p>Don't Have an Buyer Account? <a href="{{ route('register.buyer') }}">Sign Up</a></p>
                         </div>
                     </div>
                 </div>

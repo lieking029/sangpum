@@ -43,6 +43,25 @@
         .my-link:hover i {
             color: #007bff;
         }
+
+        .upload-box {
+            border: 2px dashed #4C5370;
+            border-radius: 5px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            background-color: #f8f9fa;
+        }
+
+        .upload-box:hover {
+            background-color: #e2e6ea;
+        }
+
+        .upload-box p {
+            margin: 0;
+            font-size: 16px;
+            color: #4C5370;
+        }
     </style>
     <div class="container-fluid card">
         <div class="card-header row">
@@ -61,37 +80,27 @@
             <div class="row">
                 <div class="col-9 border-end">
                     <div class="card-header">
-                        <h1>Home</h1>
-                    </div>
-                    <div class="row mt-4">
-                        <div class="col-3 d-flex justify-content-end">
+                        <div class="col-3 d-flex justify-content-evenly">
                             <img src="" alt="" class="rounded-5" width="50" height="50">
-                        </div>
-                        <div class="col-3 d-flex flex-column justify-content-start">
                             <div class="">
                                 <label for=""><strong>name</strong></label>
                                 <label for="">@name</label>
                                 <label for="">24mins ago</label>
                             </div>
-                            <div class="">
-                                <label for=""><strong>WTTT</strong></label>
-                            </div>
-                            <div class="">
-                                <p>
-                                    descritionaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                                </p>
-                            </div>
                         </div>
-                        <div class="col d-flex flex-column">
-                            <img src="" alt="" class="rounded-3" width="200" height="100">
-                            <div class="d-flex">
-                                <a href=""> <i class="fas fa-comment fa-2x me-3 mt-3"
-                                        style="color: rgba(0, 0, 0, 0.5);"></i></a>
-                                <a href=""> <i class="fas fa-paper-plane fa-2x  mx-4 mt-3"
-                                        style="color: rgba(0, 0, 0, 0.5);"></i></a>
-                                <a href=""> <i class="fas fa-heart fa-2x mt-3 mx-4"
-                                        style="color: rgba(0, 0, 0, 0.5);"></i></a>
+                    </div>
+                    <div class="row mt-4">
+
+                    </div>
+                    <div class="card-footer">
+                        <div class="input-group">
+                            <input type="text" class="form-control">
+                            <div class="upload-box" onclick="document.getElementById('formFileMultiple').click();">
+                                <p>Click to upload files</p>
                             </div>
+                            <input class="form-control d-none" name="product_image[]" type="file" id="formFileMultiple"
+                                multiple>
+                            <a href="" class="btn btn-outline-secondary d-flex align-items-center"><i class="fas fa-paper-plane"></i></a>
                         </div>
                     </div>
                 </div>
@@ -112,4 +121,19 @@
             </div>
         </div>
     </div>
+    <script>
+        document.getElementById('formFileMultiple').onchange = function() {
+            // You can add code here to handle the files selected by the user
+            // For example, update the text of the upload box to show the number of files selected
+            const fileInput = document.getElementById('formFileMultiple');
+            const fileCount = fileInput.files.length;
+            const textBox = document.querySelector('.upload-box p');
+
+            if (fileCount > 0) {
+                textBox.textContent = fileCount + " files selected";
+            } else {
+                textBox.textContent = "Click to upload files";
+            }
+        };
+    </script>
 @endsection

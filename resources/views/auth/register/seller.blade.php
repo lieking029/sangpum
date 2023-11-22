@@ -252,7 +252,8 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-12 col-md-6"> <!-- Other inputs -->
-                                                        <label for="birth_date">Birth Date</label>
+                                                        <label for="birth_date">Birth Date (Must be 18 years old or
+                                                            above)</label>
                                                         <div class="input-group ">
                                                             <input type="date"
                                                                 class="form-control @error('birth_date') is-invalid @enderror"
@@ -277,10 +278,10 @@
                                                         </div>
                                                         <div class="input-group mt-3">
                                                             <input type="number" inputmode="numeric" pattern="[0-9]*"
-                                                                class="form-control @error('barangay') is-invalid @enderror"
-                                                                name="barangay" placeholder="{{ __('ZIP code') }}">
+                                                                class="form-control @error('zipcode') is-invalid @enderror"
+                                                                name="zipcode" placeholder="{{ __('ZIP code') }}">
                                                             <div class="invalid-feedback" id="zipcodeError"></div>
-                                                            @error('barangay')
+                                                            @error('zipcode')
                                                                 <div class="invalid-feedback">
                                                                     {{ $message }}
                                                                 </div>
@@ -375,7 +376,7 @@
                                                                 class="form-control @error('shop_name') is-invalid @enderror"
                                                                 name="shop_name" placeholder="{{ __('Shop Name') }}"
                                                                 autofocus>
-                                                            <div class="invalid-feedback" id="addressError"></div>
+                                                            <div class="invalid-feedback" id="shopNameError"></div>
                                                             @error('shop_name')
                                                                 <div class="invalid-feedback">
                                                                     {{ $message }}
@@ -385,10 +386,10 @@
                                                         <div class="input-group mt-3">
                                                             <input type="text"
                                                                 class="form-control @error('address') is-invalid @enderror"
-                                                                name="address" placeholder="{{ __('Address') }}"
+                                                                name="shop_address" placeholder="{{ __('Address') }}"
                                                                 autofocus>
-                                                            <div class="invalid-feedback" id="addressError"></div>
-                                                            @error('address')
+                                                            <div class="invalid-feedback" id="shopAddressError"></div>
+                                                            @error('shop_address')
                                                                 <div class="invalid-feedback">
                                                                     {{ $message }}
                                                                 </div>
@@ -396,11 +397,11 @@
                                                         </div>
                                                         <div class="input-group mt-3">
                                                             <input type="text" inputmode="numeric" pattern="[0-9]*"
-                                                                class="form-control @error('zipcode') is-invalid @enderror"
-                                                                name="zipcode" placeholder="{{ __('ZIP code') }}"
+                                                                class="form-control @error('shop_zipcode') is-invalid @enderror"
+                                                                name="zipcode_shop" placeholder="{{ __('ZIP code') }}"
                                                                 autofocus>
-                                                            <div class="invalid-feedback" id="zipcodeError"></div>
-                                                            @error('address')
+                                                            <div class="invalid-feedback" id="'#shopZipcodeError'"></div>
+                                                            @error('zipcode_shop')
                                                                 <div class="invalid-feedback">
                                                                     {{ $message }}
                                                                 </div>
@@ -412,8 +413,9 @@
                                                         <div class="input-group">
                                                             <input type="date"
                                                                 class="form-control @error('date_established') is-invalid @enderror"
-                                                                name="date_established" placeholder="Birth Date" required>
-                                                            <div class="invalid-feedback" id="birthDateError"></div>
+                                                                name="date_established" required>
+                                                            <div class="invalid-feedback" id="'#dateEstablishedError'">
+                                                            </div>
                                                             @error('date_established')
                                                                 <div class="invalid-feedback">
                                                                     {{ $message }}
@@ -422,11 +424,11 @@
                                                         </div>
                                                         <div class="input-group mt-3">
                                                             <input type="text" inputmode="numeric" pattern="[0-9]*"
-                                                                class="form-control @error('number') is-invalid @enderror"
-                                                                name="number" placeholder="{{ __('Contact No.') }}"
-                                                                autofocus>
-                                                            <div class="invalid-feedback" id="zipcodeError"></div>
-                                                            @error('number')
+                                                                class="form-control @error('contact_number') is-invalid @enderror"
+                                                                name="contact_number"
+                                                                placeholder="{{ __('Contact No.') }}" autofocus>
+                                                            <div class="invalid-feedback" id="contactNumberError"></div>
+                                                            @error('contact_number')
                                                                 <div class="invalid-feedback">
                                                                     {{ $message }}
                                                                 </div>
@@ -437,7 +439,7 @@
                                                                 class="form-control @error('dti_number') is-invalid @enderror"
                                                                 name="dti_number" placeholder="{{ __('DTI No.') }}"
                                                                 autofocus>
-                                                            <div class="invalid-feedback" id="zipcodeError"></div>
+                                                            <div class="invalid-feedback" id=" dtiNumberError"></div>
                                                             @error('dti_number')
                                                                 <div class="invalid-feedback">
                                                                     {{ $message }}
@@ -463,24 +465,6 @@
                                             <div class="container">
                                                 <div class="row">
                                                     <div class="col-12 col-md-6">
-                                                        <div class="input-group mb-2 mt-4">
-                                                            <input type="numeric"
-                                                                class="form-control @error('bank_account') is-invalid @enderror"
-                                                                name="bank_account"
-                                                                placeholder="{{ __('Bank Account/E-wallet') }}" autofocus>
-                                                            <div class="invalid-feedback" id="addressError"></div>
-                                                            @error('bank_account')
-                                                                <div class="invalid-feedback">
-                                                                    {{ $message }}
-                                                                </div>
-                                                            @enderror
-                                                        </div>
-                                                        <label for="">Upload latest Water bill/Electric
-                                                            bill</label>
-                                                        <div class="input-group mb-2">
-                                                            <input type="file" name="bill"
-                                                                class="form-control @error('bill') is-invalid @enderror">
-                                                        </div>
                                                         <label for="">Select Type of Govt. ID</label>
                                                         <div class="input-group mb-2">
                                                             <select name="govt_type" id="" class="form-select">
@@ -523,11 +507,6 @@
                                                         <div class="input-group mb-2">
                                                             <input type="file" name="business_permit"
                                                                 class="form-control @error('business_permit') is-invalid @enderror">
-                                                        </div>
-                                                        <label for="">Upload your Govt. ID</label>
-                                                        <div class="input-group mb-2">
-                                                            <input type="file" name="gov_id"
-                                                                class="form-control @error('gov_id') is-invalid @enderror">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -737,6 +716,7 @@
 
                         // Validation for step 2 inputs, if you're on step 2
                         if (currentStep.id === 'step2') {
+                            // Selectors for the input fields and their respective error message containers
                             const firstName = currentStep.querySelector('input[name="first_name"]');
                             const middleName = currentStep.querySelector('input[name="middle_name"]');
                             const lastName = currentStep.querySelector('input[name="last_name"]');
@@ -750,53 +730,68 @@
                             const addressError = currentStep.querySelector('#addressError');
                             const zipcodeError = currentStep.querySelector('#zipcodeError');
 
-
+                            // Reset all error messages before validation
+                            firstNameError.textContent = '';
+                            middleNameError.textContent = '';
+                            lastNameError.textContent = '';
+                            birthDateError.textContent = '';
                             addressError.textContent = '';
                             zipcodeError.textContent = '';
 
-                            // Validate the address
-                            if (!address.value.trim()) {
-                                addressError.textContent = 'Address is required.';
-                                address.classList.add('is-invalid');
-                                valid = false;
-                            } else {
-                                address.classList.remove('is-invalid');
-                            }
-
-                            // Validate the zipcode
-                            if (!zipcode.value.trim()) {
-                                zipcodeError.textContent = 'ZIP code is required.';
-                                zipcode.classList.add('is-invalid');
-                                valid = false;
-                            } else {
-                                zipcode.classList.remove('is-invalid');
-                            }
-
-                            // Validate the first name
+                            // Validation checks
                             if (!firstName.value.trim()) {
                                 firstNameError.textContent = 'First name is required.';
                                 firstName.classList.add('is-invalid');
                                 valid = false;
                             }
 
-                            // Validate the middle name
                             if (!middleName.value.trim()) {
                                 middleNameError.textContent = 'Middle name is required.';
                                 middleName.classList.add('is-invalid');
                                 valid = false;
                             }
 
-                            // Validate the last name
                             if (!lastName.value.trim()) {
                                 lastNameError.textContent = 'Last name is required.';
                                 lastName.classList.add('is-invalid');
                                 valid = false;
                             }
 
-                            // Validate the birth date
                             if (!birthDate.value.trim()) {
                                 birthDateError.textContent = 'Birth date is required.';
                                 birthDate.classList.add('is-invalid');
+                                valid = false;
+                            } else {
+                                const enteredDate = new Date(birthDate.value);
+                                const currentDate = new Date();
+                                const minAge = 18;
+
+                                // Calculate the date 18 years ago from now
+                                const date18YrsAgo = new Date(
+                                    currentDate.getFullYear() - minAge,
+                                    currentDate.getMonth(),
+                                    currentDate.getDate()
+                                );
+
+                                // Check if the entered date is before or the same as the date 18 years ago
+                                if (enteredDate > date18YrsAgo) {
+                                    birthDateError.textContent = 'You must be at least 18 years old.';
+                                    birthDate.classList.add('is-invalid');
+                                    valid = false;
+                                } else {
+                                    birthDate.classList.remove('is-invalid');
+                                }
+                            }
+
+                            if (!address.value.trim()) {
+                                addressError.textContent = 'Address is required.';
+                                address.classList.add('is-invalid');
+                                valid = false;
+                            }
+
+                            if (!zipcode.value.trim()) {
+                                zipcodeError.textContent = 'ZIP code is required.';
+                                zipcode.classList.add('is-invalid');
                                 valid = false;
                             }
                         }
@@ -804,8 +799,8 @@
                             const nickname = currentStep.querySelector('input[name="nickname"]');
                             const astrologicalSign = currentStep.querySelector(
                                 'input[name="astr_sign"]');
-                            const favKpop = currentStep.querySelector('input[name="fav_kpop"]');
-                            const biasKpop = currentStep.querySelector('input[name="bias_kpop"]');
+                            const favKpop = currentStep.querySelector('input[name="kpop_group"]');
+                            const biasKpop = currentStep.querySelector('input[name="bias"]');
                             const nicknameError = currentStep.querySelector('#nicknameError');
                             const astrologicalSignError = currentStep.querySelector(
                                 '#astrologicalSignError');
@@ -860,38 +855,88 @@
                         }
                         if (currentStep.id === 'step4') {
 
-                            const bankAccount = currentStep.querySelector('input[name="bank_account"]');
-                            const govtType = currentStep.querySelector('select[name="govt_type"]');
+                            // Selectors for the input fields and their respective error message containers
+                            const shopName = currentStep.querySelector('input[name="shop_name"]');
+                            const address = currentStep.querySelector('input[name="shop_address"]');
+                            const zipcode = currentStep.querySelector('input[name="zipcode_shop"]');
+                            const dateEstablished = currentStep.querySelector(
+                                'input[name="date_established"]');
+                            const contactNumber = currentStep.querySelector(
+                                'input[name="contact_number"]');
+                            const dtiNumber = currentStep.querySelector('input[name="dti_number"]');
 
-                            const bankAccountError = currentStep.querySelector('#bankAccountError');
-                            const govtTypeError = currentStep.querySelector('#govtTypeError');
+                            // Selectors for the error containers
+                            const shopNameError = currentStep.querySelector('#shopNameError');
+                            const shopAddressError = currentStep.querySelector('#shopAddressError');
+                            const zipcodeError = currentStep.querySelector('#shopZipcodeError');
+                            const dateEstablishedError = currentStep.querySelector(
+                                '#dateEstablishedError');
+                            const contactNumberError = currentStep.querySelector('#contactNumberError');
+                            const dtiNumberError = currentStep.querySelector('#dtiNumberError');
 
-                            // Clear previous error messages
-                            bankAccountError.textContent = '';
-                            govtTypeError.textContent = '';
+                            shopNameError.textContent = '';
+                            shopAddressError.textContent = '';
+                            zipcodeError.textContent =
+                            ''; // Corrected from 'shopZipcodeError' to 'zipcodeError'
+                            dateEstablishedError.textContent = '';
+                            contactNumberError.textContent =
+                            ''; // Clearing the contact number error message
+                            dtiNumberError.textContent = '';
 
-
-
-                            // Validate the bank account or e-wallet
-                            if (!bankAccount.value.trim()) {
-                                bankAccountError.textContent = 'Bank Account/E-wallet is required.';
-                                bankAccount.classList.add('is-invalid');
+                            // Validate the shop name
+                            if (!shopName.value.trim()) {
+                                shopNameError.textContent = 'Shop name is required.';
+                                shopName.classList.add('is-invalid');
                                 valid = false;
                             } else {
-                                bankAccount.classList.remove('is-invalid');
-                            }
-                            // Validate the government ID type
-                            if (!govtType.value || govtType.value.trim() === '') {
-                                govtTypeError.textContent = 'You must select a type of Government ID.';
-                                govtType.classList.add('is-invalid');
-                                valid = false;
-                            } else {
-                                govtType.classList.remove('is-invalid');
+                                shopName.classList.remove('is-invalid');
                             }
 
-                            // Note: File input validation is usually handled differently as
-                            // you may want to check for file size or type on the client side,
-                            // or handle it server-side due to security reasons.
+                            // Validate the contact number
+                            if (!contactNumber.value.trim()) {
+                                contactNumberError.textContent = 'Contact number is required.';
+                                contactNumber.classList.add('is-invalid');
+                                valid = false;
+                            } else {
+                                contactNumber.classList.remove('is-invalid');
+                            }
+
+                            // Validate the address
+                            if (!address.value.trim()) {
+                                shopAddressError.textContent = 'Address is required.';
+                                address.classList.add('is-invalid');
+                                valid = false;
+                            } else {
+                                address.classList.remove('is-invalid');
+                            }
+
+                            // Validate the zipcode
+                            if (!zipcode.value.trim()) {
+                                zipcodeError.textContent =
+                                    'ZIP code is required.'; // Correct the error message to reflect the correct field
+                                zipcode.classList.add('is-invalid');
+                                valid = false;
+                            } else {
+                                zipcode.classList.remove('is-invalid');
+                            }
+                            // Validate the date established
+                            if (!dateEstablished.value.trim()) {
+                                dateEstablishedError.textContent = 'Date established is required.';
+                                dateEstablished.classList.add('is-invalid');
+                                valid = false;
+                            } else {
+                                dateEstablished.classList.remove('is-invalid');
+                            }
+
+                            // Validate the DTI number
+                            if (!dtiNumber.value.trim()) {
+                                dtiNumberError.textContent = 'DTI number is required.';
+                                dtiNumber.classList.add('is-invalid');
+                                valid = false;
+                            } else {
+                                dtiNumber.classList.remove('is-invalid');
+                            }
+
                         }
 
                         if (valid) {

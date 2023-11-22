@@ -43,6 +43,24 @@
         .my-link:hover i {
             color: #007bff;
         }
+        .upload-box {
+            border: 2px dashed #4C5370;
+            border-radius: 5px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            background-color: #f8f9fa;
+        }
+
+        .upload-box:hover {
+            background-color: #e2e6ea;
+        }
+
+        .upload-box p {
+            margin: 0;
+            font-size: 16px;
+            color: #4C5370;
+        }
     </style>
     <div class="container-fluid card">
         <div class="card-header row">
@@ -61,10 +79,10 @@
             <div class="row">
                 <div class="col-9 border-end">
                     <div class="card-header">
-                        <h1>Home</h1>
+                        <h1><i class="fas fa-envelope"> Message</i></h1>
                     </div>
                     <div class="row mt-4">
-                        <div class="col-3 d-flex justify-content-end">
+                        <div class="col-2 d-flex justify-content-end">
                             <img src="" alt="" class="rounded-5" width="50" height="50">
                         </div>
                         <div class="col-3 d-flex flex-column justify-content-start">
@@ -74,23 +92,9 @@
                                 <label for="">24mins ago</label>
                             </div>
                             <div class="">
-                                <label for=""><strong>WTTT</strong></label>
-                            </div>
-                            <div class="">
                                 <p>
                                     descritionaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
                                 </p>
-                            </div>
-                        </div>
-                        <div class="col d-flex flex-column">
-                            <img src="" alt="" class="rounded-3" width="200" height="100">
-                            <div class="d-flex">
-                                <a href=""> <i class="fas fa-comment fa-2x me-3 mt-3"
-                                        style="color: rgba(0, 0, 0, 0.5);"></i></a>
-                                <a href=""> <i class="fas fa-paper-plane fa-2x  mx-4 mt-3"
-                                        style="color: rgba(0, 0, 0, 0.5);"></i></a>
-                                <a href=""> <i class="fas fa-heart fa-2x mt-3 mx-4"
-                                        style="color: rgba(0, 0, 0, 0.5);"></i></a>
                             </div>
                         </div>
                     </div>

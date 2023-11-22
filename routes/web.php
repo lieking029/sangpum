@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProductController;
@@ -88,6 +89,8 @@ Route::middleware('auth')->group(function () {
         Route::get('tracking/{shipment}', [ShipmentController::class,'tracking'])->name('shipping.tracking');
 
         Route::resource('post', PostController::class);
+
+        Route::resource('message', MessageController::class);
 
         Route::resource('order', OrderController::class);
         Route::post('order-quantity/{order}', [OrderController::class,'changeQuantity'])->name('order.changeQuantity');
