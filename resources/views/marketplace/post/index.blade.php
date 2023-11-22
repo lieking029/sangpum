@@ -54,7 +54,7 @@
 
             </div>
             <div class="col-2 text-end">
-                <span class="btn" style="background:#4E6A80"><i class="fas fa-home" style="color: white"></i></span>
+                <a class="btn" style="background:#4E6A80" href="/"><i class="fas fa-home" style="color: white"></i></a>
             </div>
         </div>
         <div class="card-body">

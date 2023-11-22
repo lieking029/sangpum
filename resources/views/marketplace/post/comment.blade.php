@@ -52,14 +52,14 @@
     <div class="container-fluid card">
         <div class="card-header row">
             <div class="col-2">
-                <i class="fas fa-store fa-2x"></i>
-                <a class="btn mx-2" style="background:#4E6A80; color:white; font-weight:500" href="">Marketplace</a>
+                <i class="fas fa-bars"></i>
+                <a class="btn mx-2" style="background:#4E6A80; color:white; font-weight:500" href="/post">Marketplace</a>
             </div>
             <div class="col-8">
 
             </div>
             <div class="col-2 text-end">
-                <span class="btn" style="background:#4E6A80"><i class="fas fa-home" style="color: white"></i></span>
+                <a class="btn" style="background:#4E6A80" href="/"><i class="fas fa-home" style="color: white"></i></a>
             </div>
         </div>
         <div class="card-body">
