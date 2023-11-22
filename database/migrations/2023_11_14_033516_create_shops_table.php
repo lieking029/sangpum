@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
             $table->string('shop_name');
             $table->string('shop_address');
-            $table->string('shop_zipcode');
+            $table->string('shop_barangay');
             $table->date('date_established');
             $table->string('contact_number');
             $table->string('dti_number');

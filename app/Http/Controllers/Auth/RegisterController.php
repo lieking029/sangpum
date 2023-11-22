@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\File;
 use Spatie\Permission\Models\Role;
-
+use Illuminate\Http\Request;
 class RegisterController extends Controller
 {
     /*
@@ -69,15 +69,15 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             // SHOP
-            'shop_name'=> ['nullable', 'max:255'],
-            'shop_address'=> ['nullable', 'max:255'],
-            'shop_barangay'=> ['nullable', 'max:255'],
-            'date_established'=> ['nullable', 'date'],
-            'contact_number'=> ['nullable', 'max:255'],
-            'dti_number'=> ['nullable', 'max:255'],
-            'dti_permit'=> ['nullable'],
-            'barangay_clearance'=> ['nullable'],
-            'business_permit'=> ['nullable'],
+            'shop_name' => ['nullable', 'max:255'],
+            'shop_address' => ['nullable', 'max:255'],
+            'shop_barangay' => ['nullable', 'max:255'],
+            'date_established' => ['nullable', 'date'],
+            'contact_number' => ['nullable', 'max:255'],
+            'dti_number' => ['nullable', 'max:255'],
+            'dti_permit' => ['nullable'],
+            'barangay_clearance' => ['nullable'],
+            'business_permit' => ['nullable'],
         ]);
     }
 
@@ -101,9 +101,13 @@ class RegisterController extends Controller
 
         // Loop through each file input and store the image if it's present
         foreach ($filePaths as $key => $value) {
-            if (isset($data[$key]) && $data[$key]->isValid()) {
-                // Store the file and get the path
-                $filePaths[$key] = $data[$key]->store('public/auth');
+            // Check if a file is uploaded and is valid
+            if (request()->hasFile($key)) {
+                $file = request()->file($key);
+                if ($file->isValid()) {
+                    // Store the file and get the path
+                    $filePaths[$key] = $file->store('public/auth');
+                }
             }
         }
 
@@ -121,7 +125,7 @@ class RegisterController extends Controller
             'barangay' => $data['barangay'],
             'govt_type' => $data['govt_type'],
             'govt_id' => $filePaths['govt_id'],
-            'wallet' => 0.00,
+            'wallet' => 0.0,
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ];
@@ -130,7 +134,7 @@ class RegisterController extends Controller
         $user->assignRole($role);
 
         // If the role is not 'buyer', create the shop
-        if($role->name !== 'buyer') {
+        if ($role->name !== 'buyer') {
             $shopData = [
                 'user_id' => $user->id,
                 'shop_name' => $data['shop_name'],
