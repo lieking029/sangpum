@@ -75,9 +75,9 @@ class RegisterController extends Controller
             'date_established'=> ['nullable', 'date'],
             'contact_number'=> ['nullable', 'max:255'],
             'dti_number'=> ['nullable', 'max:255'],
-            'dti_permit'=> ['nullable', File::image()],
-            'barangay_clearance'=> ['nullable', File::image()],
-            'business_permit'=> ['nullable', File::image()],
+            'dti_permit'=> ['nullable'],
+            'barangay_clearance'=> ['nullable'],
+            'business_permit'=> ['nullable'],
         ]);
     }
 

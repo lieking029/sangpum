@@ -82,8 +82,17 @@
         .progress-custom .progress-bar {
             background-color: #007bff;
         }
+
+        .hide-tabs .nav-item:not(:first-child) {
+            display: none;
+        }
     </style>
     <div class="col-lg-5">
+        @if ($errors->any())
+            @foreach ($errors->all() as $error)
+                <div>{{ $error }}</div>
+            @endforeach
+        @endif
         <div class="card-group d-md-flex row ">
             <div class="card col-md-7 p-4 mb-0 rounded-5">
                 <div class="card-header d-flex justify-content-center">
@@ -98,31 +107,32 @@
                                 <li class="nav-item text-center" role="presentation">
                                     <button class="nav-link active" id="step1-tab" data-bs-toggle="pill"
                                         data-bs-target="#step1" type="button" role="tab" aria-controls="step1"
-                                        aria-selected="true"></button>
+                                        aria-selected="true" hidden></button>
                                 </li>
                                 <li class="nav-item text-center" role="presentation">
                                     <button class="nav-link" id="step2-tab" data-bs-toggle="pill" data-bs-target="#step2"
-                                        type="button" role="tab" aria-controls="step2" aria-selected="false">
+                                        type="button" role="tab" aria-controls="step2" aria-selected="false" readonly
+                                        hidden>
                                     </button>
                                 </li>
                                 <li class="nav-item text-center" role="presentation">
                                     <button class="nav-link" id="step3-tab" data-bs-toggle="pill" data-bs-target="#step3"
-                                        type="button" role="tab" aria-controls="step3" aria-selected="false">
+                                        type="button" role="tab" aria-controls="step3" aria-selected="false" hidden>
                                     </button>
                                 </li>
                                 <li class="nav-item text-center" role="presentation">
                                     <button class="nav-link" id="step4-tab" data-bs-toggle="pill" data-bs-target="#step4"
-                                        type="button" role="tab" aria-controls="step4" aria-selected="false">
+                                        type="button" role="tab" aria-controls="step4" aria-selected="false" hidden>
                                     </button>
                                 </li>
                                 <li class="nav-item text-center" role="presentation">
                                     <button class="nav-link" id="step5-tab" data-bs-toggle="pill" data-bs-target="#step5"
-                                        type="button" role="tab" aria-controls="step5" aria-selected="false">
+                                        type="button" role="tab" aria-controls="step5" aria-selected="false" hidden>
                                     </button>
                                 </li>
                                 <li class="nav-item text-center" role="presentation">
                                     <button class="nav-link" id="step6-tab" data-bs-toggle="pill" data-bs-target="#step6"
-                                        type="button" role="tab" aria-controls="step6" aria-selected="false">
+                                        type="button" role="tab" aria-controls="step6" aria-selected="false" hidden>
                                     </button>
                                 </li>
                             </ul>
@@ -135,7 +145,7 @@
                                         aria-labelledby="step1-tab">
                                         <div class="d-flex flex-column" style="text-align: center;">
                                             <h1 class="font-weight: 900;">{{ __('Sign up') }}</h1>
-                                            <p>Create Seller Account</p>
+                                            <p class="mb-5">Create Seller Account</p>
                                             <div class="input-group mb-3">
                                                 <input type="text"
                                                     class="form-control @error('username') is-invalid @enderror"
@@ -147,6 +157,7 @@
                                                     </div>
                                                 @enderror
                                             </div>
+                                            <input type="hidden" name="role" value="seller">
                                             <div class="input-group">
                                                 <input type="password"
                                                     class="form-control @error('password') is-invalid @enderror"
@@ -208,8 +219,8 @@
                                     </div>
                                     <div class="tab-pane fade" id="step2" role="tabpanel"
                                         aria-labelledby="step2-tab">
-                                        <div class="d-flex flex-column align-items-center">
-                                            <h4 class="font-weight-500">{{ __('Personal Information') }}</h4>
+                                        <div class="d-flex flex-column align-items-center mb-3">
+                                            <h4 class="font-weight-500 mb-5">{{ __('Personal Information') }}</h4>
                                             <div class="container"> <!-- Container to manage the width responsively -->
                                                 <div class="row">
                                                     <div class="col-12 col-md-6">
@@ -278,10 +289,10 @@
                                                         </div>
                                                         <div class="input-group mt-3">
                                                             <input type="number" inputmode="numeric" pattern="[0-9]*"
-                                                                class="form-control @error('zipcode') is-invalid @enderror"
-                                                                name="zipcode" placeholder="{{ __('ZIP code') }}">
+                                                                class="form-control @error('barangay') is-invalid @enderror"
+                                                                name="barangay" placeholder="{{ __('ZIP code') }}">
                                                             <div class="invalid-feedback" id="zipcodeError"></div>
-                                                            @error('zipcode')
+                                                            @error('barangay')
                                                                 <div class="invalid-feedback">
                                                                     {{ $message }}
                                                                 </div>
@@ -302,7 +313,7 @@
                                     <div class="tab-pane fade" id="step3" role="tabpanel"
                                         aria-labelledby="step3-tab">
                                         <div class="d-flex flex-column align-items-center">
-                                            <h4 class="font-weight-500">{{ __('Personal Information') }}</h4>
+                                            <h4 class="font-weight-500 mb-5">{{ __('Personal Information') }}</h4>
                                             <div class="container">
                                                 <!-- Use a container to control the width and center the content -->
                                                 <div class="row justify-content-center">
@@ -366,7 +377,7 @@
                                     <div class="tab-pane fade" id="step4" role="tabpanel"
                                         aria-labelledby="step4-tab">
                                         <div class="d-flex flex-column align-items-center">
-                                            <h4 class="font-weight-500">{{ __('Personal Information') }}</h4>
+                                            <h4 class="font-weight-500 mb-5">{{ __('Shop Information') }}</h4>
                                             <div class="container"> <!-- Container to manage the width responsively -->
                                                 <div class="row">
                                                     <div class="col-12 col-md-6">
@@ -385,7 +396,7 @@
                                                         </div>
                                                         <div class="input-group mt-3">
                                                             <input type="text"
-                                                                class="form-control @error('address') is-invalid @enderror"
+                                                                class="form-control @error('shop_address') is-invalid @enderror"
                                                                 name="shop_address" placeholder="{{ __('Address') }}"
                                                                 autofocus>
                                                             <div class="invalid-feedback" id="shopAddressError"></div>
@@ -396,12 +407,12 @@
                                                             @enderror
                                                         </div>
                                                         <div class="input-group mt-3">
-                                                            <input type="text" inputmode="numeric" pattern="[0-9]*"
-                                                                class="form-control @error('shop_zipcode') is-invalid @enderror"
-                                                                name="zipcode_shop" placeholder="{{ __('ZIP code') }}"
+                                                            <input type="number" inputmode="numeric" pattern="[0-9]*"
+                                                                class="form-control @error('shop_barangay') is-invalid @enderror"
+                                                                name="shop_barangay" placeholder="{{ __('ZIP code') }}"
                                                                 autofocus>
-                                                            <div class="invalid-feedback" id="'#shopZipcodeError'"></div>
-                                                            @error('zipcode_shop')
+                                                            <div class="invalid-feedback" id="shopZipcodeError"></div>
+                                                            @error('shop_barangay')
                                                                 <div class="invalid-feedback">
                                                                     {{ $message }}
                                                                 </div>
@@ -414,8 +425,7 @@
                                                             <input type="date"
                                                                 class="form-control @error('date_established') is-invalid @enderror"
                                                                 name="date_established" required>
-                                                            <div class="invalid-feedback" id="'#dateEstablishedError'">
-                                                            </div>
+                                                            <div class="invalid-feedback" id="dateEstablishedError"></div>
                                                             @error('date_established')
                                                                 <div class="invalid-feedback">
                                                                     {{ $message }}
@@ -439,7 +449,7 @@
                                                                 class="form-control @error('dti_number') is-invalid @enderror"
                                                                 name="dti_number" placeholder="{{ __('DTI No.') }}"
                                                                 autofocus>
-                                                            <div class="invalid-feedback" id=" dtiNumberError"></div>
+                                                            <div class="invalid-feedback" id="dtiNumberError"></div>
                                                             @error('dti_number')
                                                                 <div class="invalid-feedback">
                                                                     {{ $message }}
@@ -461,7 +471,7 @@
                                     <div class="tab-pane fade" id="step5" role="tabpanel"
                                         aria-labelledby="step5-tab">
                                         <div class="d-flex flex-column align-items-center">
-                                            <h4 class="font-weight-500">{{ __('Billing & Shop Credentials') }}</h4>
+                                            <h4 class="font-weight-500 mb-5">{{ __('Billing & Shop Credentials') }}</h4>
                                             <div class="container">
                                                 <div class="row">
                                                     <div class="col-12 col-md-6">
@@ -490,6 +500,7 @@
                                                         <div class="input-group">
                                                             <input type="file" name="gov_id"
                                                                 class="form-control @error('gov_id') is-invalid @enderror">
+                                                            <div class="invalid-feedback" id="govIdError"></div>
                                                         </div>
                                                     </div>
                                                     <div class="col-12 col-md-6">
@@ -497,16 +508,20 @@
                                                         <div class="input-group mb-2">
                                                             <input type="file" name="dti_permit"
                                                                 class="form-control @error('dti_permit') is-invalid @enderror">
+                                                            <div class="invalid-feedback" id="dtiPermitError"></div>
                                                         </div>
                                                         <label for="">Upload your Barangay Clearance</label>
                                                         <div class="input-group mb-2">
-                                                            <input type="file" name="brgy_clear"
-                                                                class="form-control @error('brgy_clear') is-invalid @enderror">
+                                                            <input type="file" name="barangay_clearance"
+                                                                class="form-control @error('barangay_clearance') is-invalid @enderror">
+                                                            <div class="invalid-feedback" id="barangayClearanceError">
+                                                            </div>
                                                         </div>
                                                         <label for="">Upload your Business Permit</label>
                                                         <div class="input-group mb-2">
                                                             <input type="file" name="business_permit"
                                                                 class="form-control @error('business_permit') is-invalid @enderror">
+                                                            <div class="invalid-feedback" id="businessPermitError"></div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -533,7 +548,7 @@
                                                 </div>
                                                 <div class="row mt-3">
                                                     <div class="col d-flex justify-content-center">
-                                                        <button class="btn rounded-5 next-btn w-50" type="button"
+                                                        <button class="btn rounded-5 w-50" type="submit"
                                                             data-next="step6-tab"
                                                             style="background:#55AAAD; color:white; font-weight: bold;">{{ __('Done') }}</button>
                                                     </div>
@@ -588,30 +603,29 @@
                         }
                     });
                 });
-                // const navPills = document.getElementById('pills-tab');
 
-                // // Function to toggle nav pills visibility based on the step
-                // function toggleNavPillsDisplay(stepId) {
-                //     if (stepId === 'step1') {
-                //         // Hide the nav pills on step 1
-                //         navPills.style.display = 'none';
-                //     } else {
-                //         // Show the nav pills on other steps
-                //         navPills.style.display = 'flex';
-                //     }
-                // }
+                const navPills = document.getElementById('pills-tab');
 
-                // // Initially call the function to set the correct display
-                // toggleNavPillsDisplay('step1');
+                // Function to toggle nav pills visibility based on the step
+                function toggleNavPillsDisplay(stepId) {
+                    if (stepId === 'step1') {
+                        navPills.classList.add('hide-tabs'); // Hide nav pills for step 1
+                    } else {
+                        navPills.classList.remove('hide-tabs'); // Show nav pills for other steps
+                    }
+                }
 
-                // // Add event listeners for the tab change if you are using Bootstrap tabs or pills
-                // const tabs = document.querySelectorAll('.nav-link');
-                // tabs.forEach(tab => {
-                //     tab.addEventListener('shown.bs.tab', (e) => {
-                //         const targetStepId = e.target.getAttribute('aria-controls');
-                //         toggleNavPillsDisplay(targetStepId);
-                //     });
-                // });
+                // Initially call the function to set the correct display
+                toggleNavPillsDisplay('step1');
+
+                // Add event listeners for the tab change if you are using Bootstrap tabs or pills
+                const tabs = document.querySelectorAll('.nav-link');
+                tabs.forEach(tab => {
+                    tab.addEventListener('shown.bs.tab', (e) => {
+                        const targetStepId = e.target.getAttribute('aria-controls');
+                        toggleNavPillsDisplay(targetStepId);
+                    });
+                });
 
                 document.querySelectorAll('.toggle-password').forEach(button => {
                     button.addEventListener('click', (e) => {
@@ -722,7 +736,7 @@
                             const lastName = currentStep.querySelector('input[name="last_name"]');
                             const birthDate = currentStep.querySelector('input[name="birth_date"]');
                             const address = currentStep.querySelector('input[name="address"]');
-                            const zipcode = currentStep.querySelector('input[name="zipcode"]');
+                            const zipcode = currentStep.querySelector('input[name="barangay"]');
                             const firstNameError = currentStep.querySelector('#firstNameError');
                             const middleNameError = currentStep.querySelector('#middleNameError');
                             const lastNameError = currentStep.querySelector('#lastNameError');
@@ -858,7 +872,7 @@
                             // Selectors for the input fields and their respective error message containers
                             const shopName = currentStep.querySelector('input[name="shop_name"]');
                             const address = currentStep.querySelector('input[name="shop_address"]');
-                            const zipcode = currentStep.querySelector('input[name="zipcode_shop"]');
+                            const zipcode = currentStep.querySelector('input[name="shop_barangay"]');
                             const dateEstablished = currentStep.querySelector(
                                 'input[name="date_established"]');
                             const contactNumber = currentStep.querySelector(
@@ -877,10 +891,10 @@
                             shopNameError.textContent = '';
                             shopAddressError.textContent = '';
                             zipcodeError.textContent =
-                            ''; // Corrected from 'shopZipcodeError' to 'zipcodeError'
+                                ''; // Corrected from 'shopZipcodeError' to 'zipcodeError'
                             dateEstablishedError.textContent = '';
                             contactNumberError.textContent =
-                            ''; // Clearing the contact number error message
+                                ''; // Clearing the contact number error message
                             dtiNumberError.textContent = '';
 
                             // Validate the shop name
@@ -937,6 +951,80 @@
                                 dtiNumber.classList.remove('is-invalid');
                             }
 
+                        }
+                        if (currentStep.id === 'step5') {
+                            // Selectors for the input fields and their respective error message containers
+                            const govtIDType = currentStep.querySelector('select[name="govt_type"]');
+                            const govtID = currentStep.querySelector('input[name="gov_id"]');
+                            const dtiPermit = currentStep.querySelector('input[name="dti_permit"]');
+                            const barangayClearance = currentStep.querySelector(
+                                'input[name="barangay_clearance"]');
+                            const businessPermit = currentStep.querySelector(
+                                'input[name="business_permit"]');
+
+                            // Selectors for the error containers
+                            const govtTypeError = currentStep.querySelector('#govtTypeError');
+                            const govtIdError = currentStep.querySelector('#govIdError');
+                            const dtiPermitError = currentStep.querySelector('#dtiPermitError');
+                            const barangayClearanceError = currentStep.querySelector(
+                                '#barangayClearanceError');
+                            const businessPermitError = currentStep.querySelector(
+                                '#businessPermitError');
+
+                            // Assume valid is already defined above as `let valid = true;`
+
+                            // Clear previous error messages
+                            govtTypeError.textContent = '';
+                            govtIdError.textContent = '';
+                            dtiPermitError.textContent = '';
+                            barangayClearanceError.textContent = '';
+                            businessPermitError.textContent = '';
+
+                            // Validate government ID type selection
+                            if (!govtIDType.value) {
+                                govtTypeError.textContent = 'Please select the type of government ID.';
+                                govtIDType.classList.add('is-invalid');
+                                valid = false;
+                            } else {
+                                govtIDType.classList.remove('is-invalid');
+                            }
+
+                            // Validate government ID file input
+                            if (!govtID.files.length) {
+                                govtIdError.textContent = 'Please upload your government ID.';
+                                govtID.classList.add('is-invalid');
+                                valid = false;
+                            } else {
+                                govtID.classList.remove('is-invalid');
+                            }
+
+                            // Validate DTI permit file input
+                            if (!dtiPermit.files.length) {
+                                dtiPermitError.textContent = 'Please upload your DTI permit.';
+                                dtiPermit.classList.add('is-invalid');
+                                valid = false;
+                            } else {
+                                dtiPermit.classList.remove('is-invalid');
+                            }
+
+                            // Validate barangay clearance file input
+                            if (!barangayClearance.files.length) {
+                                barangayClearanceError.textContent =
+                                    'Please upload your Barangay Clearance.';
+                                barangayClearance.classList.add('is-invalid');
+                                valid = false;
+                            } else {
+                                barangayClearance.classList.remove('is-invalid');
+                            }
+
+                            // Validate business permit file input
+                            if (!businessPermit.files.length) {
+                                businessPermitError.textContent = 'Please upload your Business Permit.';
+                                businessPermit.classList.add('is-invalid');
+                                valid = false;
+                            } else {
+                                businessPermit.classList.remove('is-invalid');
+                            }
                         }
 
                         if (valid) {
