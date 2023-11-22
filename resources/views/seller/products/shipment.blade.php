@@ -13,27 +13,19 @@
                         <i class="fas fa-bars" style="font-size: 23px"></i>
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item btn rounded-5 mb-3" href="#"
-                                style="background: #55AAAD; color:white;">Action</a></li>
-                        <li><a class="dropdown-item btn rounded-5 mb-3" href="#"
-                                style="background: #55AAAD; color:white;">Action</a></li>
-                        <li><a class="dropdown-item btn rounded-5 mb-3" href="#"
-                                style="background: #55AAAD; color:white;">Action</a></li>
-                        <li><a class="dropdown-item btn rounded-5" href="#"
-                                style="background: #55AAAD; color:white;">Action</a></li>
+                        <li class="text-center" style="margin-left: 20px"><a class="dropdown-item btn rounded-5 mb-3" href="{{ route('seller.home') }}"
+                                style="background: #55AAAD; color:white; width: 85%">My Shop</a></li>
+                        <li class="text-center" style="margin-left: 20px"><a class="dropdown-item btn rounded-5 mb-3" href="{{ route('products.index') }}"
+                            style="background: #55AAAD; color:white; width: 85%">Product</a></li>
+                        <li class="text-center" style="margin-left: 20px"><a class="dropdown-item btn rounded-5 mb-3" href="{{ route('seller.shipment') }}"
+                            style="background: #55AAAD; color:white; width: 85%">Shipment</a></li>
+                        <li class="text-center" style="margin-left: 20px"><span class="dropdown-item btn rounded-5 mb-3" href="#"
+                            style="background: #55AAAD; color:white; width: 85%">Finance</span></li>
                     </ul>
                 </div>
             </div>
         </div>
         <div class="card-body">
-            {{-- <div class="card-header d-flex justify-content-evenly border rounded-3">
-                <label for=""><u>orders</u></label>
-                <label for="">nigga</label>
-                <label for="">nigga</label>
-                <label for="">nigga</label>
-                <label for="">nigga</label>
-            </div> --}}
-            {{-- <hr> --}}
             <div class="row">
                 @foreach ($shipments as $shipment)
                 <div class="d-flex justify-content-between">

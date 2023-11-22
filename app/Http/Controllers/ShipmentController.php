@@ -11,10 +11,21 @@ class ShipmentController extends Controller
     public function shipmentStatus() {
         $shipments = Shipment::with('product.user', 'productVariation', 'user')
         ->whereHas('product', function ($query) {
-            $query->where('user_id', auth()->id());
+            $query->where('user_id', auth()->id())
+                ->where('status', '!=', 3);
         })->get();
 
         return view('seller.products.shipment', compact('shipments'));
+    }
+
+    public function completed() {
+        $shipments = Shipment::with('product.user', 'productVariation', 'user')
+        ->whereHas('product', function ($query) {
+            $query->where('user_id', auth()->id())
+                ->where('status', 3);
+        })->get();
+
+        return view('seller.products.completed', compact('shipments'));
     }
 
     public function myPurchase() {
