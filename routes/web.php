@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PostController;
@@ -94,6 +95,7 @@ Route::middleware('auth')->group(function () {
         Route::get('tracking/{shipment}', [ShipmentController::class,'tracking'])->name('shipping.tracking');
 
         Route::resource('post', PostController::class);
+        Route::resource('comment', CommentController::class);
 
         Route::resource('order', OrderController::class);
         Route::post('order-quantity/{order}', [OrderController::class,'changeQuantity'])->name('order.changeQuantity');
