@@ -38,7 +38,7 @@ class ShippingController extends Controller
     public function store(StoreShipmentRequest $request)
     {
         $orderId = Str::random(12);
-        $shipments = Shipment::create($request->validated() + ['user_id' => auth()->id(), 'status' => 0]);
+        $shipments = Shipment::create($request->validated() + ['user_id' => auth()->id()]);
         $format = $orderId . $shipments->id;
         $shipments->update(['order_id' => $format]);
 
@@ -46,7 +46,6 @@ class ShippingController extends Controller
         $balance = $userWallet - $request->total;
         auth()->user()->update(['wallet' => $balance]);
 
-        Tracking::create(['shipment_id' => $shipments->id, 'order_placed' => now()]);
 
         $order = Order::find($request->order_id);
         $order->delete();

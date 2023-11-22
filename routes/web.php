@@ -58,6 +58,8 @@ Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::middleware('auth')->group(function () {
     Route::middleware('role:admin')->group(function () {
+        Route::get('admin-home', [HomeController::class, 'adminIndex'])->name('admin.home');
+
         Route::get('user-sellers', [UserManagementController::class, 'showSeller'])->name('showSeller');
         Route::get('user-buyers', [UserManagementController::class, 'showBuyer'])->name('showBuyer');
         Route::resource('top-up', TopUpController::class)
@@ -72,19 +74,21 @@ Route::middleware('auth')->group(function () {
         Route::post('product-bulkDelete', [ProductController::class,'bulkDelete'])->name('product.bulkDelete');
 
         Route::get('seller-home', [HomeController::class, 'sellerIndex'])->name('seller.home');
+        Route::get('completed', [ShipmentController::class, 'completed'])->name('seller.completed');
         Route::get('shipment', [ShipmentController::class, 'shipmentStatus'])->name('seller.shipment');
         Route::get('to-shipment/{shipment}', [ShipmentController::class, 'toShipment'])->name('toShipment');
         Route::get('to-shipping/{shipment}', [ShipmentController::class, 'toShipping'])->name('toShipping');
         Route::get('to-receive/{shipment}', [ShipmentController::class, 'toReceive'])->name('toReceive');
         Route::get('complete/{shipment}', [ShipmentController::class, 'complete'])->name('complete');
 
-        Route::get('checkout/{id}', [ShippingController::class,'index'])->name('shipping.index');
-        Route::post('checkout', [ShippingController::class,'store'])->name('shipping.store');
+
     });
 
 
     // Buyer
     Route::middleware('role:buyer')->group(function () {
+        Route::get('checkout/{id}', [ShippingController::class,'index'])->name('shipping.index');
+        Route::post('checkout', [ShippingController::class,'store'])->name('shipping.store');
         Route::get('my-purchase', [ShipmentController::class,'myPurchase'])->name('shipping.myPurchase');
         Route::get('tracking/{shipment}', [ShipmentController::class,'tracking'])->name('shipping.tracking');
 

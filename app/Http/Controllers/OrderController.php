@@ -60,7 +60,7 @@ class OrderController extends Controller
 
     public function allItems()
     {
-        $products = Product::with('productVariations', 'shipping')->paginate(12);
+        $products = Product::with('productVariations', 'shipping')->where('status', 1)->paginate(12);
 
         return view('marketplace.all-items', compact('products'));
     }

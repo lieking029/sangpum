@@ -2,21 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\UserTypeEnum;
 use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserManagementController extends Controller
 {
-    public function showSeller(User $user)
+    public function showSeller()
     {
-        $user->load('shop');
+        $sellers = User::role(UserTypeEnum::Seller)->paginate(10);
 
-        return view("admin.users.showSeller", compact("user"));
+        return view("admin.sellers", compact("sellers"));
     }
 
-    public function showBuyer(User $user)
+    public function showBuyer()
     {
-        return view('admin.users.showBuyer', compact('user'));
+        $buyers = User::role(UserTypeEnum::Buyer)->paginate(10);
+
+        return view('admin.buyers', compact('buyers'));
     }
 
 
