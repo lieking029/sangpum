@@ -44,7 +44,7 @@
             color: #007bff;
         }
     </style>
-    <div class="container-fluid card">
+    <div class="container-fluid card text-white"  style="background: #2A3240; min-height: 100vh">
         <div class="card-header row">
             <div class="col-2">
                 <i class="fas fa-store fa-2x"></i>
@@ -72,7 +72,7 @@
                                 <div class="">
                                     <label for=""><strong>{{ $post->user->first_name }}</strong></label>
                                     <label for="">@ {{ $post->user->nickname }}</label>
-                                    <label for="">24mins ago</label>
+                                    <label for="">{{ $post->created_at->diffForHumans() }}</label>
                                 </div>
                                 <div class="">
                                     <label for=""><strong>{{ $post->title }}</strong></label>
@@ -84,14 +84,14 @@
                                 </div>
                             </div>
                             <div class="col d-flex flex-column">
-                                <img src="" alt="" class="rounded-3" width="200" height="100">
+                                <img src="{{ asset('storage/' . $post->image) }}" alt="" class="rounded-3" width="200" height="100">
                                 <div class="d-flex">
-                                    <a href="{{ route('comment', $post->id) }}"> <i class="fas fa-comment fa-2x me-3 mt-3"
-                                            style="color: rgba(0, 0, 0, 0.5);"></i></a>
-                                    <a href=""> <i class="fas fa-paper-plane fa-2x  mx-4 mt-3"
-                                            style="color: rgba(0, 0, 0, 0.5);"></i></a>
-                                    <a href=""> <i class="fas fa-heart fa-2x mt-3 mx-4"
-                                            style="color: rgba(0, 0, 0, 0.5);"></i></a>
+                                    <a href="{{ route('comment', $post->id) }}"> <i class="fas fa-comment-alt fa-2x me-3 mt-3"
+                                            style="color: grey;"></i></a>
+                                    <a href="/chatify/{{ $post->user_id }}"> <i class="fas fa-comment fa-2x  mx-4 mt-3"
+                                            style="color: grey;"></i></a>
+                                    {{-- <a href=""> <i class="fas fa-heart fa-2x mt-3 mx-4"
+                                            style="color: grey;"></i></a> --}}
                                 </div>
                             </div>
                         </div>
@@ -104,11 +104,11 @@
                             <i class="fas fa-search"></i>
                         </button>
                     </div>
-                    <a href="/post/create" class="my-link"><i class="fas fa-plus fa-2x"></i><span> ADD POST</span></a>
-                    <a href="" class="my-link"><i class="fas fa-paper-plane fa-2x"></i><span> MY POST</span></a>
-                    <a href="/chatify" class="my-link"><i class="fas fa-envelope fa-2x"></i><span> INBOX</span></a>
+                    <a href="/post/create" class="my-link text-white"><i class="fas fa-plus fa-2x"></i><span class="text-white"> ADD POST</span></a>
+                    <a href="" class="my-link"><i class="fas fa-paper-plane fa-2x text-white"></i><span class="text-white"> MY POST</span></a>
+                    <a href="/chatify" class="my-link text-white"><i class="fas fa-envelope fa-2x"></i><span class="text-white"> INBOX</span></a>
                     <!-- Changed text to match icon -->
-                    <a href="" class="my-link"><i class="fas fa-heart fa-2x"></i><span> FAVORITES</span></a>
+                    <a href="" class="my-link text-white"><i class="fas fa-heart fa-2x"></i><span class="text-white"> FAVORITES</span></a>
                     <!-- Changed text to match icon -->
                 </div>
             </div>

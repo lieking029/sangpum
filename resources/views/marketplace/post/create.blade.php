@@ -50,7 +50,7 @@
             <div>{{ $error }}</div>
         @endforeach
     @endif
-    <div class="container-fluid card">
+    <div class="container-fluid card text-white" style="background: #2A3240; min-height: 100vh">
         <div class="card-header row">
             <div class="col-2">
                 <i class="fas fa-store fa-2x"></i>
@@ -108,11 +108,11 @@
                         <i class="fas fa-search"></i>
                     </button>
                 </div>
-                <a href="" class="my-link"><i class="fas fa-plus fa-2x"></i><span> ADD POST</span></a>
-                <a href="" class="my-link"><i class="fas fa-paper-plane fa-2x"></i><span> MY POST</span></a>
-                <a href="/chatify" class="my-link"><i class="fas fa-envelope fa-2x"></i><span> INBOX</span></a>
+                <a href="/post/create" class="my-link text-white"><i class="fas fa-plus fa-2x"></i><span class="text-white"> ADD POST</span></a>
+                <a href="" class="my-link"><i class="fas fa-paper-plane fa-2x text-white"></i><span class="text-white"> MY POST</span></a>
+                <a href="/chatify" class="my-link text-white"><i class="fas fa-envelope fa-2x"></i><span class="text-white"> INBOX</span></a>
                 <!-- Changed text to match icon -->
-                <a href="" class="my-link"><i class="fas fa-heart fa-2x"></i><span> FAVORITES</span></a>
+                <a href="" class="my-link text-white"><i class="fas fa-heart fa-2x"></i><span class="text-white"> FAVORITES</span></a>
                 <!-- Changed text to match icon -->
             </div>
         </div>

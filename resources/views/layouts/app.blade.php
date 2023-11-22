@@ -17,7 +17,7 @@
 
 <body>
     <div class="wrapper d-flex flex-column min-vh-100" style="background: white">
-        <header class="header header-sticky mb-1" style="background: linear-gradient(to right, #5DE0E6, #004AAD); ">
+        <header class="header header-sticky" style="background: linear-gradient(to right, #5DE0E6, #004AAD); ">
             <div class="container-fluid">
                 <ul class="header-nav d-none d-md-flex">
                     <li class="nav-item"><a class="nav-link" href=""><i class="fas fa-shopping-cart" style="color: white"></i></a>
@@ -54,7 +54,7 @@
                 </ul>
             </div>
         </header>
-        <div class="body flex-grow-1 px-3 " style="margin-top: ">
+        <div class="body flex-grow-1">
             <div class="" >
                 @yield('content')
             </div>
