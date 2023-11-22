@@ -82,10 +82,7 @@ Route::middleware('auth')->group(function () {
         Route::get('to-shipping/{shipment}', [ShipmentController::class, 'toShipping'])->name('toShipping');
         Route::get('to-receive/{shipment}', [ShipmentController::class, 'toReceive'])->name('toReceive');
         Route::get('complete/{shipment}', [ShipmentController::class, 'complete'])->name('complete');
-
-
     });
-
 
     // Buyer
     Route::middleware('role:buyer')->group(function () {
