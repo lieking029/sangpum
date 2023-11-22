@@ -27,7 +27,6 @@ class RedirectIfAuthenticated
                     return redirect()->route('seller.home');
                 }
                 if (Auth::guard($guard)->user()->hasRole('buyer')) {
-                    dd(auth()->user()->id);
                     \Log::info('User is a buyer.');
                     return redirect('/');
                 }
