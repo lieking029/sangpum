@@ -30,24 +30,43 @@ class CommentController extends Controller
      */
     public function store(StoreCommentRequest $request)
     {
-        Comments::create($request->validated() + ['user_id' => auth()->id(), 'image' => $request->file('image')->store('comments', 'public')]);
+        $data = $request->validated();
 
-        return view('post.index');
+        // Handle the image upload if there's an image in the request
+        if ($request->hasFile('image')) {
+            $data['image'] = $request->file('image')->store('comments', 'public');
+        }
+
+        // Create the comment with the additional data
+        $comment = Comments::create($data);
+
+        // Redirect to the post view with a success message
+        return redirect()
+            ->route('comment', $data['post_id'])
+            ->with('success', 'Comment added successfully.');
     }
 
     /**
      * Display the specified resource.
      */
+
     public function show($id)
     {
-        $post = Post::find($id);
+        $post = Post::with(['user', 'comments.user'])->findOrFail($id);
+        $user = auth()->user(); // This retrieves the authenticated user model.
 
-        return view('marketplace.comment.show', compact('post'));
+        // To concatenate strings in PHP, you should use the '.' operator instead of '+'
+        $userName = $user->first_name . ' ' . $user->middle_name . ' ' . $user->last_name; // This gets the user's full name.
+        $userNickname = $user->nickname;
+        $userId = $user->id;
+
+        return view('marketplace.post.comment', compact('post', 'userName', 'userNickname', 'userId'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
+
     public function edit(Comments $comments)
     {
         //

@@ -13,7 +13,11 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('marketplace.post.index');
+        // Retrieve all posts with user details using eager loading
+        $posts = Post::with('user')->get();
+
+        // Pass the posts to the view
+        return view('marketplace.post.index', compact('posts'));
     }
 
     /**
@@ -21,7 +25,14 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('marketplace.post.create');
+        $user = auth()->user(); // This retrieves the authenticated user model.
+
+        // To concatenate strings in PHP, you should use the '.' operator instead of '+'
+        $userName = $user->first_name . ' ' . $user->middle_name . ' ' . $user->last_name; // This gets the user's full name.
+        $userNickname = $user->nickname; // This gets the user's nickname.
+
+        // You can now pass the user information to your view or use it to perform other actions.
+        return view('marketplace.post.create', compact('user', 'userName', 'userNickname'));
     }
 
     /**
@@ -29,8 +40,19 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-        Post::create($request->validated() + ['user_id' => auth()->id(), 'image' => $request->file('image')->store('posts', 'public'),]);
+        // Create a new post with the validated request data, adding the user_id to the data array
+        $post = Post::create($request->validated() + ['user_id' => auth()->id()]);
 
+        // Check if an image is uploaded
+        if ($request->hasFile('image')) {
+            // Store the image in the 'posts' directory within the 'public' disk and get the path
+            $path = $request->file('image')->store('posts', 'public');
+
+            // Update the post with the path of the image
+            $post->update(['image' => $path]);
+        }
+
+        // Redirect to the posts index route
         return redirect()->route('post.index');
     }
 
@@ -63,7 +85,7 @@ class PostController extends Controller
             unlink(storage_path('app/public/' . $post->image));
         }
 
-        $post->update($request->validated() + ['user_id'=> auth()->id(),'image'=> $request->file('image')->store('posts', 'public')]);
+        $post->update($request->validated() + ['user_id' => auth()->id(), 'image' => $request->file('image')->store('posts', 'public')]);
 
         return redirect()->route('post.index');
     }

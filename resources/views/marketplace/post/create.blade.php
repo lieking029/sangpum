@@ -44,25 +44,12 @@
             color: #007bff;
         }
 
-        .upload-box {
-            border: 2px dashed #4C5370;
-            border-radius: 5px;
-            padding: 20px;
-            text-align: center;
-            cursor: pointer;
-            background-color: #f8f9fa;
-        }
-
-        .upload-box:hover {
-            background-color: #e2e6ea;
-        }
-
-        .upload-box p {
-            margin: 0;
-            font-size: 16px;
-            color: #4C5370;
-        }
     </style>
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+            <div>{{ $error }}</div>
+        @endforeach
+    @endif
     <div class="container-fluid card">
         <div class="card-header row">
             <div class="col-2">
@@ -77,67 +64,58 @@
             </div>
         </div>
         <div class="card-body">
-            <div class="row">
-                <div class="col-9 border-end">
-                    <div class="card-header">
-                        <h1><i class="fas fa-plus"></i> Add Post</h1>
-                    </div>
-                    <div class="row mt-4">
-                        <div class="col-3 d-flex justify-content-end">
-                            <img src="" alt="" class="rounded-5" width="50" height="50">
+            <form action="{{ route('post.store') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="row">
+                    <div class="col-9 border-end">
+                        <div class="card-header">
+                            <h1><i class="fas fa-plus"></i> Add Post</h1>
                         </div>
-                        <div class="col-3 d-flex flex-column justify-content-start">
-                            <div class="">
-                                <label for=""><strong>name</strong></label>
-                                <label for="">@name</label>
+                        <div class="row mt-4">
+                            <div class="col-3 d-flex justify-content-end">
+                                <img src="" alt="" class="rounded-5" width="50" height="50">
                             </div>
-                            <div class="input-group mt-3">
-                                <input type="text" class="form-control" placeholder="{{ __('Title') }}">
-                            </div>
-                            <div class="input-group mt-3">
-                                <textarea type="text" class="form-control" placeholder="{{ __('Description') }}"></textarea>
-                            </div>
-                            <div class="input-group mt-3 d-flex flex-column">
-                                <label for="formFileMultiple" class="form-label">Images</label>
-                                <div class="upload-box" onclick="document.getElementById('formFileMultiple').click();">
-                                    <p>Click to upload picture</p>
+                            <div class="col-3 d-flex flex-column justify-content-start">
+                                <div class="">
+                                    <label for=""><strong>{{ $userName }}</strong></label>
+                                    <label for="">@ {{ $userNickname }}</label>
                                 </div>
-                                <input class="form-control d-none" name="product_image[]" type="file"
-                                    id="formFileMultiple" multiple>
+                                <div class="input-group mt-3">
+                                    <input type="text" class="form-control" placeholder="{{ __('Title') }}"
+                                        name="title">
+                                </div>
+                                <div class="input-group mt-3">
+                                    <textarea type="text" class="form-control" placeholder="{{ __('Description') }}" name="description"></textarea>
+                                </div>
+                                <label for="" class="mt-3">Image</label>
+                                <div class="input-group">
+                                    <input type="file" name="image" class="form-control">
+                                </div>
+                                <div class="input-group mt-5 d-flex justify-content-end">
+                                    <button class="btn mx-2 rounded-5"
+                                        style="background:#4E6A80; width:100px;">Cancel</button>
+                                    <button class="btn btn-primary rounded-5" style="width:100px;"
+                                        type="submit">Post</button>
+                                </div>
                             </div>
                         </div>
                     </div>
+            </form>
+            <div class="col-3 d-flex flex-column align-items-start">
+                <div class="input-group mb-3">
+                    <input type="search" class="form-control" placeholder="Search">
+                    <button class="btn btn-outline-secondary" type="button">
+                        <i class="fas fa-search"></i>
+                    </button>
                 </div>
-                <div class="col-3 d-flex flex-column align-items-start">
-                    <div class="input-group mb-3">
-                        <input type="search" class="form-control" placeholder="Search">
-                        <button class="btn btn-outline-secondary" type="button">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </div>
-                    <a href="" class="my-link"><i class="fas fa-plus fa-2x"></i><span> ADD POST</span></a>
-                    <a href="" class="my-link"><i class="fas fa-paper-plane fa-2x"></i><span> MY POST</span></a>
-                    <a href="" class="my-link"><i class="fas fa-envelope fa-2x"></i><span> INBOX</span></a>
-                    <!-- Changed text to match icon -->
-                    <a href="" class="my-link"><i class="fas fa-heart fa-2x"></i><span> FAVORITES</span></a>
-                    <!-- Changed text to match icon -->
-                </div>
+                <a href="" class="my-link"><i class="fas fa-plus fa-2x"></i><span> ADD POST</span></a>
+                <a href="" class="my-link"><i class="fas fa-paper-plane fa-2x"></i><span> MY POST</span></a>
+                <a href="/chatify" class="my-link"><i class="fas fa-envelope fa-2x"></i><span> INBOX</span></a>
+                <!-- Changed text to match icon -->
+                <a href="" class="my-link"><i class="fas fa-heart fa-2x"></i><span> FAVORITES</span></a>
+                <!-- Changed text to match icon -->
             </div>
         </div>
     </div>
-    <script>
-        document.getElementById('formFileMultiple').onchange = function() {
-            // You can add code here to handle the files selected by the user
-            // For example, update the text of the upload box to show the number of files selected
-            const fileInput = document.getElementById('formFileMultiple');
-            const fileCount = fileInput.files.length;
-            const textBox = document.querySelector('.upload-box p');
-
-            if (fileCount > 0) {
-                textBox.textContent = fileCount + " files selected";
-            } else {
-                textBox.textContent = "Click to upload files";
-            }
-        };
-    </script>
+    </div>
 @endsection

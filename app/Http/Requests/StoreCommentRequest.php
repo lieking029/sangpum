@@ -22,8 +22,10 @@ class StoreCommentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'description' => ['required', 'string', 'max:255'],
-            'image' => 'image|mimes:jpeg,png,jpg,gif',
+            'user_id' => ['required', 'exists:users,id'],
+            'post_id' => ['required', 'exists:posts,id'], // Ensures the post_id is provided and exists in the database
+            'comment' => ['required', 'string', 'max:255'], // Validates the comment field
+            'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:10240'], // Validates the image if provided
         ];
     }
 }

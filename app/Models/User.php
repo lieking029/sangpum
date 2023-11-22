@@ -20,33 +20,14 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'first_name',
-        'middle_name',
-        'last_name',
-        'birth_date',
-        'nickname',
-        'astr_sign',
-        'kpop_group',
-        'bias',
-        'address',
-        'barangay',
-        'govt_type',
-        'govt_id',
-        'wallet',
-        'email',
-        'password',
-    ];
+    protected $fillable = ['first_name', 'middle_name', 'last_name', 'birth_date', 'nickname', 'astr_sign', 'kpop_group', 'bias', 'address', 'barangay', 'govt_type', 'govt_id', 'wallet', 'email', 'password'];
 
     /**
      * The attributes that should be hidden for serialization.
      *
      * @var array<int, string>
      */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+    protected $hidden = ['password', 'remember_token'];
 
     /**
      * The attributes that should be cast.
@@ -73,39 +54,43 @@ class User extends Authenticatable
         return $this->hasRole('buyer');
     }
 
-    public function shop() : HasOne
+    public function shop(): HasOne
     {
         return $this->hasOne(Shop::class);
     }
 
-    public function shipment() : HasOne
+    public function shipment(): HasOne
     {
         return $this->hasOne(Shipment::class);
     }
 
-    public function wallet() : HasOne
+    public function wallet(): HasOne
     {
         return $this->hasOne(Wallet::class);
     }
 
-    public function topUp() : HasMany
+    public function topUp(): HasMany
     {
         return $this->hasMany(TopUp::class);
     }
 
-    public function products() : HasMany
+    public function products(): HasMany
     {
         return $this->hasMany(Product::class);
     }
 
-    public function order() : HasOne
+    public function order(): HasOne
     {
         return $this->hasOne(Order::class);
     }
 
-    public function post() : HasMany
+    public function post(): HasMany
     {
         return $this->hasMany(Post::class);
     }
 
+    public function comments()
+    {
+        return $this->hasMany(Comments::class);
+    }
 }

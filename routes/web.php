@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\OrderController;
@@ -89,6 +90,11 @@ Route::middleware('auth')->group(function () {
         Route::get('tracking/{shipment}', [ShipmentController::class, 'tracking'])->name('shipping.tracking');
 
         Route::resource('post', PostController::class);
+        Route::post('post-store', [PostController::class, 'store'])->name('post.store');
+
+
+        Route::get('post/{id}/comment',[CommentController::class, 'show'])->name('comment');
+        Route::post('comment-store', [CommentController::class, 'store'])->name('comment.store');
 
         Route::resource('message', MessageController::class);
 
