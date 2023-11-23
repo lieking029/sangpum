@@ -98,6 +98,7 @@ class RegisterController extends Controller
             'dti_permit' => null,
             'barangay_clearance' => null,
             'business_permit' => null,
+            'profile' => null,
         ];
 
         // Loop through each file input and store the image if it's present

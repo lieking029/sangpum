@@ -34,7 +34,7 @@
                     <input type="file" class="form-control" name="profile">
                 </div>
 
-                <div class="input-group mb-3"><span class="input-group-text">
+                <div class="input-group mb-3 mt-3"><span class="input-group-text">
                     <svg class="icon">
                       <use xlink:href="{{ asset('icons/coreui.svg#cil-envelope-open') }}"></use>
                     </svg></span>

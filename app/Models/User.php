@@ -20,7 +20,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = ['first_name', 'middle_name', 'last_name', 'birth_date', 'nickname', 'astr_sign', 'kpop_group', 'bias', 'address', 'barangay', 'govt_type', 'govt_id', 'wallet', 'email', 'password', 'verified'];
+    protected $fillable = ['first_name', 'middle_name', 'last_name', 'birth_date', 'nickname', 'astr_sign', 'kpop_group', 'bias', 'address', 'barangay', 'govt_type', 'govt_id', 'wallet', 'email', 'password', 'verified', 'profile'];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -98,5 +98,4 @@ class User extends Authenticatable
     {
         return $this->hasMany(TransactionHistory::class);
     }
-
 }
