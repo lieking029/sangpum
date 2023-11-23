@@ -140,7 +140,7 @@
                             <div class="form-check d-flex">
                                 <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"
                                     style="margin-top: 45px; margin-right:20px;" name="products[{{ $loop->index }}][id]">
-                                <img class="border border-5 rounded-4" src="{{ $order->product->product_image }}"
+                                <img class="border border-5 rounded-4" src="{{ asset('storage/'. $order->product->productImages->first()->image_path) }}"
                                     height="120" width="130">
                             </div>
                         </div>

@@ -15,7 +15,7 @@ class ShippingController extends Controller
 {
     public function index($id)
     {
-        $shipping = Order::with('product.shipping', 'productVariation')->find($id);
+        $shipping = Order::with('product.shipping', 'productVariation', 'product.productImages')->find($id);
         $weight = $shipping->product->shipping->weight;
         $shipment = ShippingFee::first();
         if($weight == 1) {

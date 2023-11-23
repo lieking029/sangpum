@@ -27,9 +27,9 @@ class TopUpController extends Controller
 
     public function store(StoreTopUpRequest $request)
     {
-        TopUp::create($request->except(['proof' => $request->file('proof')->store('topUps', 'public')]));
+        TopUp::create($request->except('proof') + ['proof' => $request->file('proof')->store('topUps', 'public'), 'user_id' => auth()->id()]);
 
-        return redirect()->route('top-up.index');
+        return redirect()->route('top-up.create');
     }
 
     public function transferPoint(User $user, TransferPointRequest $request)
@@ -43,7 +43,14 @@ class TopUpController extends Controller
 
         TransactionHistory::create($request->validated() + ['user_id' => $user->id]);
 
-        return redirect()->route('top-up.index');
+        return redirect()->route('top-up.show', auth()->id());
+    }
+
+    public function show(User $user)
+    {
+        $user->load('topUp');
+
+        return view('buyer.topup.show', compact('user'));
     }
 
 }

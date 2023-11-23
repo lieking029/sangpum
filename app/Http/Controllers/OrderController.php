@@ -13,7 +13,7 @@ class OrderController extends Controller
 {
     public function show($id)
     {
-        $orders = Order::with('product', 'productVariation')
+        $orders = Order::with('product.productImages', 'productVariation')
             ->where('user_id', $id)
             ->paginate(10);
 
@@ -60,7 +60,7 @@ class OrderController extends Controller
 
     public function allItems()
     {
-        $products = Product::with('productVariations', 'shipping')->paginate(12);
+        $products = Product::with('productVariations', 'shipping', 'productImages')->where('published', 1)->paginate(12);
 
         return view('marketplace.all-items', compact('products'));
     }

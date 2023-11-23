@@ -63,7 +63,7 @@ Route::middleware('auth')->group(function () {
 
         Route::get('user-sellers', [UserManagementController::class, 'showSeller'])->name('showSeller');
         Route::get('user-buyers', [UserManagementController::class, 'showBuyer'])->name('showBuyer');
-        Route::resource('top-up', TopUpController::class)->only('index', 'store');
+        Route::resource('top-up', TopUpController::class)->except('create');
     });
 
     // Seller
@@ -84,6 +84,9 @@ Route::middleware('auth')->group(function () {
 
     // Buyer
     Route::middleware('role:buyer')->group(function () {
+        Route::get('top-ups/create', [TopUpController::class,'create'])->name('top-up.create');
+        Route::post('top-ups', [TopUpController::class,'store'])->name('top-up.store');
+        Route::get('top-ups/{user}', [TopUpController::class,'show'])->name('top-up.show');
         Route::get('checkout/{id}', [ShippingController::class, 'index'])->name('shipping.index');
         Route::post('checkout', [ShippingController::class, 'store'])->name('shipping.store');
         Route::get('my-purchase', [ShipmentController::class, 'myPurchase'])->name('shipping.myPurchase');

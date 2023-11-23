@@ -23,11 +23,8 @@ class StoreTopUpRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id' => ['required', 'exists:users,id'],
-            'qr_code' => ['nullable', 'string', File::image()],
-            'proof' => ['nullable', 'string', File::image()],
+            'proof' => ['required'],
             'topup_request' => ['required',],
-            'reference_number' => ['required', 'string', 'max:255'],
         ];
     }
 }

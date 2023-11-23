@@ -25,6 +25,7 @@
                 </div>
             </div>
             <div class="col-2 text-end">
+                <a href="{{ route('top-up.create') }}" class="btn btn-secondary text-white"><strong>Top-up</strong></a>
                 <a class="btn" style="background:#4E6A80" href="/"><i class="fas fa-home"
                         style="color: white"></i></a>
             </div>
@@ -66,7 +67,7 @@
                         <div class="col-2 text-center container">
                             <a href="{{ route('productDetails', $product->id) }}" style="text-decoration: none">
                                 <img class="border border-5 rounded-5"
-                                    src="{{ $product->product_image }}"
+                                    src="{{ asset('storage/'. $product->product_image) }}"
                                     alt="img" height="200" width="200">
                                 <div class="text-black">
                                     <span>{{ $product->product_name }}</span> <br>

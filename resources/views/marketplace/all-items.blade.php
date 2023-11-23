@@ -35,7 +35,7 @@
                         <div class="col-md-2 text-center container">
                             <a href="{{ route('productDetails', $product->id) }}" style="text-decoration: none">
                                 <img class="border border-5 rounded-5"
-                                src="{{ $product->product_image }}"
+                                src="{{ asset('storage/'. $product->productImages->first()->image_path) }}"
                                     alt="img" height="200" width="200">
                                 <div class="text-black">
                                     <span>{{ $product->product_name }}</span> <br>

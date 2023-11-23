@@ -40,7 +40,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-8">
-                        <img class="" src="{{ $product->product_image }}" alt="img" height="500" width=800">
+                        <img class="" src="{{ asset('storage/'. $product->productImages->first()->image_path) }}" alt="img" height="500" width=800">
                     </div>
                     <div class="col-4">
                         <h5 style="font-weight: 400">{{ $product->user->shop_name }}<i class="fas fa-check-circle mx-3"></i>
@@ -62,7 +62,7 @@
                             @foreach ($product->productVariations as $variation)
                                 <div class="col-4 text-center">
                                     <button class="variationId" type="button" data-id="{{ $variation->id }}"
-                                        style="font-size: 11px; background: rgb(163, 163, 163); padding-top: 10px; padding-bottom: 10px; padding-right: 20px; padding-left: 20px; border-radius: 0; color: white;">{{ $variation->variation_name }}</button>
+                                        style="font-size: 11px; background: rgb(163, 163, 163); padding-top: 10px; padding-bottom: 10px; padding-right: 20px; padding-left: 20px; border-radius: 0; color: white; border: none">{{ $variation->variation_name }}</button>
                                 </div>
                             @endforeach
                             <input type="hidden" id="productVariation" name="product_variation_id">

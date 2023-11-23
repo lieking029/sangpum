@@ -65,7 +65,7 @@
                             <label for="" style="font-size: 19px"><strong>Order Details</strong></label>
                             <div class="row">
                                 <div class="col-3">
-                                    <img class="border border-5 rounded-5" src="{{ $shipping->product->product_image }}"
+                                    <img class="border border-5 rounded-5" src="{{ asset('storage/'. $shipping->product->productImages->first()->image_path) }}"
                                         alt="img" height="130" width="140">
                                 </div>
                                 <div class="col-7">
