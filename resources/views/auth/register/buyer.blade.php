@@ -133,7 +133,7 @@
                                             </div>
                                         </div>
                                         <div class="input-group mt-3">
-                                            <button class="btn rounded-5 w-100 next-btn" type="submit"
+                                            <button class="btn rounded-5 w-100 next-btn" type="button"
                                                 data-next="step2-tab"
                                                 style="background:#55AAAD; color:white; font-weight: bold">{{ __('Next') }}</button>
                                         </div>
@@ -198,8 +198,9 @@
                                                 <label for="" class="mb-1">Add Profile Picture(Optional)</label>
                                                 <input type="file" class="form-control" name="profile">
                                             </div>
+
                                             <div class="input-group mt-3">
-                                                <button class="btn rounded-5 w-100 next-btn" type="submit"
+                                                <button class="btn rounded-5 w-100 next-btn" type="button"
                                                     data-next="step3-tab"
                                                     style="background:#55AAAD; color:white; font-weight: bold">{{ __('Next') }}</button>
                                             </div>
@@ -261,7 +262,7 @@
                                                 @enderror
                                             </div>
                                             <div class="input-group mt-3">
-                                                <button class="btn rounded-5 w-100 next-btn" type="submit"
+                                                <button class="btn rounded-5 w-100 next-btn" type="button"
                                                     data-next="step4-tab"
                                                     style="background:#55AAAD; color:white; font-weight: bold">{{ __('Next') }}</button>
                                             </div>
