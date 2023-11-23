@@ -25,7 +25,8 @@
                 </div>
             </div>
             <div class="col-2 text-end">
-                <a class="btn" style="background:#4E6A80" href="/"><i class="fas fa-home" style="color: white"></i></a>
+                <a class="btn" style="background:#4E6A80" href="/"><i class="fas fa-home"
+                        style="color: white"></i></a>
             </div>
         </div>
 
@@ -43,15 +44,15 @@
                                     alt="" width="180" height="170" class="rounded-5">
                             </div>
                             <div class="col d-flex justify-content-center align-items-center">
-                                <img src="{{ asset('icons/314938000_5144313499006456_926033784245206486_n.jpg') }}"
+                                <img src="{{ asset('icons/315059954_5146785768759229_1631032876583140623_n.jpg') }}"
                                     alt="" width="180" height="170" class="rounded-5">
                             </div>
                             <div class="col mt-2 d-flex justify-content-center align-items-center">
-                                <img src="{{ asset('icons/314938000_5144313499006456_926033784245206486_n.jpg') }}"
+                                <img src="{{ asset('icons/313033459_5132999743471165_6013417823100087539_n.jpg') }}"
                                     alt="" width="180" height="170" class="rounded-5">
                             </div>
                             <div class="col mt-2 d-flex justify-content-center align-items-center">
-                                <img src="{{ asset('icons/314938000_5144313499006456_926033784245206486_n.jpg') }}"
+                                <img src="{{ asset('icons/314420668_5143355555768917_8662624289564951393_n.jpg') }}"
                                     alt="" width="180" height="170" class="rounded-5">
                             </div>
                         </div>
@@ -65,7 +66,7 @@
                         <div class="col-2 text-center container">
                             <a href="{{ route('productDetails', $product->id) }}" style="text-decoration: none">
                                 <img class="border border-5 rounded-5"
-                                    src="https://scontent.fmnl9-4.fna.fbcdn.net/v/t39.30808-6/355459684_995658415192585_5242516178701158225_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeG7uCcEq9_G6hvBmwZDugTI5f3TgIY7Z6fl_dOAhjtnp027VQ4J47mjO2sx0b-GgdJbZWvTx-Nu9mBm7e85-cJW&_nc_ohc=cVbvfYYhG1gAX9P7-br&_nc_ht=scontent.fmnl9-4.fna&oh=00_AfB6MbqwxJxXHW_y2ycXBl3mkeAjW_mfXmL3OW3G9ewCXw&oe=655F6368"
+                                    src="{{ $product->product_image }}"
                                     alt="img" height="200" width="200">
                                 <div class="text-black">
                                     <span>{{ $product->product_name }}</span> <br>
@@ -75,10 +76,10 @@
                         </div>
                     @endforeach
                 </div>
-                <div class="card-footer d-flex justify-content-end">
-                    <a href="" class=""></a>
-                </div>
             </div>
+        </div>
+        <div class="card-footer d-flex justify-content-end">
+            <a href="{{ route('allItems') }}" class="btn btn-primary rounded-5">See all Items</a>
         </div>
     </div>
 @endsection

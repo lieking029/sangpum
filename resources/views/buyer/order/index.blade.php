@@ -107,7 +107,7 @@
         <div class="card-header row">
             <div class="col-2">
                 <i class="fas fa-bars"></i>
-                <span class="btn mx-2" style="background:#4E6A80; color:white; font-weight:500">Marketplace</span>
+                <a class="btn mx-2" style="background:#4E6A80; color:white; font-weight:500" href="/post">Marketplace</a>
             </div>
             <div class="col-8">
                 <!-- Input group -->
@@ -121,7 +121,8 @@
                 </div>
             </div>
             <div class="col-2 text-end">
-                <span class="btn" style="background:#4E6A80"><i class="fas fa-home" style="color: white"></i></span>
+                <a class="btn" style="background:#4E6A80" href="/"><i class="fas fa-home"
+                        style="color: white"></i></a>
             </div>
         </div>
         <div class="card-body">
@@ -139,8 +140,8 @@
                             <div class="form-check d-flex">
                                 <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"
                                     style="margin-top: 45px; margin-right:20px;" name="products[{{ $loop->index }}][id]">
-                                <img class="border border-5 rounded-4" src="YOUR_IMAGE_SOURCE" alt="img" height="120"
-                                    width="130">
+                                <img class="border border-5 rounded-4" src="{{ $order->product->product_image }}"
+                                    height="120" width="130">
                             </div>
                         </div>
                         <div class="col-4">
@@ -190,10 +191,6 @@
                 <div class="col-2 text-center" id="totalPrice"><strong style="color: #FF2500">P
                         {{ number_format($totalAmount, 2) }}</strong></div>
                 <div class="col-2"></div>
-            </div>
-            <div class="container d-flex justify-content-end mt-5">
-                <button class="btn rounded-5 col-5 text-white"
-                    style="background: #55AAAD"><strong>Checkout</strong></button>
             </div>
         </div>
         <script>

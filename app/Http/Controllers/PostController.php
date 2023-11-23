@@ -30,9 +30,10 @@ class PostController extends Controller
         // To concatenate strings in PHP, you should use the '.' operator instead of '+'
         $userName = $user->first_name . ' ' . $user->middle_name . ' ' . $user->last_name; // This gets the user's full name.
         $userNickname = $user->nickname; // This gets the user's nickname.
+        $userProfile = $user->profile;
 
         // You can now pass the user information to your view or use it to perform other actions.
-        return view('marketplace.post.create', compact('user', 'userName', 'userNickname'));
+        return view('marketplace.post.create', compact('user', 'userName', 'userNickname', 'userProfile'));
     }
 
     /**

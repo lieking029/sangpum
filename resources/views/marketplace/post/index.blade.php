@@ -44,7 +44,7 @@
             color: #007bff;
         }
     </style>
-    <div class="container-fluid card text-white"  style="background: #2A3240; min-height: 100vh">
+    <div class="container-fluid card text-white" style="background: #2A3240; min-height: 100vh">
         <div class="card-header row">
             <div class="col-2">
                 <i class="fas fa-store fa-2x"></i>
@@ -54,7 +54,8 @@
 
             </div>
             <div class="col-2 text-end">
-                <a class="btn" style="background:#4E6A80" href="/"><i class="fas fa-home" style="color: white"></i></a>
+                <a class="btn" style="background:#4E6A80" href="/"><i class="fas fa-home"
+                        style="color: white"></i></a>
             </div>
         </div>
         <div class="card-body">
@@ -66,7 +67,8 @@
                     @foreach ($posts as $post)
                         <div class="row mt-4">
                             <div class="col-3 d-flex justify-content-end">
-                                <img src="" alt="" class="rounded-5" width="50" height="50">
+                                <img src="{{ $post->user->profile ? asset('storage/' . $post->user->profile) : asset('icons/default-profile-photo.jpg') }}"
+                                    alt="" class="rounded-5" width="50" height="50">
                             </div>
                             <div class="col-3 d-flex flex-column justify-content-start">
                                 <div class="">
@@ -79,15 +81,16 @@
                                 </div>
                                 <div class="">
                                     <p>
-                                       {{ $post->description }}
+                                        {{ $post->description }}
                                     </p>
                                 </div>
                             </div>
                             <div class="col d-flex flex-column">
-                                <img src="{{ asset('storage/' . $post->image) }}" alt="" class="rounded-3" width="200" height="100">
+                                <img src="{{ $post->image ? asset('storage/' . $post->image) : asset('icons/depositphotos_464771766-stock-illustration-no-photo-or-blank-image.jpg') }}"
+                                    alt="" class="rounded-3" width="200" height="100">
                                 <div class="d-flex">
-                                    <a href="{{ route('comment', $post->id) }}"> <i class="fas fa-comment-alt fa-2x me-3 mt-3"
-                                            style="color: grey;"></i></a>
+                                    <a href="{{ route('comment', $post->id) }}"> <i
+                                            class="fas fa-comment-alt fa-2x me-3 mt-3" style="color: grey;"></i></a>
                                     <a href="/chatify/{{ $post->user_id }}"> <i class="fas fa-comment fa-2x  mx-4 mt-3"
                                             style="color: grey;"></i></a>
                                     {{-- <a href=""> <i class="fas fa-heart fa-2x mt-3 mx-4"
@@ -104,11 +107,15 @@
                             <i class="fas fa-search"></i>
                         </button>
                     </div>
-                    <a href="/post/create" class="my-link text-white"><i class="fas fa-plus fa-2x"></i><span class="text-white"> ADD POST</span></a>
-                    <a href="" class="my-link"><i class="fas fa-paper-plane fa-2x text-white"></i><span class="text-white"> MY POST</span></a>
-                    <a href="/chatify" class="my-link text-white"><i class="fas fa-envelope fa-2x"></i><span class="text-white"> INBOX</span></a>
+                    <a href="/post/create" class="my-link text-white"><i class="fas fa-plus fa-2x"></i><span
+                            class="text-white"> ADD POST</span></a>
+                    <a href="" class="my-link"><i class="fas fa-paper-plane fa-2x text-white"></i><span
+                            class="text-white"> MY POST</span></a>
+                    <a href="/chatify" class="my-link text-white"><i class="fas fa-envelope fa-2x"></i><span
+                            class="text-white"> INBOX</span></a>
                     <!-- Changed text to match icon -->
-                    <a href="" class="my-link text-white"><i class="fas fa-heart fa-2x"></i><span class="text-white"> FAVORITES</span></a>
+                    <a href="" class="my-link text-white"><i class="fas fa-heart fa-2x"></i><span class="text-white">
+                            FAVORITES</span></a>
                     <!-- Changed text to match icon -->
                 </div>
             </div>

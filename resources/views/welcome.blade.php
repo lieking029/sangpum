@@ -155,11 +155,13 @@
                 @if (Route::has('login'))
                     <div class="button-group navbar-nav d-flex">
                         @auth
-                            <a href="/" class="btn btn-success rounded-5">Home</a>
+
                         @else
-                            <a href="{{ route('auth.login') }}" class="btn btn-primary rounded-5">Log in</a>
+                            <a href="{{ route('auth.login') }}" class="btn rounded-5 mx-2"
+                                style="width: 80px; background:#55AAAD; color:white">Log in</a>
                             @if (Route::has('register'))
-                                <a href="{{ route('auth.register') }}" class="btn btn-primary rounded-5">Register</a>
+                                <a href="{{ route('auth.register') }}" class="btn rounded-5"
+                                    style="width: 80px; background:white;">Register</a>
                             @endif
                         @endauth
                     </div>
@@ -185,8 +187,8 @@
                     every transaction carries the excitement of <br>sharing fandom joy.</h5>
             </div>
             <div class="p-2 bd-highlight">
-                <button class="button-58" role="button">SHOP NOW</button>
-                <button class="button-59" role="button">SELL NOW</button>
+                <a class="button-58" role="button" href="{{ route('login.buyer') }}">SHOP NOW</a>
+                <a class="button-59" role="button" href="{{ route('login.seller') }}">SELL NOW</a>
             </div>
         </div>
 
