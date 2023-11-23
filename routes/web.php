@@ -64,6 +64,7 @@ Route::middleware('auth')->group(function () {
         Route::get('user-sellers', [UserManagementController::class, 'showSeller'])->name('showSeller');
         Route::get('user-buyers', [UserManagementController::class, 'showBuyer'])->name('showBuyer');
         Route::resource('top-up', TopUpController::class)->except('create');
+        Route::post('top-up/transfer/{user}', [TopUpController::class,'transferPoint'])->name('top-up.transfer');
     });
 
     // Seller

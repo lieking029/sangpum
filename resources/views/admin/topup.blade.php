@@ -2,6 +2,11 @@
 
 @section('content')
 
+@if ($errors->any())
+     @foreach ($errors->all() as $error)
+         <div>{{$error}}</div>
+     @endforeach
+ @endif
 <div class="container-fluid card">
     <div class="card-header row">
         <div class="col">
@@ -42,7 +47,7 @@
                 <tbody>
                     @foreach ($topUps as $topUp)
                         <tr>
-                            <td>{{ $topUp->user->role() }}</td>
+                            <td>{{ $topUp->user->role }}</td>
                             <td>{{ $topUp->user->first_name }} {{ $topUp->user->middle_name }} {{ $topUp->user->last_name }}</td>
                             <td>
                                 <img src="{{ asset('storage/' . $topUp->proof) }}" height="150" width="150" alt="">
@@ -67,11 +72,13 @@
                                         <div class="from-group">
                                         <label for="">How much</label>
                                         <input type="number" name="topup_request" placeholder="Transfer Points" class="form-control">
+                                        <input type="hidden" name="reference_number" value="{{ $topUp->reference_number }}" class="form-control">
+                                        <input type="hidden" name="top_up_id" value="{{ $topUp->id }}" class="form-control">
                                         </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary">Transfer</button>
+                                        <button type="submit" class="btn btn-primary">Transfer</button>
                                     </div>
                                 </form>
                             </div>

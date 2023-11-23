@@ -9,6 +9,8 @@ use App\Models\TopUp;
 use App\Models\TransactionHistory;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+
 
 class TopUpController extends Controller
 {
@@ -27,7 +29,9 @@ class TopUpController extends Controller
 
     public function store(StoreTopUpRequest $request)
     {
-        TopUp::create($request->except('proof') + ['proof' => $request->file('proof')->store('topUps', 'public'), 'user_id' => auth()->id()]);
+        $reference = Str::random(12);
+        $topUp = TopUp::create($request->except('proof') + ['proof' => $request->file('proof')->store('topUps', 'public'), 'user_id' => auth()->id()]);
+        $topUp->update(['reference_number' => $reference . $topUp->id]);
 
         return redirect()->route('top-up.create');
     }
@@ -35,15 +39,18 @@ class TopUpController extends Controller
     public function transferPoint(User $user, TransferPointRequest $request)
     {
         $admin = User::role(UserTypeEnum::Admin)->first();
-        $user->wallet += (float) $request->topup_request;
-        $user->save();
+        $wallet = $user->wallet += (float) $request->topup_request;
+        $user->update(['wallet' => $wallet]);
 
-        $admin->wallet += (float) $request->topup_request;
-        $admin->save();
+        $adminWallet = $admin->wallet += (float) $request->topup_request;
+        $admin->update(['wallet' => $adminWallet]);
 
         TransactionHistory::create($request->validated() + ['user_id' => $user->id]);
 
-        return redirect()->route('top-up.show', auth()->id());
+        $topUp = TopUp::find($request->top_up_id);
+        $topUp->delete();
+
+        return redirect()->route('top-up.index');
     }
 
     public function show(User $user)

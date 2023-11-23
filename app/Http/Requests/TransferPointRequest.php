@@ -23,7 +23,8 @@ class TransferPointRequest extends FormRequest
     {
         return [
             'topup_request' => ['required'],
-            'reference_number' => ['required', 'string', 'max:255']
+            'reference_number' => ['required', 'string', 'max:255'],
+            'top_up_id' => ['required',],
         ];
     }
 }
