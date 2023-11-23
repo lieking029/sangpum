@@ -19,6 +19,8 @@
                                 style="background: #55AAAD; color:white; width: 85%">Show Seller</a></li>
                         <li class="text-center" style="margin-left: 20px"><a class="dropdown-item btn rounded-5 mb-3" href="{{ route('showBuyer') }}"
                             style="background: #55AAAD; color:white; width: 85%">Show Buyer</a></li>
+                        <li class="text-center" style="margin-left: 20px"><a class="dropdown-item btn rounded-5 mb-3" href="{{ route('top-up.index') }}"
+                            style="background: #55AAAD; color:white; width: 85%">Top up</a></li>
                     </ul>
                 </div>
             </div>

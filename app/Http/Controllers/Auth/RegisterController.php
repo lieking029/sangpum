@@ -128,6 +128,7 @@ class RegisterController extends Controller
             'wallet' => 0.0,
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'verified' => 0
         ];
 
         $user = User::create($userData);

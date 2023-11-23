@@ -21,18 +21,6 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                // If the user is an admin, redirect to the admin dashboard.
-                if (Auth::guard($guard)->user()->hasRole('seller')) {
-                    \Log::info('User is a seller.');
-                    return redirect()->route('seller.home');
-                }
-                if (Auth::guard($guard)->user()->hasRole('buyer')) {
-                    \Log::info('User is a buyer.');
-                    return redirect('/');
-                }
-                // If the user has any other role, you can handle other redirections here.
-
-                // Default redirect if authenticated.
                 return redirect(RouteServiceProvider::HOME);
             }
         }
