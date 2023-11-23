@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
             $table->string('qr_code')->nullable();
             $table->double('topup_request');
-            $table->double('reference_number')->nullable();
+            $table->string('reference_number')->nullable();
             $table->integer('status')->default(0);
             $table->string('proof')->nullable();
             $table->timestamps();

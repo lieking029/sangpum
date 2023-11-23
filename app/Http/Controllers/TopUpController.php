@@ -33,7 +33,7 @@ class TopUpController extends Controller
         $topUp = TopUp::create($request->except('proof') + ['proof' => $request->file('proof')->store('topUps', 'public'), 'user_id' => auth()->id()]);
         $topUp->update(['reference_number' => $reference . $topUp->id]);
 
-        return redirect()->route('top-up.create');
+        return redirect()->route('top-up.show', auth()->id());
     }
 
     public function transferPoint(User $user, TransferPointRequest $request)
