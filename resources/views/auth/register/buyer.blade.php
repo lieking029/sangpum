@@ -24,9 +24,9 @@
     </style>
 
     @if ($errors->any())
-    @foreach ($errors->all() as $error)
-        <div>{{$error}}</div>
-    @endforeach
+        @foreach ($errors->all() as $error)
+            <div>{{ $error }}</div>
+        @endforeach
     @endif
     <div class="col-lg-5">
         <div class="card-group d-md-flex row ">
@@ -182,7 +182,7 @@
                                                     </div>
                                                 @enderror
                                             </div>
-                                            <label for="">Birth Date</label>
+                                            <label for="">Birth Date(Must be 18 years old or above)</label>
                                             <div class="input-group mt-3">
                                                 <input type="date"
                                                     class="form-control @error('birth_date') is-invalid @enderror"
@@ -193,6 +193,10 @@
                                                         {{ $message }}
                                                     </div>
                                                 @enderror
+                                            </div>
+                                            <div class="input-type mt-3">
+                                                <label for="" class="mb-1">Add Profile Picture(Optional)</label>
+                                                <input type="file" class="form-control" name="profile">
                                             </div>
                                             <div class="input-group mt-3">
                                                 <button class="btn rounded-5 w-100 next-btn" type="submit"
@@ -325,7 +329,7 @@
                                                 <input type="file" class="form-control" name="govt_id" required>
                                             </div>
                                             <div class="input-group mt-3">
-                                                <button class="btn rounded-5 w-100" type="submit"
+                                                <button class="btn rounded-5 w-100 next-btn" type="submit"
                                                     style="background:#55AAAD; color:white; font-weight: bold">{{ __('Submit') }}</button>
                                             </div>
                                         </div>
@@ -478,6 +482,21 @@
                                 birthDateError.textContent = 'Birth date is required.';
                                 birthDate.classList.add('is-invalid');
                                 valid = false;
+                            } else {
+                                const birthDateValue = new Date(birthDate.value);
+                                const currentDate = new Date();
+                                const age = currentDate.getFullYear() - birthDateValue.getFullYear();
+                                const m = currentDate.getMonth() - birthDateValue.getMonth();
+                                if (m < 0 || (m === 0 && currentDate.getDate() < birthDateValue
+                                    .getDate())) {
+                                    age--;
+                                }
+
+                                if (age < 18) {
+                                    birthDateError.textContent = 'You must be at least 18 years old.';
+                                    birthDate.classList.add('is-invalid');
+                                    valid = false;
+                                }
                             }
                         }
                         if (currentStep.id === 'step3') {

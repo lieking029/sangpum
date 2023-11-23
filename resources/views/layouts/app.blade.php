@@ -20,7 +20,7 @@
         <header class="header header-sticky" style="background: linear-gradient(to right, #5DE0E6, #004AAD); ">
             <div class="container-fluid">
                 <ul class="header-nav d-none d-md-flex">
-                    <li class="nav-item"><a class="nav-link" href=""><i class="fas fa-shopping-cart" style="color: white"></i></a>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('order.show', auth()->user()->id ) }}"><i class="fas fa-shopping-cart" style="color: white"></i></a>
                     </li>
                 </ul>
                 <ul class="header-nav d-none d-md-flex">

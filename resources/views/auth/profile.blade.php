@@ -29,6 +29,11 @@
                     @enderror
                 </div>
 
+                <div class="input-type mt-3">
+                    <label for="" class="mb-1">Update Profile Picture(Optional)</label>
+                    <input type="file" class="form-control" name="profile">
+                </div>
+
                 <div class="input-group mb-3"><span class="input-group-text">
                     <svg class="icon">
                       <use xlink:href="{{ asset('icons/coreui.svg#cil-envelope-open') }}"></use>

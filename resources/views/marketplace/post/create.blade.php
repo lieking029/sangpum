@@ -73,7 +73,8 @@
                         </div>
                         <div class="row mt-4">
                             <div class="col-3 d-flex justify-content-end">
-                                <img src="" alt="" class="rounded-5" width="50" height="50">
+                                <img src="{{ $userProfile ? asset('storage/' . $userProfile) : asset('icons/default-profile-photo.jpg') }}"
+                                    alt="" class="rounded-5" width="50" height="50">
                             </div>
                             <div class="col-3 d-flex flex-column justify-content-start">
                                 <div class="">

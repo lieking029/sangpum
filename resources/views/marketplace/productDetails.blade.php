@@ -17,7 +17,7 @@
         <div class="card-header row">
             <div class="col-2">
                 <i class="fas fa-bars"></i>
-                <span class="btn mx-2" style="background:#4E6A80; color:white; font-weight:500">Marketplace</span>
+                <a class="btn mx-2" style="background:#4E6A80; color:white; font-weight:500" href="/post">Marketplace</a>
             </div>
             <div class="col-8">
                 <!-- Input group -->
@@ -31,7 +31,8 @@
                 </div>
             </div>
             <div class="col-2 text-end">
-                <span class="btn" style="background:#4E6A80"><i class="fas fa-home" style="color: white"></i></span>
+                <a class="btn" style="background:#4E6A80" href="/"><i class="fas fa-home"
+                        style="color: white"></i></a>
             </div>
         </div>
         <form action="{{ route('addToCart', $product->id) }}" method="POST">
@@ -39,12 +40,11 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-8">
-                        <img class=""
-                            src="https://scontent.fmnl9-4.fna.fbcdn.net/v/t39.30808-6/355459684_995658415192585_5242516178701158225_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeG7uCcEq9_G6hvBmwZDugTI5f3TgIY7Z6fl_dOAhjtnp027VQ4J47mjO2sx0b-GgdJbZWvTx-Nu9mBm7e85-cJW&_nc_ohc=cVbvfYYhG1gAX9P7-br&_nc_ht=scontent.fmnl9-4.fna&oh=00_AfB6MbqwxJxXHW_y2ycXBl3mkeAjW_mfXmL3OW3G9ewCXw&oe=655F6368"
-                            alt="img" height="500" width=800">
+                        <img class="" src="{{ $product->product_image }}" alt="img" height="500" width=800">
                     </div>
                     <div class="col-4">
-                        <h5 style="font-weight: 400">TEUCART <i class="fas fa-check-circle mx-3"></i></h5>
+                        <h5 style="font-weight: 400">{{ $product->user->shop_name }}<i class="fas fa-check-circle mx-3"></i>
+                        </h5>
                         <h2>{{ $product->product_name }}</h2>
                         <div>
                             <label for="">Price</label>
@@ -62,7 +62,7 @@
                             @foreach ($product->productVariations as $variation)
                                 <div class="col-4 text-center">
                                     <button class="variationId" type="button" data-id="{{ $variation->id }}"
-                                        style="font-size: 9px; background: rgb(163, 163, 163); padding-top: 5px; padding-bottom: 5px; padding-right: 20px; padding-left: 20px; border-radius: 0; color: white;">{{ $variation->variation_name }}</button>
+                                        style="font-size: 11px; background: rgb(163, 163, 163); padding-top: 10px; padding-bottom: 10px; padding-right: 20px; padding-left: 20px; border-radius: 0; color: white;">{{ $variation->variation_name }}</button>
                                 </div>
                             @endforeach
                             <input type="hidden" id="productVariation" name="product_variation_id">

@@ -261,6 +261,11 @@
                                                                 </div>
                                                             @enderror
                                                         </div>
+                                                        <div class="input-type mt-2">
+                                                            <label for="" class="mb-1">Add Profile
+                                                                Picture(Optional)</label>
+                                                            <input type="file" class="form-control" name="profile">
+                                                        </div>
                                                     </div>
                                                     <div class="col-12 col-md-6"> <!-- Other inputs -->
                                                         <label for="birth_date">Birth Date (Must be 18 years old or

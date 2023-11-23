@@ -66,6 +66,7 @@ class RegisterController extends Controller
             'barangay' => ['required', 'string', 'max:255'],
             'govt_type' => ['required', 'string', 'max:255'],
             'govt_id' => ['nullable', File::image()],
+            'profile' => ['nullable'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             // SHOP
@@ -123,6 +124,7 @@ class RegisterController extends Controller
             'bias' => $data['bias'],
             'address' => $data['address'],
             'barangay' => $data['barangay'],
+            'profile' => $data['profile'],
             'govt_type' => $data['govt_type'],
             'govt_id' => $filePaths['govt_id'],
             'wallet' => 0.0,
