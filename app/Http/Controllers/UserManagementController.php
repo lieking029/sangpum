@@ -22,6 +22,11 @@ class UserManagementController extends Controller
         return view('admin.buyers', compact('buyers'));
     }
 
+    public function verify(User $user)
+    {
+        $user->update(['verified' => auth()->id()]);
 
+        return redirect()->back();
+    }
 
 }

@@ -63,6 +63,7 @@ Route::middleware('auth')->group(function () {
     Route::middleware('role:admin')->group(function () {
         Route::get('admin-home', [HomeController::class, 'adminIndex'])->name('admin.home');
 
+        Route::get('approved/{user}', [UserManagementController::class, 'verify'])->name('approved');
         Route::get('user-sellers', [UserManagementController::class, 'showSeller'])->name('showSeller');
         Route::get('user-buyers', [UserManagementController::class, 'showBuyer'])->name('showBuyer');
         Route::resource('top-up', TopUpController::class)->except('create');

@@ -56,7 +56,13 @@
                             <td>{{ $buyer->barangay }}</td>
                             <td>{{ $buyer->nickname }}</td>
                             <td>{{ $buyer->email }}</td>
-                            <td style="color: #FF2500">Verified</td>
+                            <td>
+                                @if ($buyer->verified != 1)
+                                <a href="{{ route('approved', $buyer->id) }}" style="color: #FF2500; text-decoration: none">Verify</a>
+                                @else
+                                <strong style="">Verified</strong>
+                                @endif
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
