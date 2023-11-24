@@ -22,14 +22,14 @@
         <header class="header header-sticky" style="background: linear-gradient(to right, #5DE0E6, #004AAD); ">
             <div class="container-fluid">
                 <ul class="header-nav d-none d-md-flex">
-                    <li class="nav-item"><a class="nav-link" href="{{ route('order.show', auth()->user()->id ) }}"><i class="fas fa-shopping-cart" style="color: white"></i></a>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('order.show', auth()->user()->id ) }}"></a>
                     </li>
                 </ul>
                 <ul class="header-nav d-none d-md-flex">
                     <img src="{{ asset('icons/logoSangpum.png') }}" alt="" width="150">
                 </ul>
                 <ul class="header-nav ms-3">
-                    <a href=""><i class="fas fa-comment me-3" style="color:white"></i></a>
+                     <strong class="text-white" style="margin-right: 50px; font-size: 20px">Wallet: {{ number_format(auth()->user()->wallet, 2) }}</strong>
                     <li class="nav-item dropdown">
                         <a class="nav-link py-0" data-coreui-toggle="dropdown" href="#" role="button"
                             aria-haspopup="true" aria-expanded="false">
