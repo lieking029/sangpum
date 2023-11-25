@@ -29,7 +29,13 @@ class ShipmentController extends Controller
     }
 
     public function myPurchase() {
-        $shipments = Shipment::with('product.user', 'product.productImages', 'user', 'productVariation')->where('status','!=' , 4)->where('user_id', auth()->user()->id)->get();
+        $shipments = Shipment::with('product.user', 'product.productImages', 'user', 'productVariation')
+            ->where(function ($query) {
+                $query->where('status', '!=', 3)
+                    ->orWhereNull('status');
+            })
+            ->where('user_id', auth()->user()->id)
+            ->get();
 
         return view('buyer.myPurchase.index', compact('shipments'));
     }
