@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
     @vite('resources/sass/app.scss')
     <title>Sangpum</title>
 </head>
@@ -138,11 +139,11 @@
                     style="color: white; font-family: 'Montserrat', sans-serif;">Home</a>
                 <a class="nav-link " href="#" style="color: white; font-family: 'Montserrat', sans-serif;">About
                     us</a>
-                <a href=""></a>
-                <a href=""></a>
-                <a href=""></a>
-                <a href=""></a>
-                <a href=""></a>
+                <div class="d-flex">
+                    <label for="">Follow us on</label>
+                    <a href=""><i class="fab fa-facebook"></i></a>
+                    <a href=""></a>
+                </div>
             </div>
 
             <!-- Centered logo for all screen sizes -->
@@ -155,7 +156,6 @@
                 @if (Route::has('login'))
                     <div class="button-group navbar-nav d-flex">
                         @auth
-
                         @else
                             <a href="{{ route('auth.login') }}" class="btn rounded-5 mx-2"
                                 style="width: 80px; background:#55AAAD; color:white">Log in</a>
@@ -191,7 +191,6 @@
                 <a class="button-59" role="button" href="{{ route('login.seller') }}">SELL NOW</a>
             </div>
         </div>
-
     </div>
 </body>
 

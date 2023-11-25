@@ -40,7 +40,6 @@
         .btn-action:hover {
             background-color: #ccc;
         }
-
     </style>
     <div class="container-fluid card">
         <div class="card-header row">
@@ -54,14 +53,17 @@
                         <i class="fas fa-bars" style="font-size: 23px"></i>
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li class="text-center" style="margin-left: 20px"><a class="dropdown-item btn rounded-5 mb-3" href="{{ route('seller.home') }}"
-                                style="background: #55AAAD; color:white; width: 85%">My Shop</a></li>
-                        <li class="text-center" style="margin-left: 20px"><a class="dropdown-item btn rounded-5 mb-3" href="{{ route('products.index') }}"
-                            style="background: #55AAAD; color:white; width: 85%">Product</a></li>
-                        <li class="text-center" style="margin-left: 20px"><a class="dropdown-item btn rounded-5 mb-3" href="{{ route('seller.shipment') }}"
-                            style="background: #55AAAD; color:white; width: 85%">Shipment</a></li>
-                        <li class="text-center" style="margin-left: 20px"><span class="dropdown-item btn rounded-5 mb-3" href="#"
-                            style="background: #55AAAD; color:white; width: 85%">Finance</span></li>
+                        <li class="text-center" style="margin-left: 20px"><a class="dropdown-item btn rounded-5 mb-3"
+                                href="{{ route('seller.home') }}" style="background: #55AAAD; color:white; width: 85%">My
+                                Shop</a></li>
+                        <li class="text-center" style="margin-left: 20px"><a class="dropdown-item btn rounded-5 mb-3"
+                                href="{{ route('products.index') }}"
+                                style="background: #55AAAD; color:white; width: 85%">Product</a></li>
+                        <li class="text-center" style="margin-left: 20px"><a class="dropdown-item btn rounded-5 mb-3"
+                                href="{{ route('seller.shipment') }}"
+                                style="background: #55AAAD; color:white; width: 85%">Shipment</a></li>
+                        <li class="text-center" style="margin-left: 20px"><span class="dropdown-item btn rounded-5 mb-3"
+                                href="#" style="background: #55AAAD; color:white; width: 85%">Finance</span></li>
                     </ul>
                 </div>
             </div>
@@ -69,10 +71,11 @@
         <div class="card-body">
             <div class="card-header row">
                 <div class="col">
-                    <h5>{{ $products->count() }}Products</h5>
+                    <h5>{{ $products->count() }} Products</h5>
                 </div>
                 <div class="col text-end">
-                    <a href="{{ route('products.create') }}" class="btn text-white" style="background: #FF2500; font-size: 12px"><i class="fas fa-plus"></i>Add Product</a>
+                    <a href="{{ route('products.create') }}" class="btn text-white"
+                        style="background: #FF2500; font-size: 12px"><i class="fas fa-plus"></i>Add Product</a>
                 </div>
             </div>
         </div>
@@ -84,14 +87,15 @@
                         <div class="row">
                             <div class="col">
                                 <div class="form-check d-flex">
-                                    <input class="form-check-input" type="checkbox" value="{{ $product->id }}" id="flexCheckDefault"
-                                        style="margin-top: 45px; margin-right:20px;"
+                                    <input class="form-check-input" type="checkbox" value="{{ $product->id }}"
+                                        id="flexCheckDefault" style="margin-top: 45px; margin-right:20px;"
                                         name="published[{{ $loop->index }}][id]"
-                                        @if($product->published == 1) checked disabled @endif>
+                                        @if ($product->published == 1) checked disabled @endif>
 
-                                        @if($product->productImages()->exists())
-                                            <img src="{{ asset('storage/' . $product->productImages->first()->image_path) }}" alt="{{ $product->product_name }}" width="100" height="100" class="mb-3">
-                                        @endif
+                                    @if ($product->productImages()->exists())
+                                        <img src="{{ asset('storage/' . $product->productImages->first()->image_path) }}"
+                                            alt="{{ $product->product_name }}" width="100" height="100" class="mb-3">
+                                    @endif
                                 </div>
                             </div>
                             <div class="col">
@@ -105,7 +109,8 @@
                                         style="font-size: 12px; background: #D4D6D8; padding-top: 2px; padding-bottom: 2px; padding-right: 15px; padding-left: 15px; border-radius: 0;  color: black">
                                         Variation</a>
                                     @foreach ($product->productVariations as $variation)
-                                        <label for="" style="font-size: 11px" >{{ $variation->variation_name }}</label>
+                                        <label for=""
+                                            style="font-size: 11px">{{ $variation->variation_name }}</label>
                                     @endforeach
                                 </div>
                             </div>
@@ -141,10 +146,10 @@
                             </div>
                             <div class="col">
                                 <div class="d-flex flex-column justify-content-center">
-                                    <a href="#" class="btn m-2"
+                                    <a href="{{ route('products.edit', $product->id) }}" class="btn m-2"
                                         style="font-size: 12px; background: #D4D6D8; padding-top: 2px; padding-bottom: 2px; padding-right: 15px; padding-left: 15px; border-radius: 0;  color: black">
                                         Edit</a>
-                                    <a href="#" class="btn m-2"
+                                    <a href="{{ route('product.delete', $product->id) }}" class="btn m-2"
                                         style="font-size: 12px; background: #D4D6D8; padding-top: 2px; padding-bottom: 2px; padding-right: 15px; padding-left: 15px; border-radius: 0; color: black">
                                         Delete</a>
                                 </div>
@@ -153,20 +158,10 @@
                         </div>
                     @endforeach
                 </div>
-                {{-- <div class="row">
-                    <div class="col-12 d-flex justify-content-end">
-                        {{ $products->links() }}
-                    </div>
-                </div> --}}
         </div>
         <div class="card-footer d-flex justify-content-between">
             <div class="">
-                {{-- <a href="#" class="btn m-2"
-                    style="font-size: 9px; background: rgb(163, 163, 163); padding-top: 5px; padding-bottom: 5px; padding-right: 20px; padding-left: 20px; border-radius: 0; color: white">
-                    Select All</a> --}}
-            </div>
-            <div class="">
-                <a href="#" class="btn m-2"
+                <a href="" class="btn m-2"
                     style="font-size: 9px; background: #FF2500; padding-top: 5px; padding-bottom: 5px; padding-right: 20px; padding-left: 20px; border-radius: 0; color: white">
                     Delete</a>
                 <button type="submit" class="btn m-2"

@@ -76,6 +76,8 @@ Route::middleware('auth')->group(function () {
         Route::resource('products', ProductController::class);
         Route::post('product-published', [ProductController::class, 'published'])->name('product.published');
         Route::post('product-bulkDelete', [ProductController::class, 'bulkDelete'])->name('product.bulkDelete');
+        Route::put('products-update/{product}', [ProductController::class, 'update'])->name('products.update');
+        Route::get('products/{product}',[ProductController::class, 'destroy'])->name('product.delete');
 
         Route::get('seller-home', [HomeController::class, 'sellerIndex'])->name('seller.home');
         Route::get('completed', [ShipmentController::class, 'completed'])->name('seller.completed');

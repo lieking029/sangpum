@@ -61,7 +61,13 @@
                                     </li>
                                     <li class="nav-item" role="presentation">
                                         <button class="nav-link" id="step4-tab" data-bs-toggle="pill"
-                                            data-bs-target="#step4" type="button" role="tab" aria-controls="step3"
+                                            data-bs-target="#step4" type="button" role="tab" aria-controls="step4"
+                                            aria-selected="false">Step
+                                            3</button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="step5-tab" data-bs-toggle="pill"
+                                            data-bs-target="#step5" type="button" role="tab" aria-controls="step5"
                                             aria-selected="false">Step
                                             3</button>
                                     </li>
@@ -107,8 +113,9 @@
                                             <div class="input-group mb-3">
                                                 <input type="password"
                                                     class="form-control @error('password_confirmation') is-invalid @enderror"
-                                                    name="password_confirmation" placeholder="{{ __('Confirm Password') }}"
-                                                    required id="password_confirmation">
+                                                    name="password_confirmation"
+                                                    placeholder="{{ __('Confirm Password') }}" required
+                                                    id="password_confirmation">
                                                 <button class="btn btn-outline-secondary toggle-password" type="button"
                                                     data-input="password_confirmation">
                                                     <i class="fas fa-eye password-eye-icon no-blink"></i>
@@ -194,6 +201,7 @@
                                                     </div>
                                                 @enderror
                                             </div>
+
                                             <div class="input-type mt-3">
                                                 <label for="" class="mb-1">Add Profile Picture(Optional)</label>
                                                 <input type="file" class="form-control" name="profile">
@@ -284,7 +292,7 @@
                                                 @enderror
                                             </div>
                                             <div class="input-group mt-3">
-                                                <input type="text" inputmode="numeric" pattern="[0-9]*"
+                                                <input type="number"
                                                     class="form-control @error('barangay') is-invalid @enderror"
                                                     name="barangay" placeholder="{{ __('ZIP code') }}" autofocus>
                                                 <div class="invalid-feedback" id="zipcodeError"></div>
@@ -328,10 +336,33 @@
                                             <div class="mt-3 mb-2">Upload your Govt. ID</div>
                                             <div class="input-group">
                                                 <input type="file" class="form-control" name="govt_id" required>
+                                                <div class="invalid-feedback" id="govtIdError"></div>
                                             </div>
                                             <div class="input-group mt-3">
-                                                <button class="btn rounded-5 w-100 next-btn" type="submit"
+                                                <button class="btn rounded-5 w-100 next-btn" type="button"
+                                                    data-next="step5-tab"
                                                     style="background:#55AAAD; color:white; font-weight: bold">{{ __('Submit') }}</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="step5" role="tabpanel"
+                                        aria-labelledby="step6-tab">
+                                        <div class="d-flex flex-column align-items-center">
+                                            <div class="container">
+                                                <div class="d-flex  flex-column align-items-center">
+                                                    <img src="{{ asset('icons/verify.png') }}" alt=""
+                                                        width="120" height="120">
+                                                    <h3>We're verifying your account!</h3>
+                                                    <p>Please expect an Email within 1-2 hour/s on the status of your
+                                                        verification.</p>
+                                                </div>
+                                                <div class="row mt-3">
+                                                    <div class="col d-flex justify-content-center">
+                                                        <button class="btn rounded-5 w-50" type="submit"
+                                                            data-next="step6-tab"
+                                                            style="background:#55AAAD; color:white; font-weight: bold;">{{ __('Done') }}</button>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -456,6 +487,41 @@
                             const middleNameError = currentStep.querySelector('#middleNameError');
                             const lastNameError = currentStep.querySelector('#lastNameError');
                             const birthDateError = currentStep.querySelector('#birthDateError');
+                            let profilePic = currentStep.querySelector('input[name="profile"]');
+                            let profilePicError = currentStep.querySelector('#profilePicError');
+
+                            if (profilePic.files.length > 0) {
+                                let file = profilePic.files[0];
+                                let fileType = file.type;
+                                const validTypes = ['image/jpeg',
+                                'image/png']; // Add or remove file types as needed
+                                let fileSize = file.size;
+                                const maxSize = 2 * 1024 * 1024; // Example: 2MB max size
+
+                                // Validate file type
+                                if (!validTypes.includes(fileType)) {
+                                    profilePicError.textContent =
+                                        'Invalid file type. Only JPEG and PNG are allowed.';
+                                    profilePic.classList.add('is-invalid');
+                                    valid = false;
+                                }
+                                // Validate file size
+                                else if (fileSize > maxSize) {
+                                    profilePicError.textContent =
+                                        'The file is too large. Maximum size allowed is 2MB.';
+                                    profilePic.classList.add('is-invalid');
+                                    valid = false;
+                                } else {
+                                    profilePic.classList.remove('is-invalid');
+                                }
+                            } else {
+                                // If no file is selected, clear any previous error messages
+                                profilePic.classList.remove('is-invalid');
+                                if (profilePicError) {
+                                    profilePicError.textContent = '';
+                                }
+                            }
+
 
                             // Validate the first name
                             if (!firstName.value.trim()) {
@@ -489,7 +555,7 @@
                                 const age = currentDate.getFullYear() - birthDateValue.getFullYear();
                                 const m = currentDate.getMonth() - birthDateValue.getMonth();
                                 if (m < 0 || (m === 0 && currentDate.getDate() < birthDateValue
-                                    .getDate())) {
+                                        .getDate())) {
                                     age--;
                                 }
 
@@ -567,6 +633,8 @@
                             const zipcodeError = currentStep.querySelector('#zipcodeError');
                             const bankAccountError = currentStep.querySelector('#bankAccountError');
                             const govtTypeError = currentStep.querySelector('#govtTypeError');
+                            let govtId = currentStep.querySelector('input[name="govt_id"]');
+                            let govtIdError = currentStep.querySelector('#govtIdError');
 
                             // Clear previous error messages
                             addressError.textContent = '';
@@ -610,9 +678,33 @@
                                 govtType.classList.remove('is-invalid');
                             }
 
-                            // Note: File input validation is usually handled differently as
-                            // you may want to check for file size or type on the client side,
-                            // or handle it server-side due to security reasons.
+                            if (!govtId.files.length) {
+                                govtIdError.textContent = 'Government ID is required.';
+                                govtId.classList.add('is-invalid');
+                                valid = false;
+                            } else {
+                                // Check for file type, for example, if you only allow .jpg or .png files
+                                let fileType = govtId.files[0].type;
+                                const validTypes = ['image/jpeg', 'image/png'];
+                                if (!validTypes.includes(fileType)) {
+                                    govtIdError.textContent =
+                                        'Invalid file type. Allowed types are .jpg and .png.';
+                                    govtId.classList.add('is-invalid');
+                                    valid = false;
+                                } else {
+                                    // Optionally check for file size, for example, if you want to limit the size to 2MB
+                                    let fileSize = govtId.files[0].size;
+                                    const maxSize = 2 * 1024 * 1024; // 2MB
+                                    if (fileSize > maxSize) {
+                                        govtIdError.textContent =
+                                            'The file is too large. Maximum size allowed is 2MB.';
+                                        govtId.classList.add('is-invalid');
+                                        valid = false;
+                                    } else {
+                                        govtId.classList.remove('is-invalid');
+                                    }
+                                }
+                            }
                         }
 
                         if (valid) {

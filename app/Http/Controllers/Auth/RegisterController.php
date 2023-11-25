@@ -125,7 +125,7 @@ class RegisterController extends Controller
             'bias' => $data['bias'],
             'address' => $data['address'],
             'barangay' => $data['barangay'],
-            'profile' => $data['profile'],
+            'profile' => $filePaths['profile'],
             'govt_type' => $data['govt_type'],
             'govt_id' => $filePaths['govt_id'],
             'wallet' => 0.0,
