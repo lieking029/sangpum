@@ -72,6 +72,7 @@
 
             <div class="card-footer">
                 <button class="btn btn-sm btn-primary" type="submit">{{ __('Submit') }}</button>
+                <a href="" class=""></a>
             </div>
 
         </form>
