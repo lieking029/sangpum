@@ -14,11 +14,11 @@
 <div class="row " >
     <div class="col-2" style="background: rgb(153, 207, 208); min-height: 100vh">
         <div class="text-center">
-            <img height="150" width="150" class="rounded-circle mt-4" src="{{ auth()-user()->profile ? asset('/storage' . auth()-user()->profile): asset('icons/default-profile-photo.jpg') }}" alt="">
+            <img height="150" width="150" class="rounded-circle mt-4" src="{{ auth()->user()->profile ? asset('/storage' . auth()->user()->profile): asset('icons/default-profile-photo.jpg') }}" alt="">
             <br><h5 style="font-weight: 700">{{ auth()->user()->first_name }}</h5>
             <div class="mt-5">
-                <button class="btn rounded-5 text-white" style="background: #55AAAD; padding-right: 90px; padding-left: 90px"><strong>My Account</strong></button>
-                <button class="btn rounded-5 text-white mt-3" style="background: #4C5370; padding-right: 90px; padding-left: 90px"><strong>My Purchase</strong></button>
+                <a class="btn rounded-5 text-white" style="background: #55AAAD; padding-right: 90px; padding-left: 90px" href="{{ route('profile.show') }}"><strong>My Account</strong></a>
+                <a class="btn rounded-5 text-white mt-3" style="background: #4C5370; padding-right: 90px; padding-left: 90px" href="{{ route('shipping.myPurchase') }}"><strong>My Purchase</strong></a>
             </div>
         </div>
     </div>

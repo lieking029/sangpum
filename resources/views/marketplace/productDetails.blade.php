@@ -8,11 +8,6 @@
             /* Dark border */
         }
     </style>
-    @if ($errors->any())
-        @foreach ($errors->all() as $error)
-            <div>{{ $error }}</div>
-        @endforeach
-    @endif
     <div class="container-fluid card">
         <div class="card-header row">
             <div class="col-2">

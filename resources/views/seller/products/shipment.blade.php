@@ -29,8 +29,8 @@
             <div class="row">
                 @foreach ($shipments as $shipment)
                 <div class="d-flex justify-content-between">
-                    <div class="d-flex">
-                        <img src="" alt="" class="border rounded-5 mx-3" width="40" height="40">
+                    <div class="d-flex mb-3">
+                        <img src="{{ $shipment->user->profile ? asset('storage/' . $shipment->user->profile): asset('icons/default-profile-photo.jpg') }}" alt="" class="border rounded-5 mx-3" width="40" height="40">
                         <div class="d-flex flex-column justify-content-center">
                             <strong style="text-transform: uppercase">{{ $shipment->user->first_name }}</strong>
                         </div>
@@ -53,7 +53,7 @@
                             <div class="form-check d-flex">
                                 <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"
                                     style="margin-top: 45px; margin-right:20px;">
-                                <img src="{{ $shipment->product_image }}" alt="" width="100" height="100" class="mb-3">
+                                <img src="{{ asset('storage/' . $shipment->product->productImages->first()->image_path) }}" alt="" width="100" height="100" class="mb-3">
                                 <div class="d-flex justify-content-center" style="margin-top: 40px; margin-left:40px;">
                                     <strong style="text-transform: uppercase">{{ $shipment->product->product_description }}</strong>
                                 </div>

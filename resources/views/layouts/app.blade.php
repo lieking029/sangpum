@@ -22,14 +22,18 @@
         <header class="header header-sticky" style="background: linear-gradient(to right, #5DE0E6, #004AAD); ">
             <div class="container-fluid">
                 <ul class="header-nav d-none d-md-flex">
-                    <li class="nav-item"><a class="nav-link" href="{{ route('order.show', auth()->user()->id ) }}"></a>
-                    </li>
+                    @if (auth()->user()->hasRole('buyer'))
+                        <li class="nav-item"><a class="nav-link"
+                                href="{{ route('order.show', auth()->user()->id) }}"><i class="fas fa-shopping-cart text-white"></i></i></a>
+                        </li>
+                    @endif
                 </ul>
                 <ul class="header-nav d-none d-md-flex">
                     <img src="{{ asset('icons/logoSangpum.png') }}" alt="" width="150">
                 </ul>
                 <ul class="header-nav ms-3">
-                     <strong class="text-white" style="margin-right: 50px; font-size: 20px">Wallet: {{ number_format(auth()->user()->wallet, 2) }}</strong>
+                    <strong class="text-white" style="margin-right: 50px; font-size: 20px">Wallet:
+                        {{ number_format(auth()->user()->wallet, 2) }}</strong>
                     <li class="nav-item dropdown">
                         <a class="nav-link py-0" data-coreui-toggle="dropdown" href="#" role="button"
                             aria-haspopup="true" aria-expanded="false">
@@ -57,7 +61,7 @@
             </div>
         </header>
         <div class="body flex-grow-1">
-            <div class="" >
+            <div class="">
                 @yield('content')
             </div>
         </div>

@@ -45,11 +45,6 @@
         }
 
     </style>
-    @if ($errors->any())
-        @foreach ($errors->all() as $error)
-            <div>{{ $error }}</div>
-        @endforeach
-    @endif
     <div class="container-fluid card text-white" style="background: #2A3240; min-height: 100vh">
         <div class="card-header row">
             <div class="col-2">
