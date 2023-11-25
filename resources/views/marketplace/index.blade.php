@@ -6,7 +6,6 @@
             overflow-x: hidden;
         }
     </style>
-
     <div class="container-fluid card">
         <div class="card-header row">
             <div class="col-2">

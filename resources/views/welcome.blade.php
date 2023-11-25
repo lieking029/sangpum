@@ -141,8 +141,10 @@
                     us</a>
                 <div class="d-flex align-items-center">
                     <label for="" class="text-white me-2">Follow us on</label>
-                    <a href="https://www.facebook.com/profile.php?id=61553653243716&mibextid=O4c6Bo"><i class="fab fa-facebook fa-2x me-2"></i></a>
-                    <a href="www.instagram.com/sangpum.shop"> <i class="fab fa-instagram fa-2x text-white me-2"></i> </a>
+                    <a href="https://www.facebook.com/profile.php?id=61553653243716&mibextid=O4c6Bo"><i
+                            class="fab fa-facebook fa-2x me-2"></i></a>
+                    <a href="www.instagram.com/sangpum.shop"> <i class="fab fa-instagram fa-2x text-white me-2"></i>
+                    </a>
                     <a href="https://x.com/sangpumshop?s=21"><i class="fab fa-twitter fa-2x"></i></a>
                 </div>
             </div>
@@ -157,6 +159,11 @@
                 @if (Route::has('login'))
                     <div class="button-group navbar-nav d-flex">
                         @auth
+                            @if (auth()->user()->hasRole('buyer'))
+                                <a href="/" class="btn btn-sm btn-primary">Home</a>
+                            @elseif(auth()->user()->hasRole('seller'))
+                                <a href="/seller-home" class="btn btn-sm btn-primary">Home</a>
+                            @endif
                         @else
                             <a href="{{ route('auth.login') }}" class="btn rounded-5 mx-2"
                                 style="width: 80px; background:#55AAAD; color:white">Log in</a>
