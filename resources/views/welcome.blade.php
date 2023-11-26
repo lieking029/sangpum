@@ -137,8 +137,6 @@
             <div class="collapse navbar-collapse justify-content-evenly" id="navbarNav">
                 <a class="nav-link " href="#"
                     style="color: white; font-family: 'Montserrat', sans-serif;">Home</a>
-                <a class="nav-link " href="#" style="color: white; font-family: 'Montserrat', sans-serif;">About
-                    us</a>
                 <div class="d-flex align-items-center">
                     <label for="" class="text-white me-2">Follow us on</label>
                     <a href="https://www.facebook.com/profile.php?id=61553653243716&mibextid=O4c6Bo"><i
