@@ -88,12 +88,8 @@
                             <img src="{{ $post->image ? asset('storage/' . $post->image) : asset('icons/depositphotos_464771766-stock-illustration-no-photo-or-blank-image.jpg') }}"
                                 alt="" class="rounded-3" width="200" height="100">
                             <div class="d-flex">
-                                <a href=""> <i class="fas fa-comment fa-2x me-3 mt-3 text-white"
-                                        ></i></a>
-                                <a href=""> <i class="fas fa-paper-plane fa-2x  mx-4 mt-3 text-white"
-                                        ></i></a>
-                                <a href=""> <i class="fas fa-heart fa-2x mt-3 mx-4 text-white"
-                                        ></i></a>
+                                <a href="/chatify/{{ $post->user_id }}"> <i class="fas fa-comment fa-2x  mx-4 mt-3"
+                                    style="color: grey;"></i></a>
                             </div>
                         </div>
                     </div>

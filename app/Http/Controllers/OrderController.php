@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AddToCartRequest;
+use App\Http\Requests\ReviewRequest;
 use App\Http\Requests\StoreOrderRequest;
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\ProductRating;
 use App\Models\ProductVariation;
 use Illuminate\Http\Request;
 
@@ -53,23 +55,42 @@ class OrderController extends Controller
 
     public function marketplace()
     {
-        $products = Product::with('productVariations', 'shipping')->paginate(5);
+        $products = Product::with('productVariations', 'shipping')
+            ->where('published', 1)
+            ->paginate(5);
 
         return view('marketplace.index', compact('products'));
     }
 
     public function allItems()
     {
-        $products = Product::with('productVariations', 'shipping', 'productImages')->where('published', 1)->paginate(12);
+        $products = Product::with('productVariations', 'shipping', 'productImages')
+            ->where('published', 1)
+            ->paginate(12);
 
         return view('marketplace.all-items', compact('products'));
     }
 
     public function productDetails(Product $product)
     {
-        $product->load('shipping', 'productVariations');
+        $product->load('shipping', 'productVariations', 'reviews');
 
-        return view('marketplace.productDetails', compact('product'));
+        // Calculate the average rating
+        $averageRating = $product->reviews()->avg('user_rating') ?? 0.0;
+
+        // Calculate the total number of reviews
+        $totalReviews = $product->reviews()->count();
+
+        // Calculate the count for each star rating
+        $starCounts = [];
+        for ($star = 1; $star <= 5; $star++) {
+            $starCounts[$star] = $product
+                ->reviews()
+                ->where('user_rating', $star)
+                ->count();
+        }
+
+        return view('marketplace.productDetails', compact('product', 'averageRating', 'totalReviews', 'starCounts'));
     }
 
     public function addToCart(AddToCartRequest $request, Product $product)
@@ -80,5 +101,12 @@ class OrderController extends Controller
         Order::create($request->validated() + ['user_id' => auth()->id(), 'total' => $total]);
 
         return redirect()->route('order.show', auth()->id());
+    }
+
+    public function addReview(ReviewRequest $request)
+    {
+        ProductRating::create($request->validated() + ['user_id' => auth()->id()]);
+
+        return redirect()->route('productDetails', $request->input('product_id'));
     }
 }

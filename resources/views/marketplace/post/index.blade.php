@@ -93,8 +93,6 @@
                                             class="fas fa-comment-alt fa-2x me-3 mt-3" style="color: grey;"></i></a>
                                     <a href="/chatify/{{ $post->user_id }}"> <i class="fas fa-comment fa-2x  mx-4 mt-3"
                                             style="color: grey;"></i></a>
-                                    {{-- <a href=""> <i class="fas fa-heart fa-2x mt-3 mx-4"
-                                            style="color: grey;"></i></a> --}}
                                 </div>
                             </div>
                         </div>

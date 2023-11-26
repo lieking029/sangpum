@@ -113,6 +113,7 @@ Route::middleware('auth')->group(function () {
         Route::get('all-items', [OrderController::class, 'allItems'])->name('allItems');
         Route::get('product-detail/{product}', [OrderController::class, 'productDetails'])->name('productDetails');
         Route::post('addToCart/{product}', [OrderController::class, 'addToCart'])->name('addToCart');
+        Route::post('add-review', [OrderController::class, 'addReview'])->name('products.review');
 
         Route::get('variation-get/{id}', function ($id) {
             $variation = ProductVariation::find($id);

@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
     <style>
         .highlighted {
             border: 2px solid #000000;
@@ -35,7 +34,8 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-8">
-                        <img class="" src="{{ asset('storage/'. $product->productImages->first()->image_path) }}" alt="img" height="500" width=800">
+                        <img class="" src="{{ asset('storage/' . $product->productImages->first()->image_path) }}"
+                            alt="img" height="500" width=800">
                     </div>
                     <div class="col-4">
                         <h5 style="font-weight: 400">{{ $product->user->shop_name }}<i class="fas fa-check-circle mx-3"></i>
@@ -87,33 +87,166 @@
                 </div>
             </div>
         </form>
-        <script>
-            $(() => {
-                const baseUrl = '{{ url('') }}';
-                $('.variationId').click(function() {
-                    // Fetch variation details and update the price
-                    fetch(baseUrl + '/variation-get/' + $(this).data('id'))
-                        .then(response => response.json())
-                        .then(variation => {
-                            $('#productVariation').val(variation.id);
-                            $('#price').text(variation.price.toFixed(
-                                2)); // Assuming variation.price is a number
-                        });
-                });
+    </div>
+    <div class="container card mt-5">
+        <div class="card-header">
+            <h3>Products Reviews</h3>
+        </div>
+        <form action="{{ route('products.review') }}" method="POST" id="review_form">
+            @csrf
+            <div class="card-body">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-4 text-center">
+                                <h1 class="text-warning mt-4 mb-4">
+                                    <b><span id="average_rating">{{ number_format($averageRating, 1) }}</span> / 5</b>
+                                </h1>
+                                <h3><span id="total_review">{{ $totalReviews }}</span> Reviews</h3>
+                            </div>
+                            <div class="col-sm-4">
+                                <p>
+                                    @for ($star = 5; $star >= 1; $star--)
+                                        <div class="progress-label-left"><b>{{ $star }}</b> <i
+                                                class="fas fa-star text-warning"></i></div>
+                                        <div class="progress-label-right">({{ $starCounts[$star] }})</div>
+                                        <div class="progress">
+                                            <div class="progress-bar bg-warning" role="progressbar"
+                                                aria-valuenow="{{ $starCounts[$star] }}" aria-valuemin="0"
+                                                aria-valuemax="{{ $totalReviews }}"
+                                                style="width: {{ $totalReviews ? ($starCounts[$star] / $totalReviews) * 100 : 0 }}%;">
+                                            </div>
+                                        </div>
+                                    @endfor
+                                </p>
+                            </div>
+                            <div class="col-sm-4 text-center">
+                                <h3 class="mt-4 mb-3">Write Review Here</h3>
+                                <h4 class="text-center mt-2 mb-4">
+                                    <i class="fas fa-star star-light submit_star mr-1" id="submit_star_1" data-rating="1"
+                                        required></i>
+                                    <i class="fas fa-star star-light submit_star mr-1" id="submit_star_2"
+                                        data-rating="2"></i>
+                                    <i class="fas fa-star star-light submit_star mr-1" id="submit_star_3"
+                                        data-rating="3"></i>
+                                    <i class="fas fa-star star-light submit_star mr-1" id="submit_star_4"
+                                        data-rating="4"></i>
+                                    <i class="fas fa-star star-light submit_star mr-1" id="submit_star_5"
+                                        data-rating="5"></i>
+                                </h4>
+                                <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                <input type="hidden" name="user_rating" id="rating" value="">
+                                @error('user_rating')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                                <div class="form-group">
+                                    <textarea name="user_comment" id="" class="form-control"></textarea>
+                                </div>
+                                <button type="submit" name="add_review" class="btn btn-primary mt-3">Comment</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                @forelse ($product->reviews as $review)
+                    <div class="review-block border p-3">
+                        <p>{{ $review->user_comment }}</p>
+                        <div>
+                            @for ($i = 1; $i <= 5; $i++)
+                                @if ($i <= $review->user_rating)
+                                    <i class="fas fa-star text-warning"></i> {{-- Filled star --}}
+                                @else
+                                    <i class="far fa-star"></i> {{-- Empty star (use `far fa-star` for regular star) --}}
+                                @endif
+                            @endfor
+                        </div>
+                        <small>Reviewed by: {{ $review->user->first_name ?? 'Anonymous' }}</small>
+                    </div>
+                @empty
+                    <p>No reviews yet.</p>
+                @endforelse
+            </div>
+        </form>
+    </div>
 
+    <script>
+        $(() => {
+            const baseUrl = '{{ url('') }}';
+            $('.variationId').click(function() {
+                // Fetch variation details and update the price
+                fetch(baseUrl + '/variation-get/' + $(this).data('id'))
+                    .then(response => response.json())
+                    .then(variation => {
+                        $('#productVariation').val(variation.id);
+                        $('#price').text(variation.price.toFixed(
+                            2)); // Assuming variation.price is a number
+                    });
+            });
 
-                $('#quantity').on('input', function() {
-                    const priceText = $('#price').text(); // Get the price as text
-                    const price = parseFloat(priceText); // Convert the text to a floating point number
-                    const quantity = parseInt($('#quantity').val(), 10);
+            $('#quantity').on('input', function() {
+                const priceText = $('#price').text(); // Get the price as text
+                const price = parseFloat(priceText); // Convert the text to a floating point number
+                const quantity = parseInt($('#quantity').val(), 10);
 
-                    // Make sure both price and quantity are valid numbers before calculating
-                    if (!isNaN(price) && !isNaN(quantity)) {
-                        const total = price * quantity;
-                        $('#total').text('P ' + total.toFixed(2)); // Update the total text
+                // Make sure both price and quantity are valid numbers before calculating
+                if (!isNaN(price) && !isNaN(quantity)) {
+                    const total = price * quantity;
+                    $('#total').text('P ' + total.toFixed(2)); // Update the total text
+                }
+            });
+
+            var rating_data = 0;
+
+            $(document).on('click', '.submit_star', function() {
+                rating_data = $(this).data('rating');
+                $('#rating').val(rating_data);
+
+                $('.submit_star').removeClass('text-warning').addClass('star-light');
+                for (var count = 1; count <= rating_data; count++) {
+                    $('#submit_star_' + count).removeClass('star-light').addClass('text-warning');
+                }
+            });
+
+            $(document).on('mouseleave', '.submit_star', function() {
+                $('.submit_star').removeClass('text-warning').addClass('star-light');
+                for (var count = 1; count <= rating_data; count++) {
+                    $('#submit_star_' + count).removeClass('star-light').addClass('text-warning');
+                }
+            });
+
+            $('#review_form').on('submit', function(e) {
+                e.preventDefault(); // Prevent the default form submission
+
+                if (rating_data === 0) {
+                    alert('Please select a star rating.');
+                    return; // Stop the function if no rating is selected
+                }
+
+                var formData = {
+                    'user_rating': rating_data,
+                    'user_comment': $('#user_comment').val(), // Get the comment from the textarea
+                    '_token': $('input[name="_token"]').val() // Get the Laravel CSRF token
+                };
+
+                $.ajax({
+                    url: $(this).attr('action'), // Get the URL from the form's action attribute
+                    method: 'POST',
+                    data: formData,
+                    success: function(response) {
+                        alert('Review submitted successfully.');
+                        // Reset the form or update the UI as needed
+                        // ...
+                    },
+                    error: function(xhr, status, error) {
+                        alert('An error occurred while submitting the review.');
+                        // Optionally handle the error
+                        // ...
                     }
                 });
-            })
-        </script>
-    </div>
+            });
+        });
+    </script>
 @endsection
