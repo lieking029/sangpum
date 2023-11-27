@@ -482,7 +482,8 @@
                                 let file = profilePic.files[0];
                                 let fileType = file.type;
                                 const validTypes = ['image/jpeg',
-                                'image/png']; // Add or remove file types as needed
+                                    'image/png'
+                                ]; // Add or remove file types as needed
                                 let fileSize = file.size;
                                 const maxSize = 2 * 1024 * 1024; // Example: 2MB max size
 
