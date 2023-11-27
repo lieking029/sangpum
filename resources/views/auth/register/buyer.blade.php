@@ -303,18 +303,6 @@
                                                 @enderror
                                             </div>
                                             <div class="input-group mt-3">
-                                                <input type="text"
-                                                    class="form-control @error('bank_account') is-invalid @enderror"
-                                                    name="bank_account" placeholder="{{ __('Bank Account/E-wallet') }}"
-                                                    autofocus>
-                                                <div class="invalid-feedback" id="bankAccountError"></div>
-                                                @error('bank_account')
-                                                    <div class="invalid-feedback">
-                                                        {{ $message }}
-                                                    </div>
-                                                @enderror
-                                            </div>
-                                            <div class="input-group mt-3">
                                                 <select name="govt_type" id="" class="form-select">
                                                     <option value="" selected disabled>Select Type Of Govt. ID
                                                     </option>
@@ -627,11 +615,9 @@
                         if (currentStep.id === 'step4') {
                             const address = currentStep.querySelector('input[name="address"]');
                             const zipcode = currentStep.querySelector('input[name="barangay"]');
-                            const bankAccount = currentStep.querySelector('input[name="bank_account"]');
                             const govtType = currentStep.querySelector('select[name="govt_type"]');
                             const addressError = currentStep.querySelector('#addressError');
                             const zipcodeError = currentStep.querySelector('#zipcodeError');
-                            const bankAccountError = currentStep.querySelector('#bankAccountError');
                             const govtTypeError = currentStep.querySelector('#govtTypeError');
                             let govtId = currentStep.querySelector('input[name="govt_id"]');
                             let govtIdError = currentStep.querySelector('#govtIdError');
@@ -659,16 +645,6 @@
                             } else {
                                 zipcode.classList.remove('is-invalid');
                             }
-
-                            // Validate the bank account or e-wallet
-                            if (!bankAccount.value.trim()) {
-                                bankAccountError.textContent = 'Bank Account/E-wallet is required.';
-                                bankAccount.classList.add('is-invalid');
-                                valid = false;
-                            } else {
-                                bankAccount.classList.remove('is-invalid');
-                            }
-
                             // Validate the government ID type
                             if (!govtType.value || govtType.value.trim() === '') {
                                 govtTypeError.textContent = 'You must select a type of Government ID.';
