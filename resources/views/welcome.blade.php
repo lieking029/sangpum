@@ -141,8 +141,8 @@
                     <label for="" class="text-white me-2">Follow us on</label>
                     <a href="https://www.facebook.com/profile.php?id=61553653243716&mibextid=O4c6Bo"><i
                             class="fab fa-facebook fa-2x me-2"></i></a>
-                    <a href="www.instagram.com/sangpum.shop"> <i class="fab fa-instagram fa-2x text-white me-2"></i>
-                    </a>
+                    <a href="https://www.instagram.com/sangpum.shop"> <i
+                            class="fab fa-instagram fa-2x text-white me-2"></i></a>
                     <a href="https://x.com/sangpumshop?s=21"><i class="fab fa-twitter fa-2x"></i></a>
                 </div>
             </div>
