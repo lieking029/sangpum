@@ -154,7 +154,7 @@
                             <div class="" style="margin-left: 2%">
                                 <div class="d-flex align-items-center">
                                     <label for="weight" style="margin-right: 10px;">Weight:</label>
-                                    <input type="number" name="weight" placeholder="kg"
+                                    <input type="number" max="6" name="weight" placeholder="kg"
                                         style="height: 27px; width: 10rem; border: 2px solid #cacaca; text-align: right;">
                                 </div>
                                 <div class="d-flex mt-3">

@@ -152,9 +152,9 @@
                                     </div>
                                 </div>
                             @endforeach
-                            <button class="bg-transparent mt-2" type="button" id="addVariation"
+                            {{-- <button class="bg-transparent mt-2" type="button" id="addVariation"
                                 style="border: 2px solid #cacaca; font-size: 14px"><i class="fas fa-plus me-2"
-                                    style="font-size: 10px"></i>Add Variation</button>
+                                    style="font-size: 10px"></i>Add Variation</button> --}}
                         </div>
 
                         <div class="mt-4">

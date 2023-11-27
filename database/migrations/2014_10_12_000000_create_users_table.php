@@ -1,8 +1,10 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Spatie\Permission\Models\Role;
 
 return new class extends Migration
 {
@@ -34,6 +36,18 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
+
+        $admins = [
+            ['first_name' => 'admin', 'middle_name' => 'A', 'last_name' => 'admin', 'birth_date' => now(), 'nickname' => 'admin', 'astr_sign' => 'admin', 'kpop_group' => 'admin', 'address' => 'admin', 'bias' => 'admin', 'barangay' => 'admin', 'govt_type' => 'admin', 'wallet' => 1000000, 'verified' => 1,  'email' => 'admin@example.com', 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'],
+        ];
+
+        $roleAdmin = Role::findByName('admin');
+
+        foreach($admins as $admin) {
+            $bmo = User::create($admin);
+            $bmo->assignRole($roleAdmin);
+        }
+
     }
 
     /**

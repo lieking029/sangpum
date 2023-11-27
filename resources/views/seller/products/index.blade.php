@@ -146,9 +146,9 @@
                             </div>
                             <div class="col">
                                 <div class="d-flex flex-column justify-content-center">
-                                    <a href="{{ route('products.edit', $product->id) }}" class="btn m-2"
+                                    {{-- <a href="{{ route('products.edit', $product->id) }}" class="btn m-2"
                                         style="font-size: 12px; background: #D4D6D8; padding-top: 2px; padding-bottom: 2px; padding-right: 15px; padding-left: 15px; border-radius: 0;  color: black">
-                                        Edit</a>
+                                        Edit</a> --}}
                                     <a href="{{ route('product.delete', $product->id) }}" class="btn m-2"
                                         style="font-size: 12px; background: #D4D6D8; padding-top: 2px; padding-bottom: 2px; padding-right: 15px; padding-left: 15px; border-radius: 0; color: black">
                                         Delete</a>
