@@ -9,6 +9,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ShipmentController;
 use App\Http\Controllers\ShippingController;
+use App\Http\Controllers\ShopController;
 use App\Http\Controllers\TopUpController;
 use App\Http\Controllers\UserManagementController;
 use App\Models\ProductVariation;
@@ -78,7 +79,7 @@ Route::middleware('auth')->group(function () {
         Route::post('product-bulkDelete', [ProductController::class, 'bulkDelete'])->name('product.bulkDelete');
         Route::put('products-update/{product}', [ProductController::class, 'update'])->name('products.update');
         Route::get('products/{product}',[ProductController::class, 'destroy'])->name('product.delete');
-
+        Route::resource('shop', ShopController::class)->only('edit', 'update');
         Route::get('seller-home', [HomeController::class, 'sellerIndex'])->name('seller.home');
         Route::get('completed', [ShipmentController::class, 'completed'])->name('seller.completed');
         Route::get('shipment', [ShipmentController::class, 'shipmentStatus'])->name('seller.shipment');
@@ -113,6 +114,7 @@ Route::middleware('auth')->group(function () {
         Route::get('all-items', [OrderController::class, 'allItems'])->name('allItems');
         Route::get('product-detail/{product}', [OrderController::class, 'productDetails'])->name('productDetails');
         Route::post('addToCart/{product}', [OrderController::class, 'addToCart'])->name('addToCart');
+        Route::post('/buyNow', [OrderController::class, 'buyNow'])->name('buyNow');
         Route::post('add-review', [OrderController::class, 'addReview'])->name('products.review');
 
         Route::get('variation-get/{id}', function ($id) {

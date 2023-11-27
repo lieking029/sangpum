@@ -7,6 +7,12 @@
             /* Dark border */
         }
     </style>
+
+@if ($errors->any())
+@foreach ($errors->all() as $error)
+    <div>{{$error}}</div>
+@endforeach
+@endif
     <div class="container-fluid card">
         <div class="card-header row">
             <div class="col-2">
@@ -29,13 +35,13 @@
                         style="color: white"></i></a>
             </div>
         </div>
-        <form action="{{ route('addToCart', $product->id) }}" method="POST">
+        <form action="" method="POST" id="order-form">
             @csrf
             <div class="card-body">
                 <div class="row">
                     <div class="col-8">
                         <img class="" src="{{ asset('storage/' . $product->productImages->first()->image_path) }}"
-                            alt="img" height="500" width=800">
+                            alt="img" height="500" width="800">
                     </div>
                     <div class="col-4">
                         <h5 style="font-weight: 400">{{ $product->user->shop_name }}<i class="fas fa-check-circle mx-3"></i>
@@ -76,10 +82,10 @@
                             <div class="col"></div>
                         </div>
                         <div class="row d-flex justify-content-center align-items-center mt-5">
-                            <button class="btn rounded-5 text-white" style="background: #55AAAD;" type="submit">
+                            <button class="btn rounded-5 text-white" style="background: #55AAAD;" type="button" onclick="setFormAction('addToCart', event)">
                                 <strong>Add to Cart</strong>
                             </button>
-                            <button class="btn btn-secondary rounded-5 text-white mt-3">
+                            <button class="btn btn-secondary rounded-5 text-white mt-3" type="button" onclick="setFormAction('buyNow', event)">
                                 <strong>Buy Now</strong>
                             </button>
                         </div>
@@ -173,7 +179,21 @@
     </div>
 
     <script>
+
+        window.setFormAction = function(action, event) {
+        event.preventDefault(); // Prevent the default form submit action
+        var form = document.querySelector('#order-form');
+        if(action == 'addToCart') {
+            form.action = "{{ route('addToCart', $product->id) }}";
+        } else if(action == 'buyNow') {
+            form.action = "{{ route('buyNow') }}";
+        }
+        console.log(form.action); // To check the form action URL
+        form.submit();
+    };
+
         $(() => {
+
             const baseUrl = '{{ url('') }}';
             $('.variationId').click(function() {
                 // Fetch variation details and update the price

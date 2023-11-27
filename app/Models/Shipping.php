@@ -25,9 +25,4 @@ class Shipping extends Model
         return $this->belongsTo(Product::class);
     }
 
-    public function shippingFee() : HasOne
-    {
-        return $this->hasOne(ShippingFee::class);
-    }
-
 }

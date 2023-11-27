@@ -50,7 +50,7 @@ class OrderController extends Controller
     {
         $order->delete();
 
-        return redirect()->route('order.show');
+        return redirect()->route('order.show', auth()->id());
     }
 
     public function marketplace()
@@ -109,4 +109,15 @@ class OrderController extends Controller
 
         return redirect()->route('productDetails', $request->input('product_id'));
     }
+
+    public function buyNow(AddToCartRequest $request)
+    {
+        $variation = ProductVariation::find($request->product_variation_id);
+        $total = $variation->price * $request->quantity;
+
+        $order = Order::create($request->validated() + ['user_id' => auth()->id(), 'total' => $total]);
+
+        return redirect()->route('shipping.index', $order->id);
+    }
+
 }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Shipping;
+use App\Models\ShippingFee;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,15 +15,19 @@ return new class extends Migration
     {
         Schema::create('shipping_fees', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Shipping::class)->constrained()->cascadeOnDelete();
-            $table->string('five_hundred_grams');
-            $table->string('one_kilo');
-            $table->string('three_kilo');
-            $table->string('four_kilo');
-            $table->string('five_kilo');
-            $table->string('six_kilo');
+            $table->double('one_kilo');
+            $table->double('two_kilo');
+            $table->double('three_kilo');
+            $table->double('four_kilo');
+            $table->double('five_kilo');
+            $table->double('six_kilo');
             $table->timestamps();
         });
+
+        ShippingFee::insert([
+            ['one_kilo' => 50, 'two_kilo' => 100, 'three_kilo' => 150, 'four_kilo' => 200, 'five_kilo' => 250, 'six_kilo' => 300]
+        ]);
+
     }
 
     /**

@@ -41,7 +41,7 @@
                             <div class="d-flex align-items-center">
                                 <span class="fw-bold">{{ auth()->user()->shop->shop_name ?? 'No Shop yet' }}</span>
                                 <i class="fas fa-check-circle mx-3"></i>
-                                <a href="#" class="btn"
+                                <a href="{{ route('shop.edit', $shop->id) }}" class="btn"
                                     style="font-size: 9px; background: rgb(163, 163, 163); padding-top: 2px; padding-bottom: 2px; padding-right: 15px; padding-left: 15px; border-radius: 0; color: white">Edit
                                     Shop</a>
                             </div>

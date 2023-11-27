@@ -166,7 +166,11 @@
                         </div>
                         <div class="col-2 action-buttons">
                             <a href="{{ route('shipping.index', $order->id) }}" class="btn-action order-button">Order</a>
-                            <button class="btn-action delete-button">Delete</button>
+                            <form action="{{ route('order.destroy', $order->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn-action delete-button" type="submit">Delete</button>
+                            </form>
                         </div>
                     </div>
                     @php

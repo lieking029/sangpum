@@ -161,9 +161,9 @@
         </div>
         <div class="card-footer d-flex justify-content-end">
             <div class="">
-                <a href="" class="btn m-2"
+                {{-- <a href="" class="btn m-2"
                     style="font-size: 9px; background: #FF2500; padding-top: 5px; padding-bottom: 5px; padding-right: 20px; padding-left: 20px; border-radius: 0; color: white">
-                    Delete</a>
+                    Delete</a> --}}
                 <button type="submit" class="btn m-2"
                     style="font-size: 9px; background: #55AAAD; padding-top: 5px; padding-bottom: 5px; padding-right: 20px; padding-left: 20px; border-radius: 0; color: white">
                     Publish</button>

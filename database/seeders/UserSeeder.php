@@ -14,13 +14,20 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        // Find the 'admin' role by its name or create a new one if it doesn't exist.
-        $adminRole = Role::firstOrCreate(['name' => 'admin']);
+        // // Find the 'admin' role by its name or create a new one if it doesn't exist.
+        // $adminRole = Role::firstOrCreate(['name' => 'admin']);
 
-        // Create 10 users and assign them the 'admin' role.
-        $users = User::factory(2)->create();
-        foreach ($users as $user) {
-            $user->assignRole($adminRole);
+        // // Create 10 users and assign them the 'admin' role.
+        // $users = User::factory(2)->create();
+        // foreach ($users as $user) {
+        //     $user->assignRole($adminRole);
+        // }
+        foreach (Role::all() as $role) {
+            $users = User::factory(10)
+                ->create();
+            foreach ($users as $user) {
+                $user->assignRole($role);
+            }
         }
     }
 }

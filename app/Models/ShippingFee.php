@@ -11,18 +11,12 @@ class ShippingFee extends Model
     use HasFactory;
 
     protected $fillable = [
-        'shipping_id',
-        'five_hundred_grams',
+        'two_kilo',
         'one_kilo',
         'three_kilo',
         'four_kilo',
         'five_kilo',
         'six_kilo',
     ];
-
-    public function shipping() : BelongsTo
-    {
-        return $this->belongsTo(Shipping::class);
-    }
 
 }

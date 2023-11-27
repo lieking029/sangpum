@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Enums\UserTypeEnum;
 use App\Models\Product;
+use App\Models\Shop;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -28,9 +29,11 @@ class HomeController extends Controller
     public function sellerIndex()
     {
         $products = Product::with('productVariations', 'shipping', 'productImages')->where('user_id', auth()->id())->where('published', 1)->paginate(12);
+        $shop = Shop::where('user_id', auth()->id())->first();
 
         return view('sellerHome',[
-            'products' => $products
+            'products' => $products,
+            'shop' => $shop
         ]);
     }
 

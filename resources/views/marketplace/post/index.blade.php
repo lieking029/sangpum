@@ -112,8 +112,6 @@
                     <a href="/chatify" class="my-link text-white"><i class="fas fa-envelope fa-2x"></i><span
                             class="text-white"> INBOX</span></a>
                     <!-- Changed text to match icon -->
-                    <a href="" class="my-link text-white"><i class="fas fa-heart fa-2x"></i><span class="text-white">
-                            FAVORITES</span></a>
                     <!-- Changed text to match icon -->
                 </div>
             </div>
