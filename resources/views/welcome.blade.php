@@ -158,9 +158,9 @@
                     <div class="button-group navbar-nav d-flex">
                         @auth
                             @if (auth()->user()->hasRole('buyer'))
-                                <a href="/" class="btn btn-sm btn-primary">Home</a>
+                                <a href="{{ url('/') }}" class="btn btn-sm btn-primary">Home</a>
                             @elseif(auth()->user()->hasRole('seller'))
-                                <a href="/seller-home" class="btn btn-sm btn-primary">Home</a>
+                                <a href="{{ url('/seller-home') }}" class="btn btn-sm btn-primary">Home</a>
                             @endif
                         @else
                             <a href="{{ route('auth.login') }}" class="btn rounded-5 mx-2"

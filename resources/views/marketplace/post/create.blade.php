@@ -104,9 +104,9 @@
                         <i class="fas fa-search"></i>
                     </button>
                 </div>
-                <a href="/post/create" class="my-link text-white"><i class="fas fa-plus fa-2x"></i><span class="text-white"> ADD POST</span></a>
-                <a href="" class="my-link"><i class="fas fa-paper-plane fa-2x text-white"></i><span class="text-white"> MY POST</span></a>
-                <a href="/chatify" class="my-link text-white"><i class="fas fa-envelope fa-2x"></i><span class="text-white"> INBOX</span></a>
+                <a href="{{ route('post.create') }}" class="my-link text-white"><i class="fas fa-plus fa-2x"></i><span class="text-white"> ADD POST</span></a>
+                <a href="{{ route('myPost') }}" class="my-link"><i class="fas fa-paper-plane fa-2x text-white"></i><span class="text-white"> MY POST</span></a>
+                <a href="{{ url('chatify') }}" class="my-link text-white"><i class="fas fa-envelope fa-2x"></i><span class="text-white"> INBOX</span></a>
                 <!-- Changed text to match icon -->
                 <a href="" class="my-link text-white"><i class="fas fa-heart fa-2x"></i><span class="text-white"> FAVORITES</span></a>
                 <!-- Changed text to match icon -->

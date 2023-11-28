@@ -6,7 +6,7 @@
     <div class="card-header row">
         <div class="col-2">
             <i class="fas fa-bars"></i>
-            <a class="btn mx-2" style="background:#4E6A80; color:white; font-weight:500" href="/post">Marketplace</a>
+            <a class="btn mx-2" style="background:#4E6A80; color:white; font-weight:500" href="{{ route('post.index') }}">Marketplace</a>
         </div>
         <div class="col-8">
             <!-- Input group -->
@@ -21,7 +21,7 @@
         </div>
         <div class="col-2 text-end">
             <a href="{{ route('top-up.create') }}" class="btn btn-secondary text-white"><strong>Top-up</strong></a>
-            <a class="btn" style="background:#4E6A80" href="/"><i class="fas fa-home"
+            <a class="btn" style="background:#4E6A80" href="{{ url('/') }}"><i class="fas fa-home"
                     style="color: white"></i></a>
         </div>
     </div>

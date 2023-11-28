@@ -101,6 +101,7 @@ Route::middleware('auth')->group(function () {
 
         Route::resource('post', PostController::class);
         Route::post('post-store', [PostController::class, 'store'])->name('post.store');
+        Route::get('my-post', [PostController::class, 'myPost'])->name('myPost');
 
 
         Route::get('post/{id}/comment',[CommentController::class, 'show'])->name('comment');

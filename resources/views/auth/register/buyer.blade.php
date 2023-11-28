@@ -626,7 +626,6 @@
                             // Clear previous error messages
                             addressError.textContent = '';
                             zipcodeError.textContent = '';
-                            bankAccountError.textContent = '';
                             govtTypeError.textContent = '';
 
                             // Validate the address

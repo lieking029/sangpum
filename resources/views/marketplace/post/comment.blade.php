@@ -48,13 +48,13 @@
         <div class="card-header row">
             <div class="col-2">
                 <i class="fas fa-bars text-white"></i>
-                <a class="btn mx-2" style="background:#4E6A80; color:white; font-weight:500" href="/post">Marketplace</a>
+                <a class="btn mx-2" style="background:#4E6A80; color:white; font-weight:500" href="{{ route('post.index') }}">Marketplace</a>
             </div>
             <div class="col-8">
 
             </div>
             <div class="col-2 text-end">
-                <a class="btn" style="background:#4E6A80" href="/"><i class="fas fa-home"
+                <a class="btn" style="background:#4E6A80" href="{{ url('/') }}"><i class="fas fa-home"
                         style="color: white"></i></a>
             </div>
         </div>
@@ -88,7 +88,7 @@
                             <img src="{{ $post->image ? asset('storage/' . $post->image) : asset('icons/depositphotos_464771766-stock-illustration-no-photo-or-blank-image.jpg') }}"
                                 alt="" class="rounded-3" width="200" height="100">
                             <div class="d-flex">
-                                <a href="/chatify/{{ $post->user_id }}"> <i class="fas fa-comment fa-2x  mx-4 mt-3"
+                                <a href="{{ url('chatify', $post->user_id) }}"> <i class="fas fa-comment fa-2x  mx-4 mt-3"
                                     style="color: grey;"></i></a>
                             </div>
                         </div>
@@ -169,11 +169,11 @@
                             <i class="fas fa-search"></i>
                         </button>
                     </div>
-                    <a href="/post/create" class="my-link text-white"><i class="fas fa-plus fa-2x"></i><span
+                    <a href="{{ route('post.create') }}" class="my-link text-white"><i class="fas fa-plus fa-2x"></i><span
                             class="text-white"> ADD POST</span></a>
-                    <a href="" class="my-link"><i class="fas fa-paper-plane fa-2x text-white"></i><span
+                    <a href="{{ route('myPost') }}" class="my-link"><i class="fas fa-paper-plane fa-2x text-white"></i><span
                             class="text-white"> MY POST</span></a>
-                    <a href="/chatify" class="my-link text-white"><i class="fas fa-envelope fa-2x"></i><span
+                    <a href="{{ url('chatify') }}" class="my-link text-white"><i class="fas fa-envelope fa-2x"></i><span
                             class="text-white"> INBOX</span></a>
                     <!-- Changed text to match icon -->
                 </div>

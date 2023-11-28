@@ -26,8 +26,8 @@
                             style="background: #55AAAD; color:white; width: 85%">Product</a></li>
                         <li class="text-center" style="margin-left: 20px"><a class="dropdown-item btn rounded-5 mb-3" href="{{ route('seller.shipment') }}"
                             style="background: #55AAAD; color:white; width: 85%">Shipment</a></li>
-                        <li class="text-center" style="margin-left: 20px"><span class="dropdown-item btn rounded-5 mb-3" href="#"
-                            style="background: #55AAAD; color:white; width: 85%">Finance</span></li>
+                        {{-- <li class="text-center" style="margin-left: 20px"><span class="dropdown-item btn rounded-5 mb-3" href="#"
+                            style="background: #55AAAD; color:white; width: 85%">Finance</span></li> --}}
                     </ul>
                 </div>
             </div>

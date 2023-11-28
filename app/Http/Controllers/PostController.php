@@ -100,4 +100,12 @@ class PostController extends Controller
 
         return redirect()->route('post.index');
     }
+
+    public function myPost()
+    {
+        $posts = Post::with('user')->where('user_id', auth()->id())->get();
+
+        return view('marketplace.post.myPost', compact('posts'));
+    }
+
 }
