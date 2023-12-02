@@ -9,8 +9,18 @@
     <div class="container-fluid card">
         <div class="card-header row">
             <div class="col-2">
-                <i class="fas fa-bars"></i>
-                <a class="btn mx-2" style="background:#4E6A80; color:white; font-weight:500" href="{{ route('post.index') }}">Marketplace</a>
+                <div class="dropdown">
+                    <button class="btn btn-transparent" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <i class="fas fa-bars" style="font-size: 23px"></i>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li class="text-center" style="margin-left: 20px"><a class="dropdown-item btn rounded-5 mb-3"
+                                href="{{ route('shipping.myPurchase') }}" style="background: #55AAAD; color:white; width: 85%">My
+                                Purchase</a></li>
+                    </ul>
+                    <a class="btn mx-2" style="background:#4E6A80; color:white; font-weight:500" href="{{ route('post.index') }}">Marketplace</a>
+                </div>
             </div>
             <div class="col-8">
                 <!-- Input group -->
