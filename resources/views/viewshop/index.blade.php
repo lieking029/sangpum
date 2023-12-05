@@ -28,6 +28,21 @@
                         href="{{ route('post.index') }}">Marketplace</a>
                 </div>
             </div>
+            <div class="col-8">
+                <!-- Input group -->
+                <div class="input-group">
+                    <input type="search" class="form-control" placeholder="Search">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-2 text-end">
+                <a class="btn" style="background:#4E6A80" href="{{ url('/') }}"><i class="fas fa-home"
+                        style="color: white"></i></a>
+            </div>
         </div>
         <div class="card-body">
             <div class="container">
@@ -40,8 +55,9 @@
                                 <span class="fw-bold">{{ $shop->shop_name }}</span>
                                 <i class="fas fa-check-circle mx-3"></i>
                                 <a href="{{ url('chatify', $user->id) }}" class="btn"
-                                    style="font-size: 9px; background: rgb(163, 163, 163); padding-top: 2px; padding-bottom: 2px; padding-right: 15px; padding-left: 15px; border-radius: 0; color: white">Message Shop
-                                    </a>
+                                    style="font-size: 9px; background: rgb(163, 163, 163); padding-top: 2px; padding-bottom: 2px; padding-right: 15px; padding-left: 15px; border-radius: 0; color: white">Message
+                                    Shop
+                                </a>
                             </div>
                             <span>{{ $shopAddress }}</span>
                         </div>
