@@ -106,7 +106,20 @@
     <div class="container-fluid card">
         <div class="card-header row">
             <div class="col-2">
-                <i class="fas fa-bars"></i>
+                <div class="dropdown">
+                    <button class="btn btn-transparent" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <i class="fas fa-bars" style="font-size: 23px"></i>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li class="text-center" style="margin-left: 20px"><a class="dropdown-item btn rounded-5 mb-3" href="{{ route('seller.home') }}"
+                                style="background: #55AAAD; color:white; width: 85%">My Shop</a></li>
+                        <li class="text-center" style="margin-left: 20px"><a class="dropdown-item btn rounded-5 mb-3" href="{{ route('products.index') }}"
+                            style="background: #55AAAD; color:white; width: 85%">Product</a></li>
+                        <li class="text-center" style="margin-left: 20px"><a class="dropdown-item btn rounded-5 mb-3" href="{{ route('seller.shipment') }}"
+                            style="background: #55AAAD; color:white; width: 85%">Shipment</a></li>
+                    </ul>
+                </div>
                 <a class="btn mx-2" style="background:#4E6A80; color:white; font-weight:500" href="{{ route('post.index') }}">Marketplace</a>
             </div>
             <div class="col-8">

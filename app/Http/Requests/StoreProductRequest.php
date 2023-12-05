@@ -26,7 +26,7 @@ class StoreProductRequest extends FormRequest
             'product_image' => 'required|array',
             'product_image.*' => 'image|mimes:jpeg,png,jpg,gif',
             'product_name' => ['required', 'string', 'max:255'],
-            'category' => ['required', 'string', 'max:255'],
+            'category_id' => ['required', 'exists:categories,id'],
             'product_description' => ['required', 'string', 'max:255'],
             'pre_order' => ['nullable'],
             'variation' => ['required', 'array'],

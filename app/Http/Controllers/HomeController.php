@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Enums\UserTypeEnum;
+use App\Models\Category;
 use App\Models\Product;
 use App\Models\Shop;
 use App\Models\User;
@@ -39,10 +40,11 @@ class HomeController extends Controller
 
     public function adminIndex()
     {
+        $categories = Category::with('product')->get();
         $sellers = User::role(UserTypeEnum::Seller)->count();
         $users = User::role(UserTypeEnum::Buyer)->count();
 
-        return view('adminHome', compact('sellers', 'users'));
+        return view('adminHome', compact('sellers', 'users', 'categories'));
     }
 
 }

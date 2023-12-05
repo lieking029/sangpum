@@ -25,7 +25,7 @@ class UpdateProductRequest extends FormRequest
         return [
             'product_image' => ['nullable', 'string', File::image()],
             'product_name' => ['required', 'string', 'max:255'],
-            'category' => ['required', 'string', 'max:255'],
+            'category_id' => ['required', 'exists:categories,id'],
             'product_description' => ['required', 'string', 'max:255'],
             'pre_order' => ['nullable'],
             'variation' => ['required', 'array'],

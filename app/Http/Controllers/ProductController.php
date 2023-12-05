@@ -6,6 +6,7 @@ use App\DataTables\ProductDataTable;
 use App\Http\Requests\PublishedProductRequest;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductImage;
 use App\Models\ProductVariation;
@@ -15,7 +16,7 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::with('productVariations', 'shipping', 'productImages')
+        $products = Product::with('productVariations', 'shipping', 'productImages', 'category')
             ->where('user_id', auth()->id())
             ->get();
 
@@ -26,7 +27,9 @@ class ProductController extends Controller
 
     public function create()
     {
-        return view('seller.products.create');
+        $categories = Category::all();
+
+        return view('seller.products.create', compact('categories'));
     }
 
     public function store(StoreProductRequest $request)

@@ -54,8 +54,6 @@
                         <li class="text-center" style="margin-left: 20px"><a class="dropdown-item btn rounded-5 mb-3"
                                 href="{{ route('seller.shipment') }}"
                                 style="background: #55AAAD; color:white; width: 85%">Shipment</a></li>
-                        {{-- <li class="text-center" style="margin-left: 20px"><span class="dropdown-item btn rounded-5 mb-3"
-                                href="#" style="background: #55AAAD; color:white; width: 85%">Finance</span></li> --}}
                     </ul>
                 </div>
             </div>
@@ -87,9 +85,14 @@
                         @enderror
                         <div class="form-group mt-3">
                             <label for="category">Category</label>
-                            <input type="text" name="category" placeholder="Category" class="form-control">
+                            <select name="category_id" id="" class="form-select">
+                                <option value="" selected disabled>Select Category</option>
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            @endforeach
+                        </select>
                         </div>
-                        @error('category')
+                        @error('category_id')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
                         <div class="form-group mt-3">

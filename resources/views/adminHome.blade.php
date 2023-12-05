@@ -21,6 +21,8 @@
                             style="background: #55AAAD; color:white; width: 85%">Show Buyers</a></li>
                         <li class="text-center" style="margin-left: 20px"><a class="dropdown-item btn rounded-5 mb-3" href="{{ route('top-up.index') }}"
                             style="background: #55AAAD; color:white; width: 85%">Top Up</a></li>
+                            <li class="text-center" style="margin-left: 20px"><a class="dropdown-item btn rounded-5 mb-3" href="{{ route('category.index') }}"
+                                style="background: #55AAAD; color:white; width: 85%">Category</a></li>
                     </ul>
                 </div>
             </div>
@@ -43,6 +45,10 @@
             <div class="col-8">
                 <canvas id="bargraph" style="background: #4E6A80"></canvas>
             </div>
+        </div>
+
+        <div class="mt-5">
+            <canvas id="productChart" style="background: #c0c2c3" width="400" height="200"></canvas>
         </div>
     </div>
     <script>
@@ -87,7 +93,38 @@
                     }
                 }
             });
-        });
+
+            var ctx = document.getElementById('productChart').getContext('2d');
+
+            // Extract category names and product counts from the controller data
+            var categoryLabels = @json($categories->pluck('name'));
+            var productCounts = @json($categories->pluck('product.count'));
+
+            var data = {
+                labels: categoryLabels,
+                datasets: [{
+                    label: 'Products per Category',
+                    data: productCounts,
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
+                }]
+            };
+
+            var config = {
+                type: 'bar',
+                data: data,
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            };
+
+            var myChart = new Chart(ctx, config);
+                    });
     </script>
 </div>
 @endsection

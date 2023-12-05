@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Category;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -16,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
             $table->string('product_name');
-            $table->string('category');
+            $table->foreignIdFor(Category::class)->constrained()->cascadeOnDelete();
             $table->string('product_description');
             $table->string('pre_order')->nullable();
             $table->integer('published')->nullable();

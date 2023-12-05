@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app');
 
 @section('content')
 
@@ -23,57 +23,68 @@
                             style="background: #55AAAD; color:white; width: 85%">Top up</a></li>
                         <li class="text-center" style="margin-left: 20px"><a class="dropdown-item btn rounded-5 mb-3" href="{{ route('category.index') }}"
                             style="background: #55AAAD; color:white; width: 85%">Category</a></li>
+
                     </ul>
                 </div>
             </div>
         </div>
     </div>
     <div class="card-body">
-        <div class="text-center mt-5">
-            <h4>Buyer's Information</h4>
+        <div class="text-end">
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-plus"></i></button>
         </div>
-        <div class="table-responsive mt-3">
-            <table class="table table-bordered">
+        <div class="table-responsive mt-5">
+            <table class="table table-bordered" id="dataTable" >
                 <thead>
                     <tr>
-                        <th>Seller ID</th>
-                        <th>First name</th>
-                        <th>Middle name</th>
-                        <th>Last name</th>
-                        <th>Address</th>
-                        <th>Zip code</th>
-                        <th>User name</th>
-                        <th>Email</th>
-                        <th>Status</th>
+                        <th>Name</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($buyers as $buyer)
+                    @foreach ($categories as $category)
                         <tr>
-                            <td>{{ $buyer->id }}</td>
-                            <td>{{ $buyer->first_name }}</td>
-                            <td>{{ $buyer->middle_name }}</td>
-                            <td>{{ $buyer->last_name }}</td>
-                            <td>{{ $buyer->address }}</td>
-                            <td>{{ $buyer->barangay }}</td>
-                            <td>{{ $buyer->nickname }}</td>
-                            <td>{{ $buyer->email }}</td>
+                            <td>{{ $category->name }}</td>
                             <td>
-                                @if ($buyer->verified != 1)
-                                <a href="{{ route('approved', $buyer->id) }}" style="color: #FF2500; text-decoration: none">Verify</a>
-                                @else
-                                <strong style="">Verified</strong>
-                                @endif
+                                <form action="{{ route('category.destroy', $category->id) }}" method="POST" >
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-danger" type="submit">Delete</button>
+                                </form>
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
-        <div class="card-footer">
-            {{ $buyers->links() }}
-        </div>
     </div>
+
+   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form action="{{ route('category.store') }}" method="POST" >
+        @csrf
+        <div class="modal-body">
+            <div class="form-group">
+                <label for="">Name</label>
+                <input type="text" name="name" placeholder="Name" class="form-control">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Save</button>
+          </div>
+      </form>
+    </div>
+  </div>
 </div>
 
+    <script>
+        $('#dataTable').DataTable();
+    </script>
+</div>
 @endsection

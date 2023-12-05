@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MessageController;
@@ -12,6 +13,7 @@ use App\Http\Controllers\ShippingController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\TopUpController;
 use App\Http\Controllers\UserManagementController;
+use App\Models\Category;
 use App\Models\ProductVariation;
 use Illuminate\Support\Facades\Route;
 
@@ -69,6 +71,7 @@ Route::middleware('auth')->group(function () {
         Route::get('user-buyers', [UserManagementController::class, 'showBuyer'])->name('showBuyer');
         Route::resource('top-up', TopUpController::class)->except('create');
         Route::post('top-up/transfer/{user}', [TopUpController::class,'transferPoint'])->name('top-up.transfer');
+        Route::resource('category', CategoryController::class);
     });
 
     // Seller
