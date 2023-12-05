@@ -120,6 +120,7 @@ Route::middleware('auth')->group(function () {
         Route::post('addToCart/{product}', [OrderController::class, 'addToCart'])->name('addToCart');
         Route::post('/buyNow', [OrderController::class, 'buyNow'])->name('buyNow');
         Route::post('add-review', [OrderController::class, 'addReview'])->name('products.review');
+        Route::get('shop/{id}', [OrderController::class, 'viewShop'])->name('view.shop');
 
         Route::get('variation-get/{id}', function ($id) {
             $variation = ProductVariation::find($id);

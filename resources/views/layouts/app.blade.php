@@ -19,12 +19,12 @@
 
 <body>
     <div class="wrapper d-flex flex-column min-vh-100" style="background: white">
-        <header class="header header-sticky" style="background: linear-gradient(to right, #5DE0E6, #004AAD); ">
+        <header class="header header-sticky" style="background: linear-gradient(to right, #5DE0E6, #4c5571); ">
             <div class="container-fluid">
                 <ul class="header-nav d-none d-md-flex">
                     @if (auth()->user()->hasRole('buyer'))
-                        <li class="nav-item"><a class="nav-link"
-                                href="{{ route('order.show', auth()->user()->id) }}"><i class="fas fa-shopping-cart text-white"></i></i></a>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('order.show', auth()->user()->id) }}"><i
+                                    class="fas fa-shopping-cart text-white"></i></i></a>
                         </li>
                     @endif
                 </ul>
@@ -65,6 +65,39 @@
                 @yield('content')
             </div>
         </div>
+        <div class="" style="height:2vh; background-color:#5DE0E6">
+
+        </div>
+        <footer class="container-fluid" style="background-color: #4e6a80 ">
+            <div class="row">
+                <div class="col">
+                    <div class="m-4 mx-5">
+                        <img src="{{ asset('icons/logoSangpum.png') }}" alt="">
+                    </div>
+                    <p class="text-white">© 2023 Sangpum. All Rights Reserved.</p>
+                </div>
+                <div class="col">
+                    <h4 class="text-white mt-5">FOLLOW US</h4>
+                    <div class="d-flex justify-content-around">
+                        <div class="d-flex">
+                            <a href="https://www.facebook.com/profile.php?id=61553653243716&mibextid=O4c6Bo"><i
+                                    class="fab fa-facebook fa-2x me-2 text-white"></i></a>
+                                    <h4 class="mt-1 text-white">Facebook</h4>
+                        </div>
+                        <div class="d-flex">
+                            <a href="https://www.instagram.com/sangpum.shop"><i
+                                class="fab fa-instagram fa-2x text-white me-2"></i></a>
+                                    <h4 class="mt-1 text-white">Instagram</h4>
+                        </div>
+                        <div class="d-flex">
+                            <a href="https://x.com/sangpumshop?s=21"><i class="fab fa-twitter fa-2x text-white"></i></a>
+                                    <h4 class="mt-1 text-white mx-1">Twitter</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </footer>
     </div>
     <script src="{{ asset('js/coreui.bundle.min.js') }}"></script>
 </body>

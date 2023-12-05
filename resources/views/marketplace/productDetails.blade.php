@@ -8,16 +8,26 @@
         }
     </style>
 
-@if ($errors->any())
-@foreach ($errors->all() as $error)
-    <div>{{$error}}</div>
-@endforeach
-@endif
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+            <div>{{ $error }}</div>
+        @endforeach
+    @endif
     <div class="container-fluid card">
         <div class="card-header row">
             <div class="col-2">
-                <i class="fas fa-bars"></i>
-                <a class="btn mx-2" style="background:#4E6A80; color:white; font-weight:500" href="{{ route('post.index') }}">Marketplace</a>
+                <div class="dropdown">
+                    <button class="btn btn-transparent" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <i class="fas fa-bars" style="font-size: 23px"></i>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li class="text-center" style="margin-left: 20px"><a class="dropdown-item btn rounded-5 mb-3"
+                                href="{{ route('shipping.myPurchase') }}" style="background: #55AAAD; color:white; width: 85%">My
+                                Purchase</a></li>
+                    </ul>
+                    <a class="btn mx-2" style="background:#4E6A80; color:white; font-weight:500" href="{{ route('post.index') }}">Marketplace</a>
+                </div>
             </div>
             <div class="col-8">
                 <!-- Input group -->
@@ -82,10 +92,12 @@
                             <div class="col"></div>
                         </div>
                         <div class="row d-flex justify-content-center align-items-center mt-5">
-                            <button class="btn rounded-5 text-white" style="background: #55AAAD;" type="button" onclick="setFormAction('addToCart', event)">
+                            <button class="btn rounded-5 text-white" style="background: #55AAAD;" type="button"
+                                onclick="setFormAction('addToCart', event)">
                                 <strong>Add to Cart</strong>
                             </button>
-                            <button class="btn btn-secondary rounded-5 text-white mt-3" type="button" onclick="setFormAction('buyNow', event)">
+                            <button class="btn btn-secondary rounded-5 text-white mt-3" type="button"
+                                onclick="setFormAction('buyNow', event)">
                                 <strong>Buy Now</strong>
                             </button>
                         </div>
@@ -140,7 +152,7 @@
                                     <i class="fas fa-star star-light submit_star mr-1" id="submit_star_5"
                                         data-rating="5"></i>
                                 </h4>
-                                <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                <input type="hidden" name="product_id" value="{{ $product->id }}" id="product_id">
                                 <input type="hidden" name="user_rating" id="rating" value="">
                                 @error('user_rating')
                                     <div class="invalid-feedback">
@@ -148,7 +160,7 @@
                                     </div>
                                 @enderror
                                 <div class="form-group">
-                                    <textarea name="user_comment" id="" class="form-control"></textarea>
+                                    <textarea name="user_comment" id="user_comment" class="form-control"></textarea>
                                 </div>
                                 <button type="submit" name="add_review" class="btn btn-primary mt-3">Comment</button>
                             </div>
@@ -179,18 +191,17 @@
     </div>
 
     <script>
-
         window.setFormAction = function(action, event) {
-        event.preventDefault(); // Prevent the default form submit action
-        var form = document.querySelector('#order-form');
-        if(action == 'addToCart') {
-            form.action = "{{ route('addToCart', $product->id) }}";
-        } else if(action == 'buyNow') {
-            form.action = "{{ route('buyNow') }}";
-        }
-        console.log(form.action); // To check the form action URL
-        form.submit();
-    };
+            event.preventDefault(); // Prevent the default form submit action
+            var form = document.querySelector('#order-form');
+            if (action == 'addToCart') {
+                form.action = "{{ route('addToCart', $product->id) }}";
+            } else if (action == 'buyNow') {
+                form.action = "{{ route('buyNow') }}";
+            }
+            console.log(form.action); // To check the form action URL
+            form.submit();
+        };
 
         $(() => {
 
@@ -247,23 +258,22 @@
 
                 var formData = {
                     'user_rating': rating_data,
-                    'user_comment': $('#user_comment').val(), // Get the comment from the textarea
-                    '_token': $('input[name="_token"]').val() // Get the Laravel CSRF token
+                    'user_comment': $('#user_comment').val(),
+                    'product_id': $('#product_id').val(),
+                    '_token': $('input[name="_token"]').val()
                 };
 
+                console.log(formData);
+
                 $.ajax({
-                    url: $(this).attr('action'), // Get the URL from the form's action attribute
+                    url: $(this).attr('action'),
                     method: 'POST',
                     data: formData,
                     success: function(response) {
-                        alert('Review submitted successfully.');
-                        // Reset the form or update the UI as needed
-                        // ...
+                        location.reload();
                     },
                     error: function(xhr, status, error) {
-                        alert('An error occurred while submitting the review.');
-                        // Optionally handle the error
-                        // ...
+                        console.log(xhr.responseText);
                     }
                 });
             });

@@ -127,33 +127,27 @@
 <body>
     <nav class="navbar navbar-expand-lg bg-body-transparent">
         <div class="container-fluid">
-            <!-- Toggle button for small screens -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <!-- Left-aligned links for medium and larger screens, hidden on small screens -->
             <div class="collapse navbar-collapse justify-content-evenly" id="navbarNav">
-                <a class="nav-link " href="#"
-                    style="color: white; font-family: 'Montserrat', sans-serif;">Home</a>
+                <a class="nav-link" href="/home" style="color: white; font-family: 'Montserrat', sans-serif;">Home</a>
                 <div class="d-flex align-items-center">
                     <label for="" class="text-white me-2">Follow us on</label>
                     <a href="https://www.facebook.com/profile.php?id=61553653243716&mibextid=O4c6Bo"><i
                             class="fab fa-facebook fa-2x me-2"></i></a>
-                    <a href="https://www.instagram.com/sangpum.shop"> <i
+                    <a href="https://www.instagram.com/sangpum.shop"><i
                             class="fab fa-instagram fa-2x text-white me-2"></i></a>
                     <a href="https://x.com/sangpumshop?s=21"><i class="fab fa-twitter fa-2x"></i></a>
                 </div>
             </div>
-
-            <!-- Centered logo for all screen sizes -->
-            <a class="navbar-brand mx-auto" href="#">
-                <img src="{{ asset('icons/logoSangpum.png') }}" alt="logo">
+            <a class="navbar-brand" href="/home">
+                <img src="{{ asset('icons/logoSangpum.png') }}" alt="logo" class="d-block mx-auto">
             </a>
 
-            <!-- Right-aligned links collapsed into the toggler on small screens -->
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+            <div class="collapse navbar-collapse justify-content-end me-5" id="navbarNavAltMarkup">
                 @if (Route::has('login'))
                     <div class="button-group navbar-nav d-flex">
                         @auth
@@ -174,9 +168,7 @@
                 @endif
             </div>
         </div>
-        </div>
     </nav>
-
 
     <div class="container d-flex">
         <div class="d-flex align-items-start flex-column bd-highlight mb-3" style="height: 300px;">

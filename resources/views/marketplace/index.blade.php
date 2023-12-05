@@ -5,20 +5,15 @@
         .table-responsive {
             overflow-x: hidden;
         }
+
+        .custom-border {
+            border: 5px solid #5DE0E6;
+        }
     </style>
     <div class="container-fluid card">
         <div class="card-header row">
-            <div class="col-2 d-flex">
-                <div class="dropdown" id="userdropdown">
-                    <button class="btn btn-transparent" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        <i class="fas fa-bars" style="font-size: 23px"></i>
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li class="text-center" style="margin-left: 20px"><span class="dropdown-item btn rounded-5 mb-3" href="#"
-                            style="background: #55AAAD; color:white; width: 85%">Finance</span></li>
-                    </ul>
-                </div>
+            <div class="col-2">
+                <i class="fas fa-bars"></i>
                 <a class="btn mx-2" style="background:#4E6A80; color:white; font-weight:500" href="{{ route('post.index') }}">Marketplace</a>
             </div>
             <div class="col-8">
@@ -74,8 +69,8 @@
                     @foreach ($products as $product)
                         <div class="col-2 text-center container">
                             <a href="{{ route('productDetails', $product->id) }}" style="text-decoration: none">
-                                <img class="border border-5 rounded-5"
-                                src="{{ asset('storage/'. $product->productImages->first()->image_path) }}"
+                                <img class="custom-border rounded-5"
+                                    src="{{ asset('storage/' . $product->productImages->first()->image_path) }}"
                                     alt="img" height="200" width="200">
                                 <div class="text-black">
                                     <span>{{ $product->product_name }}</span> <br>

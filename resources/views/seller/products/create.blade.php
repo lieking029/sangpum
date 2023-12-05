@@ -71,14 +71,14 @@
                                 <p>Click to upload files</p>
                             </div>
                             <input class="form-control d-none" name="product_image[]" type="file" id="formFileMultiple"
-                                multiple>
+                                multiple >
                         </div>
                         @error('product_image')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
                         <div class="form-group mt-3">
                             <label for="product_name">Product Name</label>
-                            <input type="text" name="product_name" placeholder="Product Name" class="form-control">
+                            <input type="text" name="product_name" placeholder="Product Name" class="form-control" style="border: 2px solid #55aaad;">
                         </div>
                         @error('product_name')
                             <small class="text-danger">{{ $message }}</small>
@@ -98,7 +98,7 @@
                         <div class="form-group mt-3">
                             <label for="product_description">Product Description</label>
                             <textarea name="product_description" id="" rows="2" class="form-control"
-                                placeholder="Product Description"></textarea>
+                                placeholder="Product Description" style="border: 2px solid #55aaad;"></textarea>
                         </div>
                         @error('product_description')
                             <small class="text-danger">{{ $message }}</small>
@@ -148,7 +148,7 @@
                             <div class="" id="variations">
                             </div>
                             <button class="bg-transparent mt-2" type="button" id="addVariation"
-                                style="border: 2px solid #cacaca; font-size: 14px"><i class="fas fa-plus me-2"
+                                style="border: 2px solid #55aaad; font-size: 14px"><i class="fas fa-plus me-2"
                                     style="font-size: 10px"></i>Add Variation</button>
                         </div>
 
@@ -157,19 +157,19 @@
                             <div class="" style="margin-left: 2%">
                                 <div class="d-flex align-items-center">
                                     <label for="weight" style="margin-right: 10px;">Weight:</label>
-                                    <input type="number" max="6" name="weight" placeholder="kg"
-                                        style="height: 27px; width: 10rem; border: 2px solid #cacaca; text-align: right;">
+                                    <input type="number" max="6" name="weight" placeholder="|kg"
+                                        style="height: 27px; width: 10rem; border: 2px solid #55aaad; text-align: right;">
                                 </div>
                                 <div class="d-flex mt-3">
                                     <label for="weight" style="margin-right: 10px">Parcel Size:</label>
-                                    <input type="number" name="height"
-                                        style="height: 27px; width: 10rem; border: 2px solid #cacaca;"> <span
-                                        style="margin-left: 10px; margin-right: 10px">X</span>
-                                    <input type="number" name="width"
-                                        style="height: 27px; width: 10rem; border: 2px solid #cacaca;"> <span
-                                        style="margin-left: 10px; margin-right: 10px">X</span>
-                                    <input type="number" name="length"
-                                        style="height: 27px; width: 10rem; border: 2px solid #cacaca;">
+                                    <input type="number" name="height" placeholder="|cm"
+                                        style="height: 27px; width: 10rem; border: 2px solid #55aaad; text-align: right;">
+                                    <span style="margin-left: 10px; margin-right: 10px">X</span>
+                                    <input type="number" name="width" placeholder="|cm"
+                                        style="height: 27px; width: 10rem; border: 2px solid #55aaad; text-align: right;">
+                                    <span style="margin-left: 10px; margin-right: 10px">X</span>
+                                    <input type="number" name="length" placeholder="|cm"
+                                        style="height: 27px; width: 10rem; border: 2px solid #55aaad; text-align: right;">
                                 </div>
                                 <p style="font-size:13px">Please fill in dimensions accurately. Inaccurate or missing
                                     dimensions may result in
@@ -179,7 +179,7 @@
 
                                 <div class="form-group mt-3">
                                     <label for="shipping_fee" style="margin-right: 10px">Shipping fee:</label>
-                                    <select name="shipping_fee" id="" class="form-select">
+                                    <select name="shipping_fee" id="" class="form-select" style="border: 2px solid #55aaad;">
                                         <option value="standard local" selected>Standard Local</option>
                                     </select>
                                 </div>
@@ -206,13 +206,13 @@
                 const variation = `
             <div class="row mt-2 appended-variation" style="margin-left: 10px">
                 <div class="col text-center">
-                    <input type="text" name="variation[${variationLength}][variation_name]" style="height: 27px; width: 10rem; border: 2px solid #cacaca;">
+                    <input type="text" name="variation[${variationLength}][variation_name]" style="height: 27px; width: 10rem; border: 2px solid #55aaad;">
                 </div>
                 <div class="col">
-                    <input type="number" name="variation[${variationLength}][price]" style="height: 27px; width: 10rem; border: 2px solid #cacaca;">
+                    <input type="number" name="variation[${variationLength}][price]" style="height: 27px; width: 10rem; border: 2px solid #55aaad;">
                 </div>
                 <div class="col">
-                    <input type="number" name="variation[${variationLength}][stock]" style="height: 27px; width: 10rem; border: 2px solid #cacaca;">
+                    <input type="number" name="variation[${variationLength}][stock]" style="height: 27px; width: 10rem; border: 2px solid #55aaad;">
                 </div>
             </div>
             `

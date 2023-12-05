@@ -44,7 +44,7 @@
             color: #007bff;
         }
     </style>
-    <div class="container-fluid card text-white" style="background: #2A3240; min-height: 100vh">
+    <div class="container-fluid border card text-white" style="background: #2A3240; min-height: 100vh">
         <div class="card-header row">
             <div class="col-2">
                 <i class="fas fa-store fa-2x"></i>

@@ -44,6 +44,7 @@
                     </div>
                 </div>
             </div>
+            <a class="btn btn-secondary mt-3" href="/seller-home">Cancel</a>
             <button class="btn btn-primary mt-3" type="submit">Update</button>
         </form>
     </div>
