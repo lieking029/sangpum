@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\AddToCartRequest;
-use App\Http\Requests\ReviewRequest;
-use App\Http\Requests\StoreOrderRequest;
+use App\Models\Shop;
+use App\Models\User;
 use App\Models\Order;
 use App\Models\Product;
+use Illuminate\Http\Request;
 use App\Models\ProductRating;
 use App\Models\ProductVariation;
-use Illuminate\Http\Request;
+use App\Http\Requests\ReviewRequest;
+use App\Http\Requests\AddToCartRequest;
+use App\Http\Requests\StoreOrderRequest;
 
 class OrderController extends Controller
 {
@@ -120,4 +122,18 @@ class OrderController extends Controller
         return redirect()->route('shipping.index', $order->id);
     }
 
+    public function viewShop($id)
+    {
+        $user = User::findOrFail($id);
+
+        // Assuming there is a 'shop' relationship in the User model
+        $shop = $user->shop;
+
+        // Retrieve shop information or set default values if no shop exists
+        $shopAddress = $shop?->shop_address ?? 'No address yet';
+        $profilePicture = asset('storage/' . $user->profile) ?? asset('icons/default-profile-photo.jpg');
+        $products = $user?->products()->paginate(10);
+
+        return view('viewshop.index', compact('user', 'shop', 'shopAddress', 'profilePicture', 'products'));
+    }
 }

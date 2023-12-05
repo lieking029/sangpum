@@ -5,6 +5,10 @@
         .table-responsive {
             overflow-x: hidden;
         }
+
+        .custom-border {
+            border: 5px solid #5DE0E6;
+        }
     </style>
 
     {{-- @dd(auth()->user()->hasRole('seller')) --}}
@@ -60,7 +64,7 @@
                     @foreach ($products as $product)
                         <div class="col-2 text-center">
                             <div>
-                                <img class="border border-5 rounded-5"
+                                <img class="custom-border rounded-5"
                                     src="{{ asset('storage/' . $product->productImages->first()->image_path) }}"
                                     alt="img" height="200" width="200">
                                 <div class="text-black">

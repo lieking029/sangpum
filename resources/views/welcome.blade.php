@@ -170,8 +170,6 @@
         </div>
     </nav>
 
-
-
     <div class="container d-flex">
         <div class="d-flex align-items-start flex-column bd-highlight mb-3" style="height: 300px;">
             <div class="mt-5 p-2 bd-highlight">

@@ -43,10 +43,10 @@
                                 <div class="row">
                                     <div class="col-1">
                                         <h5 style="text-transform: uppercase; font-weight: 700">
-                                            {{ $shipment->product->user->first_name }}</h5>
+                                            {{ $shipment->product->user->shop->shop_name }}</h5>
                                     </div>
                                     <div class="col-2">
-                                        <a href="" class="text-white px-3" style="background: #A6A6A6"><i
+                                        <a href="{{ route('view.shop', $shipment->product->user->id) }}" class="text-white px-3" style="background: #A6A6A6"><i
                                                 class="fas fa-store"> View Shop</i></a>
                                     </div>
                                     <div class="col-9 text-end">
