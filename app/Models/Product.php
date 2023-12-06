@@ -12,7 +12,7 @@ class Product extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'product_image', 'product_name', 'category', 'product_description', 'pre_order', 'published'];
+    protected $fillable = ['user_id', 'product_image', 'product_name', 'category_id', 'product_description', 'pre_order', 'published'];
 
     public function productVariations(): HasMany
     {
