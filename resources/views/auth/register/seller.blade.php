@@ -99,7 +99,7 @@
                     <img src="{{ asset('icons/sangpum-logo-removebg-preview.png') }}" alt="">
                 </div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="container-fluid">
                             <input type="hidden" name="role" value="seller">
@@ -266,6 +266,7 @@
                                                                 Picture(Optional)</label>
                                                             <input type="file" class="form-control" name="profile">
                                                         </div>
+                                                        <div class="invalid-feeback" id="profilePicError"></div>
                                                     </div>
                                                     <div class="col-12 col-md-6"> <!-- Other inputs -->
                                                         <label for="birth_date">Birth Date (Must be 18 years old or
@@ -503,7 +504,7 @@
                                                         </div>
                                                         <label for="">Upload your Govt. ID</label>
                                                         <div class="input-group">
-                                                            <input type="file" name="gov_id"
+                                                            <input type="file" name="govt_id"
                                                                 class="form-control @error('gov_id') is-invalid @enderror">
                                                             <div class="invalid-feedback" id="govIdError"></div>
                                                         </div>
@@ -742,12 +743,49 @@
                             const birthDate = currentStep.querySelector('input[name="birth_date"]');
                             const address = currentStep.querySelector('input[name="address"]');
                             const zipcode = currentStep.querySelector('input[name="barangay"]');
+
                             const firstNameError = currentStep.querySelector('#firstNameError');
                             const middleNameError = currentStep.querySelector('#middleNameError');
                             const lastNameError = currentStep.querySelector('#lastNameError');
                             const birthDateError = currentStep.querySelector('#birthDateError');
                             const addressError = currentStep.querySelector('#addressError');
                             const zipcodeError = currentStep.querySelector('#zipcodeError');
+                            let profilePic = currentStep.querySelector('input[name="profile"]');
+                            let profilePicError = currentStep.querySelector('#profilePicError');
+
+                            if (profilePic.files.length > 0) {
+                                let file = profilePic.files[0];
+                                let fileType = file.type;
+                                const validTypes = ['image/jpeg',
+                                    'image/png'
+                                ]; // Add or remove file types as needed
+                                let fileSize = file.size;
+                                const maxSize = 2 * 1024 * 1024; // Example: 2MB max size
+
+                                // Validate file type
+                                if (!validTypes.includes(fileType)) {
+                                    profilePicError.textContent =
+                                        'Invalid file type. Only JPEG and PNG are allowed.';
+                                    profilePic.classList.add('is-invalid');
+                                    valid = false;
+                                }
+                                // Validate file size
+                                else if (fileSize > maxSize) {
+                                    profilePicError.textContent =
+                                        'The file is too large. Maximum size allowed is 2MB.';
+                                    profilePic.classList.add('is-invalid');
+                                    valid = false;
+                                } else {
+                                    profilePic.classList.remove('is-invalid');
+                                }
+                            } else {
+                                // If no file is selected, clear any previous error messages
+                                profilePic.classList.remove('is-invalid');
+                                if (profilePicError) {
+                                    profilePicError.textContent = '';
+                                }
+                            }
+
 
                             // Reset all error messages before validation
                             firstNameError.textContent = '';
@@ -756,6 +794,7 @@
                             birthDateError.textContent = '';
                             addressError.textContent = '';
                             zipcodeError.textContent = '';
+
 
                             // Validation checks
                             if (!firstName.value.trim()) {
@@ -960,7 +999,7 @@
                         if (currentStep.id === 'step5') {
                             // Selectors for the input fields and their respective error message containers
                             const govtIDType = currentStep.querySelector('select[name="govt_type"]');
-                            const govtID = currentStep.querySelector('input[name="gov_id"]');
+                            const govtID = currentStep.querySelector('input[name="govt_id"]');
                             const dtiPermit = currentStep.querySelector('input[name="dti_permit"]');
                             const barangayClearance = currentStep.querySelector(
                                 'input[name="barangay_clearance"]');

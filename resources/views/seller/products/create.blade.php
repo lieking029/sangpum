@@ -85,7 +85,7 @@
                         @enderror
                         <div class="form-group mt-3">
                             <label for="category">Category</label>
-                            <select name="category_id" id="" class="form-select">
+                            <select name="category_id" id="" class="form-select" style="border: 2px solid #55aaad;">
                                 <option value="" selected disabled>Select Category</option>
                             @foreach ($categories as $category)
                                 <option value="{{ $category->id }}">{{ $category->name }}</option>

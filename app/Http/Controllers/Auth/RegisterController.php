@@ -108,7 +108,7 @@ class RegisterController extends Controller
                 $file = request()->file($key);
                 if ($file->isValid()) {
                     // Store the file and get the path
-                    $filePaths[$key] = $file->store('public/auth');
+                    $filePaths[$key] = $file->store('auth');
                 }
             }
         }

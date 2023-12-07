@@ -14,6 +14,10 @@ class ProfileController extends Controller
 
     public function update(ProfileUpdateRequest $request)
     {
+        if ($request->file('profile'))  {
+            auth()->user()->update(['profile' => $request->file('profile')->store('auth','public')]);
+        }
+
         if ($request->password) {
             auth()->user()->update(['password' => Hash::make($request->password)]);
         }
@@ -24,6 +28,7 @@ class ProfileController extends Controller
             'last_name' => $request->last_name,
             'email' => $request->email,
         ]);
+
 
         return redirect()->back()->with('success', 'Profile updated.');
     }
