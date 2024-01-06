@@ -28,7 +28,8 @@
                                     <svg class="icon">
                                         <use xlink:href="{{ asset('icons/coreui.svg#cil-user') }}"></use>
                                     </svg></span>
-                                <input class="form-control" type="text" name="first_name" placeholder="{{ __('Firstname') }}"
+                                <input class="form-control" type="text" name="first_name"
+                                    placeholder="{{ __('Firstname') }}"
                                     value="{{ old('first_name', auth()->user()->first_name) }}" required>
                                 @error('first_name')
                                     <span class="invalid-feedback">
@@ -41,7 +42,8 @@
                                     <svg class="icon">
                                         <use xlink:href="{{ asset('icons/coreui.svg#cil-user') }}"></use>
                                     </svg></span>
-                                <input class="form-control" type="text" name="middle_name" placeholder="{{ __('Middle Name') }}"
+                                <input class="form-control" type="text" name="middle_name"
+                                    placeholder="{{ __('Middle Name') }}"
                                     value="{{ old('first_name', auth()->user()->middle_name) }}" required>
                                 @error('middle_name')
                                     <span class="invalid-feedback">
@@ -54,7 +56,8 @@
                                     <svg class="icon">
                                         <use xlink:href="{{ asset('icons/coreui.svg#cil-user') }}"></use>
                                     </svg></span>
-                                <input class="form-control" type="text" name="last_name" placeholder="{{ __('Last Name') }}"
+                                <input class="form-control" type="text" name="last_name"
+                                    placeholder="{{ __('Last Name') }}"
                                     value="{{ old('first_name', auth()->user()->last_name) }}" required>
                                 @error('last_name')
                                     <span class="invalid-feedback">
@@ -86,8 +89,8 @@
                                     <svg class="icon">
                                         <use xlink:href="{{ asset('icons/coreui.svg#cil-lock-locked') }}"></use>
                                     </svg></span>
-                                <input class="form-control @error('password') is-invalid @enderror" type="password" name="password"
-                                    placeholder="{{ __('New password') }}" >
+                                <input class="form-control @error('password') is-invalid @enderror" type="password"
+                                    name="password" placeholder="{{ __('New password') }}">
                                 @error('password')
                                     <span class="invalid-feedback">
                                         {{ $message }}
@@ -99,8 +102,9 @@
                                     <svg class="icon">
                                         <use xlink:href="{{ asset('icons/coreui.svg#cil-lock-locked') }}"></use>
                                     </svg></span>
-                                <input class="form-control @error('password_confirmation') is-invalid @enderror" type="password"
-                                    name="password_confirmation" placeholder="{{ __('New password confirmation') }}" >
+                                <input class="form-control @error('password_confirmation') is-invalid @enderror"
+                                    type="password" name="password_confirmation"
+                                    placeholder="{{ __('New password confirmation') }}">
                             </div>
                         </div>
 
@@ -116,7 +120,8 @@
                     </form>
                 </div>
                 <div class="col-4">
-                    <img src="{{ auth()->user()->profile ? asset('storage/' .  auth()->user()->profile) : asset('icons/default-profile-photo.jpg') }}" alt="" height="500" width="500">
+                    <img src="{{ auth()->user()->profile ? asset('storage/' . auth()->user()->profile) : asset('icons/default-profile-photo.jpg') }}"
+                        alt="Profile Picture" height="500" width="500">
                 </div>
             </div>
         </div>

@@ -201,12 +201,11 @@
                                                     </div>
                                                 @enderror
                                             </div>
-
                                             <div class="input-type mt-3">
                                                 <label for="" class="mb-1">Add Profile Picture(Optional)</label>
                                                 <input type="file" class="form-control" name="profile">
                                             </div>
-
+                                            <div class="invalid-feeback" id="profilePicError"></div>
                                             <div class="input-group mt-3">
                                                 <button class="btn rounded-5 w-100 next-btn" type="button"
                                                     data-next="step3-tab"

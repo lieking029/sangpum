@@ -71,27 +71,27 @@
         <footer class="container-fluid" style="background-color: #4e6a80 ">
             <div class="row">
                 <div class="col">
-                    <div class="m-4 mx-5">
+                    <div class="m-3 mx-5">
                         <img src="{{ asset('icons/logoSangpum.png') }}" alt="">
                     </div>
                     <p class="text-white">© 2023 Sangpum. All Rights Reserved.</p>
                 </div>
                 <div class="col">
-                    <h4 class="text-white mt-5">FOLLOW US</h4>
+                    <h5 class="text-white mt-5">FOLLOW US</h5>
                     <div class="d-flex justify-content-around">
                         <div class="d-flex">
                             <a href="https://www.facebook.com/profile.php?id=61553653243716&mibextid=O4c6Bo"><i
                                     class="fab fa-facebook fa-2x me-2 text-white"></i></a>
-                                    <h4 class="mt-1 text-white">Facebook</h4>
+                                    <h5 class="mt-1 text-white">Facebook</h5>
                         </div>
                         <div class="d-flex">
                             <a href="https://www.instagram.com/sangpum.shop"><i
                                 class="fab fa-instagram fa-2x text-white me-2"></i></a>
-                                    <h4 class="mt-1 text-white">Instagram</h4>
+                                    <h5 class="mt-1 text-white">Instagram</h5>
                         </div>
                         <div class="d-flex">
                             <a href="https://x.com/sangpumshop?s=21"><i class="fab fa-twitter fa-2x text-white"></i></a>
-                                    <h4 class="mt-1 text-white mx-1">Twitter</h4>
+                                    <h5 class="mt-1 text-white mx-1">Twitter</h5>
                         </div>
                     </div>
                 </div>

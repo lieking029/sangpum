@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ProfileUpdateRequest extends FormRequest
@@ -17,6 +18,7 @@ class ProfileUpdateRequest extends FormRequest
             'email' => ['required', 'email', 'string', 'max:255', Rule::unique('users')->ignore(Auth::user())],
             'profile' => ['nullable', 'file'],
             'password' => ['nullable', 'string', 'confirmed', 'min:8'],
+            'profile' => ['nullable','file']
         ];
     }
 

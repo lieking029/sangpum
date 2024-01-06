@@ -40,7 +40,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col d-flex justify-content-center align-items-center">
-                        <img src="{{ auth()->user()->profile ? asset('storage/' .  auth()->user()->profile) : asset('icons/default-profile-photo.jpg') }}" alt="" height="100" width="100" class="rounded-5 me-3">
+                        <img src="{{ auth()->user()->profile ? asset('storage/' .  auth()->user()->profile) : asset('icons/default-profile-photo.jpg') }}" alt="Profile Picture" height="100" width="100" class="rounded-5 me-3">
                         <div>
                             <div class="d-flex align-items-center">
                                 <span class="fw-bold">{{ auth()->user()->shop->shop_name ?? 'No Shop yet' }}</span>
