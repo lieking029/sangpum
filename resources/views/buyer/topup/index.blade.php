@@ -15,14 +15,14 @@
         </div>
         <div class="col-8">
             <!-- Input group -->
-            <div class="input-group">
+            {{-- <div class="input-group">
                 <input type="search" class="form-control" placeholder="Search">
                 <div class="input-group-append">
                     <button class="btn btn-outline-secondary" type="button">
                         <i class="fas fa-search"></i>
                     </button>
                 </div>
-            </div>
+            </div> --}}
         </div>
         <div class="col-2 text-end">
             <a href="{{ route('top-up.show', auth()->id()) }}" class="btn btn-warning text-white"><strong>Top-up History</strong></a>

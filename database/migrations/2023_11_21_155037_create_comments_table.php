@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignIdFor(Post::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
             $table->string('comment');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

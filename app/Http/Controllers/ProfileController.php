@@ -18,6 +18,10 @@ class ProfileController extends Controller
             auth()->user()->update(['password' => Hash::make($request->password)]);
         }
 
+        if ($request->profile) {
+            auth()->user()->update(['profile' => $request->file('profile')->store('profile', 'public')]);
+        }
+
         auth()->user()->update([
             'first_name' => $request->first_name,
             'middle_name' => $request->middle_name,

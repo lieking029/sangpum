@@ -15,6 +15,7 @@ class ProfileUpdateRequest extends FormRequest
             'middle_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'string', 'max:255', Rule::unique('users')->ignore(Auth::user())],
+            'profile' => ['nullable', 'file'],
             'password' => ['nullable', 'string', 'confirmed', 'min:8'],
         ];
     }

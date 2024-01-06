@@ -163,12 +163,12 @@
                     </form>
                 </div>
                 <div class="col-3 d-flex flex-column align-items-start">
-                    <div class="input-group mb-3">
+                    {{-- <div class="input-group mb-3">
                         <input type="search" class="form-control" placeholder="Search">
                         <button class="btn btn-outline-secondary" type="button">
                             <i class="fas fa-search"></i>
                         </button>
-                    </div>
+                    </div> --}}
                     <a href="{{ route('post.create') }}" class="my-link text-white"><i class="fas fa-plus fa-2x"></i><span
                             class="text-white"> ADD POST</span></a>
                     <a href="{{ route('myPost') }}" class="my-link"><i class="fas fa-paper-plane fa-2x text-white"></i><span

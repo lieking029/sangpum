@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+@if ($errors->any())
+@foreach ($errors->all() as $error)
+    <div>{{$error}}</div>
+@endforeach
+@endif
     <div class="card mb-4">
         <div class="card-header">
             {{ __('My profile') }}
@@ -9,7 +14,7 @@
         <div class="card-body">
             <div class="row">
                 <div class="col">
-                    <form action="{{ route('profile.update') }}" method="POST">
+                    <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
 
@@ -63,6 +68,7 @@
                                 <input type="file" class="form-control" name="profile">
                             </div>
 
+
                             <div class="input-group mb-3 mt-3"><span class="input-group-text">
                                     <svg class="icon">
                                         <use xlink:href="{{ asset('icons/coreui.svg#cil-envelope-open') }}"></use>
@@ -96,7 +102,6 @@
                                 <input class="form-control @error('password_confirmation') is-invalid @enderror" type="password"
                                     name="password_confirmation" placeholder="{{ __('New password confirmation') }}" >
                             </div>
-
                         </div>
 
                         <div class="card-footer">
