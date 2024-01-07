@@ -538,12 +538,11 @@
                                 birthDate.classList.add('is-invalid');
                                 valid = false;
                             } else {
-                                const birthDateValue = new Date(birthDate.value);
-                                const currentDate = new Date();
-                                const age = currentDate.getFullYear() - birthDateValue.getFullYear();
-                                const m = currentDate.getMonth() - birthDateValue.getMonth();
-                                if (m < 0 || (m === 0 && currentDate.getDate() < birthDateValue
-                                        .getDate())) {
+                                let birthDateValue = new Date(birthDate.value);
+                                let currentDate = new Date();
+                                let age = currentDate.getFullYear() - birthDateValue.getFullYear();
+                                let m = currentDate.getMonth() - birthDateValue.getMonth();
+                                if (m < 0 || (m === 0 && currentDate.getDate() < birthDateValue.getDate())) {
                                     age--;
                                 }
 
