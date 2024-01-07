@@ -10,7 +10,6 @@
 <div class="container-fluid card">
     <div class="card-header row">
         <div class="col-2">
-            <i class="fas fa-bars"></i>
             <a class="btn mx-2" style="background:#4E6A80; color:white; font-weight:500" href="{{ route('post.index') }}">Marketplace</a>
         </div>
         <div class="col-8">
@@ -50,7 +49,7 @@
             </form>
         </div>
         <div class="text-center col row">
-            <img class="col" src="https://scontent.fmnl9-1.fna.fbcdn.net/v/t1.15752-9/400372995_1041247320415908_5283826235252118310_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=8cd0a2&_nc_eui2=AeF9X6J3xJJRbEiMi1Vl2GwPqFiQvtIUN_yoWJC-0hQ3_C2rx0SqJt0cGElUt44nQmGmXLMcUYK4dIsDDR071EQQ&_nc_ohc=dlDkTfCwPC4AX_E9e6c&_nc_ht=scontent.fmnl9-1.fna&oh=03_AdRqFpc2oKdom67GPipipc53d90d_saVZ5KKziJvNMCO9A&oe=65861EF7" alt="" height="400" width="400">
+            <img class="col" src="{{ asset('icons/qr.jpg') }}" alt="" height="400" width="400">
             <p style="font-weight: 600; margin-top: 150px" class="col " >
                 To Top-Up you need to send amount to the Admin of the web-site the using G-cash or any other kind of payment method you want.
                 We assure you that once the Admin has received your form with the screen-shot of the transaction that he/she will send you your points right away.

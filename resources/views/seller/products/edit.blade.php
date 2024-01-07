@@ -38,9 +38,6 @@
             <div class="col">
                 <h3 class="font-weight: 700">Product</h3>
             </div>
-            <div class="col text-end">
-                <i class="fas fa-bars" style="font-size: 24px"></i>
-            </div>
         </div>
         <div class="card-body">
             <form action="{{ route('products.update', $product->id) }}" method="POST" enctype="multipart/form-data">

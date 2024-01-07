@@ -47,7 +47,6 @@
     <div class="container-fluid card" style="background: #2A3240; min-height: 100vh">
         <div class="card-header row">
             <div class="col-2">
-                <i class="fas fa-bars text-white"></i>
                 <a class="btn mx-2" style="background:#4E6A80; color:white; font-weight:500" href="{{ route('post.index') }}">Marketplace</a>
             </div>
             <div class="col-8">
