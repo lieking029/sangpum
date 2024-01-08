@@ -121,14 +121,14 @@
             </div>
             <div class="col-8">
                 <!-- Input group -->
-                {{-- <div class="input-group">
+                <div class="input-group">
                     <input type="search" class="form-control" placeholder="Search">
                     <div class="input-group-append">
                         <button class="btn btn-outline-secondary" type="button">
                             <i class="fas fa-search"></i>
                         </button>
                     </div>
-                </div> --}}
+                </div>
             </div>
             <div class="col-2 text-end">
                 <a class="btn" style="background:#4E6A80" href="{{ url('/') }}"><i class="fas fa-home"
