@@ -6,7 +6,7 @@
             <div class="col-2" style="background: rgb(153, 207, 208); min-height: 100vh">
                 <div class="text-center">
                     <img height="150" width="150" class="rounded-circle mt-4"
-                        src="{{ auth()->user()->profile ? asset('/storage' . auth()->user()->profile) : asset('icons/default-profile-photo.jpg') }}"
+                        src="{{ auth()->user()->profile ? asset('/storage/' . auth()->user()->profile) : asset('icons/default-profile-photo.jpg') }}"
                         alt="">
                     <br>
                     <h5 style="font-weight: 700">{{ auth()->user()->first_name }}</h5>
